@@ -1,0 +1,64 @@
+{
+    "logs": [
+        {
+            "outputFile": "F:\\SVN\\Template\\library_pIckerView\\build\\intermediates\\incremental\\mergeDebugAndroidTestResources\\merged.dir\\values-v13\\values-v13.xml",
+            "map": [
+                {
+                    "source": "F:\\gradle-4.1\\caches\\transforms-1\\files-1.1\\appcompat-v7-23.4.0.aar\\d15693c327b9e68e063caa1bc17016fb\\res\\values-v13\\values-v13.xml",
+                    "from": {
+                        "startLines": "2",
+                        "startColumns": "4",
+                        "startOffsets": "55",
+                        "endColumns": "58",
+                        "endOffsets": "109"
+                    }
+                }
+            ]
+        },
+        {
+            "outputFile": "F:\\SVN\\Template\\library_pIckerView\\build\\intermediates\\res\\merged\\androidTest\\debug\\values-v13\\values-v13.xml",
+            "map": [
+                {
+                    "source": "F:\\gradle-4.1\\caches\\transforms-1\\files-1.1\\appcompat-v7-23.4.0.aar\\d15693c327b9e68e063caa1bc17016fb\\res\\values-v13\\values-v13.xml",
+                    "from": {
+                        "startLines": "2",
+                        "startColumns": "4",
+                        "startOffsets": "55",
+                        "endColumns": "58",
+                        "endOffsets": "109"
+                    }
+                }
+            ]
+        },
+        {
+            "outputFile": "F:\\SVN\\Battle\\library_pIckerView\\build\\intermediates\\res\\merged\\androidTest\\debug\\values-v13\\values-v13.xml",
+            "map": [
+                {
+                    "source": "F:\\gradle-4.1\\caches\\transforms-1\\files-1.1\\appcompat-v7-23.4.0.aar\\d15693c327b9e68e063caa1bc17016fb\\res\\values-v13\\values-v13.xml",
+                    "from": {
+                        "startLines": "2",
+                        "startColumns": "4",
+                        "startOffsets": "55",
+                        "endColumns": "58",
+                        "endOffsets": "109"
+                    }
+                }
+            ]
+        },
+        {
+            "outputFile": "F:\\SVN\\Battle\\library_pIckerView\\build\\intermediates\\incremental\\mergeDebugAndroidTestResources\\merged.dir\\values-v13\\values-v13.xml",
+            "map": [
+                {
+                    "source": "F:\\gradle-4.1\\caches\\transforms-1\\files-1.1\\appcompat-v7-23.4.0.aar\\d15693c327b9e68e063caa1bc17016fb\\res\\values-v13\\values-v13.xml",
+                    "from": {
+                        "startLines": "2",
+                        "startColumns": "4",
+                        "startOffsets": "55",
+                        "endColumns": "58",
+                        "endOffsets": "109"
+                    }
+                }
+            ]
+        }
+    ]
+}
