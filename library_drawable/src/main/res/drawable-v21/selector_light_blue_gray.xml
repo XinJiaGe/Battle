@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ripple xmlns:android="http://schemas.android.com/apk/res/android"
+    android:color="@color/main_color_press_special">
+<item>
+    <selector >
+        <item android:drawable="@drawable/layer_light_blue_corner_item_single"/>
+    </selector>
+</item>
+</ripple>
