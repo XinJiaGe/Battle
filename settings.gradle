@@ -1,0 +1,1 @@
+include ':app', ':library_AndroidPullToRefresh', ':library_dialog', ':library_frame_drawable', ':library_drawable', ':library_gestureimageview', ':library_jia', ':library_pIckerView', ':library_swipeback', ':library_xutils3.3.40'
