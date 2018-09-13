@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.jiage.battle.view.LinearLayoutWidthToHeightView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:gravity="center"
+    android:layout_height="match_parent">
+        <ImageView
+            android:id="@+id/view_title_right_imag"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+</com.jiage.battle.view.LinearLayoutWidthToHeightView>

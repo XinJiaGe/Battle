@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:gravity="center_horizontal"
+    android:padding="20px"
+    android:orientation="vertical">
+    <TextView
+        android:id="@+id/act_customize_item_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="第1关"
+        android:layout_margin="10px"
+        android:textColor="@color/black"/>
+    <com.jiage.battle.view.CheckpointView
+        android:id="@+id/act_customize_view"
+        android:layout_width="200px"
+        android:layout_height="240px"></com.jiage.battle.view.CheckpointView>
+</LinearLayout>

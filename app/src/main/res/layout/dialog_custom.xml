@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.zhy.autolayout.AutoLinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/white"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/dialog_custom_tv_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="50px"
+        android:layout_marginTop="45px"
+        android:gravity="center"
+        android:text="提示"
+        android:textColor="#333"
+        android:textSize="36px" />
+
+    <TextView
+        android:id="@+id/dialog_custom_tv_tip"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:paddingBottom="20px"
+        android:paddingLeft="20px"
+        android:paddingRight="20px"
+        android:text="提示"
+        android:textColor="@color/red"
+        android:textSize="26px"
+        android:visibility="gone" />
+
+    <TextView
+        android:id="@+id/dialog_custom_tv_prompt"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="20px"
+        android:textColor="@android:color/black"
+        android:textSize="40px"
+        android:visibility="gone" />
+
+    <LinearLayout
+
+        android:id="@+id/dialog_custom_ll_content_view"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:gravity="center"
+        android:orientation="vertical"></LinearLayout>
+
+    <LinearLayout
+
+        android:id="@+id/dialog_custom_ly_tv"
+        android:layout_width="match_parent"
+        android:layout_height="100px"
+        android:layout_marginTop="10px"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/dialog_custom_tv_cancel"
+            android:layout_width="0dp"
+            android:layout_height="100px"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="取消"
+            android:textColor="#999"
+            android:textSize="32px" />
+
+        <View
+            android:layout_width="1dp"
+            android:layout_height="match_parent"
+            android:textColor="#999" />
+
+        <TextView
+            android:id="@+id/dialog_custom_tv_confirm"
+            android:layout_width="0dp"
+            android:layout_height="100px"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="确定"
+            android:textColor="@color/black"
+            android:textSize="32px" />
+    </LinearLayout>
+
+</com.zhy.autolayout.AutoLinearLayout>

@@ -1,0 +1,88 @@
+apply plugin: 'com.android.application'
+
+android {
+    aaptOptions.cruncherEnabled = false
+    aaptOptions.useNewCruncher = false
+    compileSdkVersion 26
+    defaultConfig {
+        applicationId "com.jiage.battle"
+        minSdkVersion 16
+        targetSdkVersion 26
+        versionCode 1
+        versionName "1.0.0"
+        flavorDimensions "battle"
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+        multiDexEnabled true
+    }
+    productFlavors {
+        zs {
+            dimension "battle"
+            applicationId "com.jiage.battle"
+            manifestPlaceholders = [package_name: "游戏"]
+            resValue("string", "type", "zs")
+        }
+    }
+    signingConfigs {
+        release {
+            storeFile file("F:/SVN/battle.keystore")
+            storePassword RELEASE_STORE_PASSWORD
+            keyAlias RELEASE_KEY_ALIAS
+            keyPassword RELEASE_KEY_PASSWORD
+        }
+    }
+    buildTypes {
+        debug {
+            minifyEnabled false
+            signingConfig signingConfigs.release
+        }
+        release {
+            // 不显示Log
+            buildConfigField "boolean", "LOG_DEBUG", "false"
+            //Zipalign优化
+            zipAlignEnabled true
+            // 移除无用的resource文件
+            shrinkResources false
+            //混淆
+            minifyEnabled false
+            //前一部分代表系统默认的android程序的混淆文件，该文件已经包含了基本的混淆声明
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            signingConfig signingConfigs.release
+        }
+    }
+    //修改生成的apk名字
+    android.applicationVariants.all { variant ->
+        variant.outputs.all {
+            outputFileName = "battle_${defaultConfig.versionName}_"+getDate()+".apk"
+        }
+    }
+}
+//获取时间戳
+def getDate() {
+    def date = new Date()
+    def formattedDate = date.format('yyyyMMddHHmmss')
+    return formattedDate
+}
+
+dependencies {
+    implementation fileTree(include: ['*.jar'], dir: 'libs')
+    androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
+        exclude group: 'com.android.support', module: 'support-annotations'
+    })
+    testCompile 'junit:junit:4.12'
+    implementation 'com.android.support:appcompat-v7:26.1.0'
+    implementation 'com.android.support:multidex:1.0.1'
+    implementation 'com.android.support.constraint:constraint-layout:1.0.2'
+    testImplementation 'junit:junit:4.12'
+    //屏幕适配
+    implementation 'com.zhy:autolayout:1.4.5'
+    //RxJava
+    compile 'io.reactivex.rxjava2:rxjava:2.1.1'
+    implementation project(':library_AndroidPullToRefresh')
+    implementation project(':library_gestureimageview')
+    implementation project(':library_xutils3.3.40')
+    implementation project(':library_pIckerView')
+    implementation project(':library_swipeback')
+    implementation project(':library_drawable')
+    implementation project(':library_dialog')
+    implementation project(':library_jia')
+}

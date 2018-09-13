@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.zhy.autolayout.AutoLinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/view_title_center_tv"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="我就是我"
+        android:textColor="@color/white"
+        android:ellipsize="end"
+        android:singleLine="true"
+        android:textSize="45px"></TextView>
+
+    <TextView
+        android:id="@+id/view_title_right_tv"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="我就是我"
+        android:textColor="@color/white"
+        android:textSize="35px"
+        android:ellipsize="end"
+        android:singleLine="true"
+        android:visibility="gone"></TextView>
+</com.zhy.autolayout.AutoLinearLayout>

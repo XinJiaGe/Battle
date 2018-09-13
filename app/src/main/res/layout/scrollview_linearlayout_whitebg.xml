@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white">
+
+    <ScrollView
+        android:id="@+id/scrollview"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/white"
+        android:scrollbars="none">
+
+        <com.jiage.battle.view.ListViewLinearLayoutView
+            android:id="@+id/scrollview_linearlayout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"></com.jiage.battle.view.ListViewLinearLayoutView>
+    </ScrollView>
+
+    <com.jiage.battle.view.NullDataView
+        android:id="@+id/nulldata"
+        android:layout_width="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_centerHorizontal="true"
+        android:layout_height="wrap_content"></com.jiage.battle.view.NullDataView>
+</RelativeLayout>
+

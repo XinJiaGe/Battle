@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+
+    <LinearLayout
+
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <com.jiage.battle.view.SDMaxHeightView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <ScrollView
+                android:id="@+id/dialog_confirm_sv_content"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:minHeight="80px"
+                android:scrollbars="none">
+
+                <com.zhy.autolayout.AutoLinearLayout
+
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:id="@+id/dialog_confirm_tv_content"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:paddingLeft="40px"
+                        android:paddingRight="40px"
+                        android:textColor="@android:color/black"
+                        android:textSize="30px" />
+                </com.zhy.autolayout.AutoLinearLayout>
+
+            </ScrollView>
+
+        </com.jiage.battle.view.SDMaxHeightView>
+
+    </LinearLayout>
+</LinearLayout>

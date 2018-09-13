@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <declare-styleable name="MaxHeightView">
+        <attr name="mhv_SDHeightRatio" format="reference|float" />
+        <attr name="mhv_SDHeightDimen" format="reference|dimension" />
+    </declare-styleable>
+
+
+
+
+
+
+
+</resources>
