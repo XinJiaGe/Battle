@@ -1,9 +1,5 @@
 [
     {
-        "merged": "F:\\SVN\\Template\\library_pIckerView\\build\\intermediates\\res\\merged\\androidTest\\debug\\menu\\main.xml",
-        "source": "F:\\SVN\\Template\\library_pIckerView\\build\\intermediates\\bundles\\debug\\res\\menu\\main.xml"
-    },
-    {
         "merged": "F:\\SVN\\Battle\\library_pIckerView\\build\\intermediates\\res\\merged\\androidTest\\debug\\menu\\main.xml",
         "source": "F:\\SVN\\Battle\\library_pIckerView\\build\\intermediates\\bundles\\debug\\res\\menu\\main.xml"
     }

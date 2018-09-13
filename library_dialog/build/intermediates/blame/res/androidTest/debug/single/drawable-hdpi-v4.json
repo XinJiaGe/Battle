@@ -1,0 +1,26 @@
+[
+    {
+        "merged": "F:\\SVN\\Battle\\library_dialog\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable-hdpi-v4\\tips_success.png",
+        "source": "F:\\SVN\\Battle\\library_dialog\\build\\intermediates\\bundles\\debug\\res\\drawable-hdpi-v4\\tips_success.png"
+    },
+    {
+        "merged": "F:\\SVN\\Battle\\library_dialog\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable-hdpi-v4\\tips_smile.png",
+        "source": "F:\\SVN\\Battle\\library_dialog\\build\\intermediates\\bundles\\debug\\res\\drawable-hdpi-v4\\tips_smile.png"
+    },
+    {
+        "merged": "F:\\SVN\\Battle\\library_dialog\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable-hdpi-v4\\tips_error.png",
+        "source": "F:\\SVN\\Battle\\library_dialog\\build\\intermediates\\bundles\\debug\\res\\drawable-hdpi-v4\\tips_error.png"
+    },
+    {
+        "merged": "F:\\SVN\\Battle\\library_dialog\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable-hdpi-v4\\tips_warning.png",
+        "source": "F:\\SVN\\Battle\\library_dialog\\build\\intermediates\\bundles\\debug\\res\\drawable-hdpi-v4\\tips_warning.png"
+    },
+    {
+        "merged": "F:\\SVN\\Battle\\library_dialog\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable-hdpi-v4\\icon_f.png",
+        "source": "F:\\SVN\\Battle\\library_dialog\\build\\intermediates\\bundles\\debug\\res\\drawable-hdpi-v4\\icon_f.png"
+    },
+    {
+        "merged": "F:\\SVN\\Battle\\library_dialog\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable-hdpi-v4\\icon_s.png",
+        "source": "F:\\SVN\\Battle\\library_dialog\\build\\intermediates\\bundles\\debug\\res\\drawable-hdpi-v4\\icon_s.png"
+    }
+]

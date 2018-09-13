@@ -1,0 +1,72 @@
+{
+    "logs": [
+        {
+            "outputFile": "F:\\SVN\\Battle\\library_dialog\\build\\intermediates\\incremental\\mergeDebugAndroidTestResources\\merged.dir\\values\\values.xml",
+            "map": [
+                {
+                    "source": "F:\\SVN\\Battle\\library_frame_drawable\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
+                    "from": {
+                        "startLines": "2",
+                        "startColumns": "4",
+                        "startOffsets": "55",
+                        "endColumns": "55",
+                        "endOffsets": "106"
+                    }
+                },
+                {
+                    "source": "F:\\SVN\\Battle\\library_dialog\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
+                    "from": {
+                        "startLines": "2,3,10",
+                        "startColumns": "4,4,4",
+                        "startOffsets": "55,99,390",
+                        "endLines": "2,9,12",
+                        "endColumns": "43,12,12",
+                        "endOffsets": "94,385,545"
+                    },
+                    "to": {
+                        "startLines": "3,4,11",
+                        "startColumns": "4,4,4",
+                        "startOffsets": "111,155,446",
+                        "endLines": "3,10,13",
+                        "endColumns": "43,12,12",
+                        "endOffsets": "150,441,601"
+                    }
+                }
+            ]
+        },
+        {
+            "outputFile": "F:\\SVN\\Battle\\library_dialog\\build\\intermediates\\res\\merged\\androidTest\\debug\\values\\values.xml",
+            "map": [
+                {
+                    "source": "F:\\SVN\\Battle\\library_frame_drawable\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
+                    "from": {
+                        "startLines": "2",
+                        "startColumns": "4",
+                        "startOffsets": "55",
+                        "endColumns": "55",
+                        "endOffsets": "106"
+                    }
+                },
+                {
+                    "source": "F:\\SVN\\Battle\\library_dialog\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
+                    "from": {
+                        "startLines": "2,3,10",
+                        "startColumns": "4,4,4",
+                        "startOffsets": "55,99,390",
+                        "endLines": "2,9,12",
+                        "endColumns": "43,12,12",
+                        "endOffsets": "94,385,545"
+                    },
+                    "to": {
+                        "startLines": "3,4,11",
+                        "startColumns": "4,4,4",
+                        "startOffsets": "111,155,446",
+                        "endLines": "3,10,13",
+                        "endColumns": "43,12,12",
+                        "endOffsets": "150,441,601"
+                    }
+                }
+            ]
+        }
+    ]
+}
