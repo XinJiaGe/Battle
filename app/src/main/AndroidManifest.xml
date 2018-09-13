@@ -25,6 +25,12 @@
             </intent-filter>
         </activity>
         <activity
+            android:name=".activity.SnakeGameActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activity.SnakeActivity"
+            android:screenOrientation="portrait" />
+        <activity
             android:name=".activity.ArkanoidSettingActivity"
             android:screenOrientation="portrait" />
         <activity

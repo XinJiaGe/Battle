@@ -1,6 +1,7 @@
 package com.jiage.battle.activity;
 
 import android.view.View;
+import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -16,7 +17,9 @@ import org.xutils.view.annotation.ViewInject;
  */
 public class MainActivity extends BaseActivit {
     @ViewInject(R.id.act_main_arkanoid)
-    protected TextView arkanoid;
+    protected Button arkanoid;
+    @ViewInject(R.id.act_main_snake)
+    protected Button snake;
 
     @Override
     public int bindLayout() {
@@ -33,12 +36,16 @@ public class MainActivity extends BaseActivit {
     @Override
     public void doView() {
         arkanoid.setOnClickListener(this);
+        snake.setOnClickListener(this);
     }
 
     @Override
     public void widgetClick(View view) {
         if(view == arkanoid){
             startActivity(ArkanoidActivity.class);
+        }
+        if(view == snake){
+            startActivity(SnakeActivity.class);
         }
     }
 }

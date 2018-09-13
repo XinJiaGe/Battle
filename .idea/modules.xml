@@ -3,30 +3,20 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/Battle.iml" filepath="$PROJECT_DIR$/Battle.iml" />
-      <module fileurl="file://F:\SVN\Battle\Battle.iml" filepath="F:\SVN\Battle\Battle.iml" />
       <module fileurl="file://F:\SVN\Battle\app\Battle-app.iml" filepath="F:\SVN\Battle\app\Battle-app.iml" />
       <module fileurl="file://F:\SVN\Battle\library_xutils3.3.40\Battle-library_xutils3.3.40.iml" filepath="F:\SVN\Battle\library_xutils3.3.40\Battle-library_xutils3.3.40.iml" />
       <module fileurl="file://F:\SVN\BillionShop\Rabbit.iml" filepath="F:\SVN\BillionShop\Rabbit.iml" />
       <module fileurl="file://F:\SVN\Rabbit\RedEnvelope.iml" filepath="F:\SVN\Rabbit\RedEnvelope.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
       <module fileurl="file://$PROJECT_DIR$/library_AndroidPullToRefresh/library_AndroidPullToRefresh.iml" filepath="$PROJECT_DIR$/library_AndroidPullToRefresh/library_AndroidPullToRefresh.iml" />
-      <module fileurl="file://F:\SVN\Battle\library_AndroidPullToRefresh\library_AndroidPullToRefresh.iml" filepath="F:\SVN\Battle\library_AndroidPullToRefresh\library_AndroidPullToRefresh.iml" />
       <module fileurl="file://$PROJECT_DIR$/library_dialog/library_dialog.iml" filepath="$PROJECT_DIR$/library_dialog/library_dialog.iml" />
-      <module fileurl="file://F:\SVN\Battle\library_dialog\library_dialog.iml" filepath="F:\SVN\Battle\library_dialog\library_dialog.iml" />
       <module fileurl="file://$PROJECT_DIR$/library_drawable/library_drawable.iml" filepath="$PROJECT_DIR$/library_drawable/library_drawable.iml" />
-      <module fileurl="file://F:\SVN\Battle\library_drawable\library_drawable.iml" filepath="F:\SVN\Battle\library_drawable\library_drawable.iml" />
       <module fileurl="file://$PROJECT_DIR$/library_frame_drawable/library_frame_drawable.iml" filepath="$PROJECT_DIR$/library_frame_drawable/library_frame_drawable.iml" />
-      <module fileurl="file://F:\SVN\Battle\library_frame_drawable\library_frame_drawable.iml" filepath="F:\SVN\Battle\library_frame_drawable\library_frame_drawable.iml" />
       <module fileurl="file://$PROJECT_DIR$/library_gestureimageview/library_gestureimageview.iml" filepath="$PROJECT_DIR$/library_gestureimageview/library_gestureimageview.iml" />
-      <module fileurl="file://F:\SVN\Battle\library_gestureimageview\library_gestureimageview.iml" filepath="F:\SVN\Battle\library_gestureimageview\library_gestureimageview.iml" />
       <module fileurl="file://$PROJECT_DIR$/library_jia/library_jia.iml" filepath="$PROJECT_DIR$/library_jia/library_jia.iml" />
-      <module fileurl="file://F:\SVN\Battle\library_jia\library_jia.iml" filepath="F:\SVN\Battle\library_jia\library_jia.iml" />
       <module fileurl="file://$PROJECT_DIR$/library_pIckerView/library_pIckerView.iml" filepath="$PROJECT_DIR$/library_pIckerView/library_pIckerView.iml" />
-      <module fileurl="file://F:\SVN\Battle\library_pIckerView\library_pIckerView.iml" filepath="F:\SVN\Battle\library_pIckerView\library_pIckerView.iml" />
       <module fileurl="file://$PROJECT_DIR$/library_swipeback/library_swipeback.iml" filepath="$PROJECT_DIR$/library_swipeback/library_swipeback.iml" />
-      <module fileurl="file://F:\SVN\Battle\library_swipeback\library_swipeback.iml" filepath="F:\SVN\Battle\library_swipeback\library_swipeback.iml" />
       <module fileurl="file://$PROJECT_DIR$/library_xutils3.3.40/library_xutils3.3.40.iml" filepath="$PROJECT_DIR$/library_xutils3.3.40/library_xutils3.3.40.iml" />
-      <module fileurl="file://F:\SVN\Battle\library_xutils3.3.40\library_xutils3.3.40.iml" filepath="F:\SVN\Battle\library_xutils3.3.40\library_xutils3.3.40.iml" />
     </modules>
   </component>
 </project>

@@ -209,6 +209,16 @@ public class SurfaceViewUtil {
         }
         return isInclude;
     }
+    public static boolean isCollsionClick(Rect rect, float clickX, float clickY){
+        Region region = new Region(rect);
+        boolean isInclude = false;
+        if (region.contains((int)clickX, (int) clickY)) {
+            isInclude = true;
+        } else {
+            isInclude = false;
+        }
+        return isInclude;
+    }
 
     /**
      * 判断点击位置是否在园内

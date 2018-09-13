@@ -8,4 +8,9 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="打砖块"/>
+    <Button
+        android:id="@+id/act_main_snake"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="贪吃蛇"/>
 </LinearLayout>
