@@ -1,35 +1,31 @@
 [
     {
-        "merged": "F:\\SVN\\Battle\\library_dialog\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable\\frame_rabbit12.png",
-        "source": "F:\\SVN\\Battle\\library_frame_drawable\\build\\intermediates\\bundles\\debug\\res\\drawable\\frame_rabbit12.png"
-    },
-    {
         "merged": "F:\\SVN\\Battle\\library_dialog\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable\\frame_rabbit08.png",
         "source": "F:\\SVN\\Battle\\library_frame_drawable\\build\\intermediates\\bundles\\debug\\res\\drawable\\frame_rabbit08.png"
+    },
+    {
+        "merged": "E:\\GitHub\\Battle\\library_dialog\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable\\frame_rabbit10.png",
+        "source": "E:\\GitHub\\Battle\\library_frame_drawable\\build\\intermediates\\bundles\\debug\\res\\drawable\\frame_rabbit10.png"
     },
     {
         "merged": "F:\\SVN\\Battle\\library_dialog\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable\\frame_rabbit02.png",
         "source": "F:\\SVN\\Battle\\library_frame_drawable\\build\\intermediates\\bundles\\debug\\res\\drawable\\frame_rabbit02.png"
     },
     {
+        "merged": "E:\\GitHub\\Battle\\library_dialog\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable\\frame_rabbit05.png",
+        "source": "E:\\GitHub\\Battle\\library_frame_drawable\\build\\intermediates\\bundles\\debug\\res\\drawable\\frame_rabbit05.png"
+    },
+    {
+        "merged": "E:\\GitHub\\Battle\\library_dialog\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable\\frame_rabbit02.png",
+        "source": "E:\\GitHub\\Battle\\library_frame_drawable\\build\\intermediates\\bundles\\debug\\res\\drawable\\frame_rabbit02.png"
+    },
+    {
         "merged": "F:\\SVN\\Battle\\library_dialog\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable\\frame_rabbit05.png",
         "source": "F:\\SVN\\Battle\\library_frame_drawable\\build\\intermediates\\bundles\\debug\\res\\drawable\\frame_rabbit05.png"
     },
     {
-        "merged": "F:\\SVN\\Battle\\library_dialog\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable\\frame_rabbit03.png",
-        "source": "F:\\SVN\\Battle\\library_frame_drawable\\build\\intermediates\\bundles\\debug\\res\\drawable\\frame_rabbit03.png"
-    },
-    {
-        "merged": "F:\\SVN\\Battle\\library_dialog\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable\\frame_rabbit10.png",
-        "source": "F:\\SVN\\Battle\\library_frame_drawable\\build\\intermediates\\bundles\\debug\\res\\drawable\\frame_rabbit10.png"
-    },
-    {
-        "merged": "F:\\SVN\\Battle\\library_dialog\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable\\frame_rabbit11.png",
-        "source": "F:\\SVN\\Battle\\library_frame_drawable\\build\\intermediates\\bundles\\debug\\res\\drawable\\frame_rabbit11.png"
-    },
-    {
-        "merged": "F:\\SVN\\Battle\\library_dialog\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable\\frame_rabbit06.png",
-        "source": "F:\\SVN\\Battle\\library_frame_drawable\\build\\intermediates\\bundles\\debug\\res\\drawable\\frame_rabbit06.png"
+        "merged": "E:\\GitHub\\Battle\\library_dialog\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable\\frame_rabbit07.png",
+        "source": "E:\\GitHub\\Battle\\library_frame_drawable\\build\\intermediates\\bundles\\debug\\res\\drawable\\frame_rabbit07.png"
     },
     {
         "merged": "F:\\SVN\\Battle\\library_dialog\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable\\yuanjiao.xml",
@@ -52,7 +48,67 @@
         "source": "F:\\SVN\\Battle\\library_frame_drawable\\build\\intermediates\\bundles\\debug\\res\\drawable\\frame_rabbit01.png"
     },
     {
+        "merged": "E:\\GitHub\\Battle\\library_dialog\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable\\frame_rabbit11.png",
+        "source": "E:\\GitHub\\Battle\\library_frame_drawable\\build\\intermediates\\bundles\\debug\\res\\drawable\\frame_rabbit11.png"
+    },
+    {
+        "merged": "E:\\GitHub\\Battle\\library_dialog\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable\\frame_rabbit06.png",
+        "source": "E:\\GitHub\\Battle\\library_frame_drawable\\build\\intermediates\\bundles\\debug\\res\\drawable\\frame_rabbit06.png"
+    },
+    {
+        "merged": "E:\\GitHub\\Battle\\library_dialog\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable\\frame_rabbit03.png",
+        "source": "E:\\GitHub\\Battle\\library_frame_drawable\\build\\intermediates\\bundles\\debug\\res\\drawable\\frame_rabbit03.png"
+    },
+    {
+        "merged": "F:\\SVN\\Battle\\library_dialog\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable\\frame_rabbit12.png",
+        "source": "F:\\SVN\\Battle\\library_frame_drawable\\build\\intermediates\\bundles\\debug\\res\\drawable\\frame_rabbit12.png"
+    },
+    {
+        "merged": "E:\\GitHub\\Battle\\library_dialog\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable\\frame_rabbit.xml",
+        "source": "E:\\GitHub\\Battle\\library_frame_drawable\\build\\intermediates\\bundles\\debug\\res\\drawable\\frame_rabbit.xml"
+    },
+    {
+        "merged": "E:\\GitHub\\Battle\\library_dialog\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable\\frame_rabbit09.png",
+        "source": "E:\\GitHub\\Battle\\library_frame_drawable\\build\\intermediates\\bundles\\debug\\res\\drawable\\frame_rabbit09.png"
+    },
+    {
+        "merged": "E:\\GitHub\\Battle\\library_dialog\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable\\frame_rabbit12.png",
+        "source": "E:\\GitHub\\Battle\\library_frame_drawable\\build\\intermediates\\bundles\\debug\\res\\drawable\\frame_rabbit12.png"
+    },
+    {
+        "merged": "E:\\GitHub\\Battle\\library_dialog\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable\\frame_rabbit04.png",
+        "source": "E:\\GitHub\\Battle\\library_frame_drawable\\build\\intermediates\\bundles\\debug\\res\\drawable\\frame_rabbit04.png"
+    },
+    {
+        "merged": "F:\\SVN\\Battle\\library_dialog\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable\\frame_rabbit03.png",
+        "source": "F:\\SVN\\Battle\\library_frame_drawable\\build\\intermediates\\bundles\\debug\\res\\drawable\\frame_rabbit03.png"
+    },
+    {
+        "merged": "E:\\GitHub\\Battle\\library_dialog\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable\\frame_rabbit01.png",
+        "source": "E:\\GitHub\\Battle\\library_frame_drawable\\build\\intermediates\\bundles\\debug\\res\\drawable\\frame_rabbit01.png"
+    },
+    {
+        "merged": "F:\\SVN\\Battle\\library_dialog\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable\\frame_rabbit10.png",
+        "source": "F:\\SVN\\Battle\\library_frame_drawable\\build\\intermediates\\bundles\\debug\\res\\drawable\\frame_rabbit10.png"
+    },
+    {
+        "merged": "F:\\SVN\\Battle\\library_dialog\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable\\frame_rabbit11.png",
+        "source": "F:\\SVN\\Battle\\library_frame_drawable\\build\\intermediates\\bundles\\debug\\res\\drawable\\frame_rabbit11.png"
+    },
+    {
+        "merged": "F:\\SVN\\Battle\\library_dialog\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable\\frame_rabbit06.png",
+        "source": "F:\\SVN\\Battle\\library_frame_drawable\\build\\intermediates\\bundles\\debug\\res\\drawable\\frame_rabbit06.png"
+    },
+    {
+        "merged": "E:\\GitHub\\Battle\\library_dialog\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable\\frame_rabbit08.png",
+        "source": "E:\\GitHub\\Battle\\library_frame_drawable\\build\\intermediates\\bundles\\debug\\res\\drawable\\frame_rabbit08.png"
+    },
+    {
         "merged": "F:\\SVN\\Battle\\library_dialog\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable\\frame_rabbit09.png",
         "source": "F:\\SVN\\Battle\\library_frame_drawable\\build\\intermediates\\bundles\\debug\\res\\drawable\\frame_rabbit09.png"
+    },
+    {
+        "merged": "E:\\GitHub\\Battle\\library_dialog\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable\\yuanjiao.xml",
+        "source": "E:\\GitHub\\Battle\\library_dialog\\build\\intermediates\\bundles\\debug\\res\\drawable\\yuanjiao.xml"
     }
 ]

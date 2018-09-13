@@ -1,5 +1,13 @@
 [
     {
+        "merged": "E:\\GitHub\\Battle\\library_dialog\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable-mdpi-v4\\icon_s.png",
+        "source": "E:\\GitHub\\Battle\\library_dialog\\build\\intermediates\\bundles\\debug\\res\\drawable-mdpi-v4\\icon_s.png"
+    },
+    {
+        "merged": "E:\\GitHub\\Battle\\library_dialog\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable-mdpi-v4\\icon_f.png",
+        "source": "E:\\GitHub\\Battle\\library_dialog\\build\\intermediates\\bundles\\debug\\res\\drawable-mdpi-v4\\icon_f.png"
+    },
+    {
         "merged": "F:\\SVN\\Battle\\library_dialog\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable-mdpi-v4\\icon_s.png",
         "source": "F:\\SVN\\Battle\\library_dialog\\build\\intermediates\\bundles\\debug\\res\\drawable-mdpi-v4\\icon_s.png"
     },

@@ -1,7 +1,15 @@
 [
     {
+        "merged": "E:\\GitHub\\Battle\\library_AndroidPullToRefresh\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable\\indicator_bg_top.xml",
+        "source": "E:\\GitHub\\Battle\\library_AndroidPullToRefresh\\build\\intermediates\\bundles\\debug\\res\\drawable\\indicator_bg_top.xml"
+    },
+    {
         "merged": "F:\\SVN\\Battle\\library_AndroidPullToRefresh\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable\\indicator_bg_top.xml",
         "source": "F:\\SVN\\Battle\\library_AndroidPullToRefresh\\build\\intermediates\\bundles\\debug\\res\\drawable\\indicator_bg_top.xml"
+    },
+    {
+        "merged": "E:\\GitHub\\Battle\\library_AndroidPullToRefresh\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable\\indicator_bg_bottom.xml",
+        "source": "E:\\GitHub\\Battle\\library_AndroidPullToRefresh\\build\\intermediates\\bundles\\debug\\res\\drawable\\indicator_bg_bottom.xml"
     },
     {
         "merged": "F:\\SVN\\Battle\\library_AndroidPullToRefresh\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable\\indicator_bg_bottom.xml",

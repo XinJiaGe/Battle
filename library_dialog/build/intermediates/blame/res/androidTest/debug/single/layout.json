@@ -8,7 +8,19 @@
         "source": "F:\\SVN\\Battle\\library_dialog\\build\\intermediates\\bundles\\debug\\res\\layout\\view_tips_loading.xml"
     },
     {
+        "merged": "E:\\GitHub\\Battle\\library_dialog\\build\\intermediates\\res\\merged\\androidTest\\debug\\layout\\view_tips.xml",
+        "source": "E:\\GitHub\\Battle\\library_dialog\\build\\intermediates\\bundles\\debug\\res\\layout\\view_tips.xml"
+    },
+    {
+        "merged": "E:\\GitHub\\Battle\\library_dialog\\build\\intermediates\\res\\merged\\androidTest\\debug\\layout\\view_banner.xml",
+        "source": "E:\\GitHub\\Battle\\library_dialog\\build\\intermediates\\bundles\\debug\\res\\layout\\view_banner.xml"
+    },
+    {
         "merged": "F:\\SVN\\Battle\\library_dialog\\build\\intermediates\\res\\merged\\androidTest\\debug\\layout\\view_banner.xml",
         "source": "F:\\SVN\\Battle\\library_dialog\\build\\intermediates\\bundles\\debug\\res\\layout\\view_banner.xml"
+    },
+    {
+        "merged": "E:\\GitHub\\Battle\\library_dialog\\build\\intermediates\\res\\merged\\androidTest\\debug\\layout\\view_tips_loading.xml",
+        "source": "E:\\GitHub\\Battle\\library_dialog\\build\\intermediates\\bundles\\debug\\res\\layout\\view_tips_loading.xml"
     }
 ]

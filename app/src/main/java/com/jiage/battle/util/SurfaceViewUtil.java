@@ -6,6 +6,7 @@ import android.graphics.Paint;
 import android.graphics.Point;
 import android.graphics.Rect;
 import android.graphics.Region;
+import android.util.Log;
 
 import java.util.Random;
 
@@ -270,6 +271,26 @@ public class SurfaceViewUtil {
         }
         //当矩形1位于矩形2的下方
         else if (y1 <= y2 && y1 + h1 <= y2) {
+            return false;
+        }
+        //所有不会发生碰撞都不满足，肯定就是碰撞了
+        return true;
+    }
+    public static boolean isCollsionWithRect(Rect rect1,Rect rect2) {
+        //当矩形1位于矩形2的左侧
+        if (rect1.left >= rect2.left && rect1.left >= rect2.right) {
+            return false;
+        }
+        //当矩形1位于矩形2的右侧
+        else if (rect1.left <= rect2.left && rect1.right <= rect2.left) {
+            return false;
+        }
+        //当矩形1位于矩形2的上方
+        else if (rect1.top <= rect2.top && rect1.bottom <= rect2.top) {
+            return false;
+        }
+        //当矩形1位于矩形2的下方
+        else if (rect1.top >= rect2.bottom && rect1.bottom >= rect2.bottom) {
             return false;
         }
         //所有不会发生碰撞都不满足，肯定就是碰撞了
