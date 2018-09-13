@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="GradleSettings">
+    <option name="linkedExternalProjectsSettings">
+      <GradleProjectSettings>
+        <option name="distributionType" value="LOCAL" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="gradleHome" value="F:/gradle-4.1" />
+        <option name="modules">
+          <set>
+            <option value="$PROJECT_DIR$" />
+            <option value="$PROJECT_DIR$/app" />
+            <option value="$PROJECT_DIR$/library_AndroidPullToRefresh" />
+            <option value="$PROJECT_DIR$/library_dialog" />
+            <option value="$PROJECT_DIR$/library_drawable" />
+            <option value="$PROJECT_DIR$/library_frame_drawable" />
+            <option value="$PROJECT_DIR$/library_gestureimageview" />
+            <option value="$PROJECT_DIR$/library_jia" />
+            <option value="$PROJECT_DIR$/library_pIckerView" />
+            <option value="$PROJECT_DIR$/library_swipeback" />
+            <option value="$PROJECT_DIR$/library_xutils3.3.40" />
+          </set>
+        </option>
+        <option name="resolveModulePerSourceSet" value="false" />
+      </GradleProjectSettings>
+    </option>
+  </component>
+</project>
