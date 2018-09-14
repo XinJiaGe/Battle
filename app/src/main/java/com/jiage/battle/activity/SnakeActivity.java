@@ -37,7 +37,7 @@ public class SnakeActivity extends BaseActivit {
             startActivity(SnakeGameActivity.class);
         }
         if(view == bluetooth){
-            startActivity(SnakeGameActivity.class);
+            startActivity(SnakeBluetoothActivity.class);
         }
     }
 }
