@@ -1,4 +1,4 @@
-package com.jiage.battle.surface;
+package com.jiage.battle.surface.arkanoid;
 
 import android.content.Context;
 import android.graphics.Color;
@@ -8,6 +8,7 @@ import android.util.Log;
 import com.jiage.battle.constant.Constant;
 import com.jiage.battle.entity.CheckpointItemEntity;
 import com.jiage.battle.sharedPreference.SharedPreference;
+import com.jiage.battle.surface.BaseSurfaceView;
 import com.jiage.battle.surface.arkanoid.Square;
 import com.jiage.battle.surface.arkanoid.Bullet;
 import com.jiage.battle.surface.arkanoid.Functions;
@@ -208,10 +209,7 @@ public class ArkanoidGameSurface extends BaseSurfaceView {
 
     public interface onLenter {
         void gameOver();//结束游戏
-
         void victory();//胜利
-
-        void clearance();//通关
     }
 
     public void onDestroy() {

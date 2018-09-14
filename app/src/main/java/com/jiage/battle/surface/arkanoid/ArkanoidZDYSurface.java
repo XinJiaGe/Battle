@@ -1,9 +1,10 @@
-package com.jiage.battle.surface;
+package com.jiage.battle.surface.arkanoid;
 
 import android.content.Context;
 import android.graphics.Color;
 import android.util.AttributeSet;
 
+import com.jiage.battle.surface.BaseSurfaceView;
 import com.jiage.battle.surface.arkanoid.CustomizeBlock;
 
 import java.util.Vector;

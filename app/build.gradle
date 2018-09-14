@@ -24,7 +24,7 @@ android {
     }
     signingConfigs {
         release {
-            storeFile file("F:/SVN/battle.keystore")
+            storeFile file("E:/AndroidStudio/battle.keystore")
             storePassword RELEASE_STORE_PASSWORD
             keyAlias RELEASE_KEY_ALIAS
             keyPassword RELEASE_KEY_PASSWORD

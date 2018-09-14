@@ -298,6 +298,19 @@ public class SurfaceViewUtil {
     }
 
     /**
+     * 判断两个矩形是否重叠
+     * @param rect1
+     * @param rect2
+     * @return
+     */
+    public static boolean isCollsionBumpRect(Rect rect1,Rect rect2) {
+        if(rect1.left == rect2.left&&rect1.top==rect2.top){
+            return true;
+        }
+        return false;
+    }
+
+    /**
      * 判断矩形和圆形是否碰撞
      * @param rect
      * @param x

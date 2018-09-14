@@ -29,6 +29,7 @@ public class RectangleKeyboard {
     private String colorLt = noClickColor;
     private String colorRt = noClickColor;
     private onClickListener clickDirectionListener;
+    private int index = 1;
 
     public RectangleKeyboard(int left, int top, int width, int height) {
         this.x = left;
@@ -59,26 +60,38 @@ public class RectangleKeyboard {
     public void setClickXY(float rawX, float rawY) {
         if (SurfaceViewUtil.isCollsionClick(rectTp, rawX, rawY)) {
             colorTp = clickColor;
-            if (clickDirectionListener != null)
-                clickDirectionListener.clickDirection(Direction.TOP);
+            if(index!=2) {
+                index = 1;
+                if (clickDirectionListener != null)
+                    clickDirectionListener.clickDirection(Direction.TOP);
+            }
         } else {
             colorTp = noClickColor;
             if (SurfaceViewUtil.isCollsionClick(rectBt, rawX, rawY)) {
                 colorBt = clickColor;
-                if (clickDirectionListener != null)
-                    clickDirectionListener.clickDirection(Direction.BOTTOM);
+                if(index!=1) {
+                    index = 2;
+                    if (clickDirectionListener != null)
+                        clickDirectionListener.clickDirection(Direction.BOTTOM);
+                }
             } else {
                 colorBt = noClickColor;
                 if (SurfaceViewUtil.isCollsionClick(rectLt, rawX, rawY)) {
                     colorLt = clickColor;
-                    if (clickDirectionListener != null)
-                        clickDirectionListener.clickDirection(Direction.LEFT);
+                    if(index!=4) {
+                        index = 3;
+                        if (clickDirectionListener != null)
+                            clickDirectionListener.clickDirection(Direction.LEFT);
+                    }
                 } else {
                     colorLt = noClickColor;
                     if (SurfaceViewUtil.isCollsionClick(rectRt, rawX, rawY)) {
                         colorRt = clickColor;
-                        if (clickDirectionListener != null)
-                            clickDirectionListener.clickDirection(Direction.RIGHT);
+                        if(index!=3) {
+                            index = 4;
+                            if (clickDirectionListener != null)
+                                clickDirectionListener.clickDirection(Direction.RIGHT);
+                        }
                     } else {
                         colorRt = noClickColor;
                     }

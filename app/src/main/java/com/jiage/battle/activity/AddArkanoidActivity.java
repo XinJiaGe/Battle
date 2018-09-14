@@ -13,7 +13,7 @@ import com.jiage.battle.dao.JsonDbModelDao;
 import com.jiage.battle.entity.CheckpointEntity;
 import com.jiage.battle.entity.CheckpointItemEntity;
 import com.jiage.battle.entity.CustomizeEntity;
-import com.jiage.battle.surface.ArkanoidZDYSurface;
+import com.jiage.battle.surface.arkanoid.ArkanoidZDYSurface;
 import com.jiage.battle.surface.arkanoid.CustomizeBlock;
 
 import org.xutils.view.annotation.ViewInject;

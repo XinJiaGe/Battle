@@ -12,7 +12,7 @@ import com.jiage.battle.dialog.SDDialogConfirm;
 import com.jiage.battle.dialog.SDDialogCustom;
 import com.jiage.battle.entity.CheckpointEntity;
 import com.jiage.battle.entity.CheckpointItemEntity;
-import com.jiage.battle.surface.ArkanoidGameSurface;
+import com.jiage.battle.surface.arkanoid.ArkanoidGameSurface;
 
 import org.xutils.view.annotation.ViewInject;
 
@@ -80,11 +80,6 @@ public class ArkanoidGameActivity extends BaseActivit implements ArkanoidGameSur
         Message message = new Message();
         message.what = 1;
         handler.sendMessage(message);
-    }
-
-    @Override
-    public void clearance() {
-
     }
 
     private Handler handler = new Handler() {

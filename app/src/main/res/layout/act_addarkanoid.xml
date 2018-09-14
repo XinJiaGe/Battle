@@ -54,7 +54,7 @@
             android:gravity="right|center_vertical"
             android:textSize="32px"></Spinner>
     </LinearLayout>
-    <com.jiage.battle.surface.ArkanoidZDYSurface
+    <com.jiage.battle.surface.arkanoid.ArkanoidZDYSurface
         android:id="@+id/act_customize_surface"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />

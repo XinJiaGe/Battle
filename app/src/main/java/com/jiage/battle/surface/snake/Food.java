@@ -30,7 +30,7 @@ public class Food {
     public void draw(Canvas canvas, Paint paint) {
         this.mCanvas = canvas;
         this.mPaint = paint;
-        paint.setColor(Color.BLACK);
+        paint.setColor(Color.GREEN);
         rect = new Rect(foodx,foody,foodx+w,foody+h);
         canvas.drawRect(rect,paint);
     }

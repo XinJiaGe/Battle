@@ -15,77 +15,28 @@ import java.util.Vector;
  * 说明：蛇集合
  */
 
-public class Snake implements RectangleKeyboard.onClickListener {
-    private RectangleKeyboard rectangleKeyboard;
+public class Snake {
     private int x,y;
     private int w=20,h=20;//宽高
     private boolean isHead;//是否是头部
     private Rect rect;
     private int seep = 20;
-    private RectangleKeyboard.Direction direction;
 
-    public Snake(int x, int y, boolean head,RectangleKeyboard.Direction direction, RectangleKeyboard rectangleKeyboard){
+    public Snake(int x, int y, boolean head){
         this.isHead = head;
-        this.rectangleKeyboard = rectangleKeyboard;
-        this.direction = direction;
         if(head) {
             this.x = is20(x);
             this.y = is20(y);
         }
-        if(rectangleKeyboard!=null)
-            rectangleKeyboard.setClickDirectionListener(this);
     }
 
-    public void draw(Canvas canvas, Paint paint) {
+    public void draw(Canvas canvas, Paint paint, int i) {
         paint.setColor(Color.BLACK);
         rect = new Rect(x,y,x+w,y+h);
         canvas.drawRect(rect,paint);
     }
 
-    public boolean logic(Vector<Snake> snake, Food food) {
-        boolean isP = false;
-//        Rect torect = toRect();
-//        if(torect==null)
-//            return isP;
-//        if(isHead&&rect!=null&&SurfaceViewUtil.isCollsionWithRect(torect,food.getRect())) {
-//            snake.add(new Snake(torect.left,torect.top,isHead,direction, rectangleKeyboard));
-//            isHead = false;
-//            rectangleKeyboard = null;
-//            food.setFoodx(-20);
-//        }else {
-//            snake.elementAt(snake.size() - 1).setX(torect.left);
-//            snake.elementAt(snake.size() - 1).setY(torect.top);
-//        }
-//        if(rect!=null&&SurfaceViewUtil.isCollsionWithRect(toRect(),food.getRect())) {
-//            isHead = false;
-//            rectangleKeyboard = null;
-//            isP = true;
-//        }else {
-//            if(size==1) {
-//                switch (direction) {
-//                    case TOP:
-//                        y -= seep;
-//                        break;
-//                    case LEFT:
-//                        x -= seep;
-//                        break;
-//                    case RIGHT:
-//                        x += seep;
-//                        break;
-//                    case BOTTOM:
-//                        y += seep;
-//                        break;
-//                }
-//            }
-//        }
-//        if(food.getFoodx()<0)
-//            food.UpdataFood();
-        return isP;
-    }
-
-    @Override
-    public void clickDirection(RectangleKeyboard.Direction direction) {
-        this.direction = direction;
+    public void logic() {
     }
 
     /**
@@ -127,10 +78,6 @@ public class Snake implements RectangleKeyboard.onClickListener {
         return rect;
     }
 
-    public RectangleKeyboard.Direction getDirection() {
-        return direction;
-    }
-
     public void setX(int x) {
         this.x = x;
     }
@@ -141,10 +88,6 @@ public class Snake implements RectangleKeyboard.onClickListener {
 
     public int getSeep() {
         return seep;
-    }
-
-    public void setRectangleKeyboard(RectangleKeyboard rectangleKeyboard) {
-        this.rectangleKeyboard = rectangleKeyboard;
     }
 
     public void setHead(boolean head) {

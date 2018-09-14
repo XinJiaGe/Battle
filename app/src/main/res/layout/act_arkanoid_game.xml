@@ -3,7 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
-    <com.jiage.battle.surface.ArkanoidGameSurface
+    <com.jiage.battle.surface.arkanoid.ArkanoidGameSurface
         android:id="@+id/act_main_surface"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
