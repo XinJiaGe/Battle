@@ -16,6 +16,8 @@ import org.xutils.view.annotation.ViewInject;
 public class SnakeActivity extends BaseActivit {
     @ViewInject(R.id.act_snake_start)
     protected Button start;
+    @ViewInject(R.id.act_snake_bluetooth)
+    protected Button bluetooth;
 
     @Override
     public int bindLayout() {
@@ -26,11 +28,15 @@ public class SnakeActivity extends BaseActivit {
     public void initView(View view) {
         mTitle.setCenterText("贪吃蛇");
         start.setOnClickListener(this);
+        bluetooth.setOnClickListener(this);
     }
 
     @Override
     public void widgetClick(View view) {
         if(view == start){
+            startActivity(SnakeGameActivity.class);
+        }
+        if(view == bluetooth){
             startActivity(SnakeGameActivity.class);
         }
     }
