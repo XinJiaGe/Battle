@@ -1,33 +1,33 @@
 -- Merging decision tree log ---
 manifest
-ADDED from E:\GitHub\Battle\library_gestureimageview\src\main\AndroidManifest.xml:2:1-10:12
-INJECTED from E:\GitHub\Battle\library_gestureimageview\src\main\AndroidManifest.xml:2:1-10:12
-INJECTED from E:\GitHub\Battle\library_gestureimageview\src\main\AndroidManifest.xml:2:1-10:12
-INJECTED from E:\GitHub\Battle\library_gestureimageview\src\main\AndroidManifest.xml:2:1-10:12
-INJECTED from E:\GitHub\Battle\library_gestureimageview\src\main\AndroidManifest.xml:2:1-10:12
-INJECTED from E:\GitHub\Battle\library_gestureimageview\src\main\AndroidManifest.xml:2:1-10:12
-INJECTED from E:\GitHub\Battle\library_gestureimageview\src\main\AndroidManifest.xml:2:1-10:12
+ADDED from F:\SVN\Battle\library_gestureimageview\src\main\AndroidManifest.xml:2:1-10:12
+INJECTED from F:\SVN\Battle\library_gestureimageview\src\main\AndroidManifest.xml:2:1-10:12
+INJECTED from F:\SVN\Battle\library_gestureimageview\src\main\AndroidManifest.xml:2:1-10:12
+INJECTED from F:\SVN\Battle\library_gestureimageview\src\main\AndroidManifest.xml:2:1-10:12
+INJECTED from F:\SVN\Battle\library_gestureimageview\src\main\AndroidManifest.xml:2:1-10:12
+INJECTED from F:\SVN\Battle\library_gestureimageview\src\main\AndroidManifest.xml:2:1-10:12
+INJECTED from F:\SVN\Battle\library_gestureimageview\src\main\AndroidManifest.xml:2:1-10:12
 	package
-		ADDED from E:\GitHub\Battle\library_gestureimageview\src\main\AndroidManifest.xml:3:5-34
-		INJECTED from E:\GitHub\Battle\library_gestureimageview\src\main\AndroidManifest.xml
-		INJECTED from E:\GitHub\Battle\library_gestureimageview\src\main\AndroidManifest.xml
+		ADDED from F:\SVN\Battle\library_gestureimageview\src\main\AndroidManifest.xml:3:5-34
+		INJECTED from F:\SVN\Battle\library_gestureimageview\src\main\AndroidManifest.xml
+		INJECTED from F:\SVN\Battle\library_gestureimageview\src\main\AndroidManifest.xml
 	android:versionName
-		ADDED from E:\GitHub\Battle\library_gestureimageview\src\main\AndroidManifest.xml:5:5-30
-		INJECTED from E:\GitHub\Battle\library_gestureimageview\src\main\AndroidManifest.xml
-		INJECTED from E:\GitHub\Battle\library_gestureimageview\src\main\AndroidManifest.xml
+		ADDED from F:\SVN\Battle\library_gestureimageview\src\main\AndroidManifest.xml:5:5-30
+		INJECTED from F:\SVN\Battle\library_gestureimageview\src\main\AndroidManifest.xml
+		INJECTED from F:\SVN\Battle\library_gestureimageview\src\main\AndroidManifest.xml
 	xmlns:android
-		ADDED from E:\GitHub\Battle\library_gestureimageview\src\main\AndroidManifest.xml:2:11-69
+		ADDED from F:\SVN\Battle\library_gestureimageview\src\main\AndroidManifest.xml:2:11-69
 	android:versionCode
-		ADDED from E:\GitHub\Battle\library_gestureimageview\src\main\AndroidManifest.xml:4:5-28
-		INJECTED from E:\GitHub\Battle\library_gestureimageview\src\main\AndroidManifest.xml
-		INJECTED from E:\GitHub\Battle\library_gestureimageview\src\main\AndroidManifest.xml
+		ADDED from F:\SVN\Battle\library_gestureimageview\src\main\AndroidManifest.xml:4:5-28
+		INJECTED from F:\SVN\Battle\library_gestureimageview\src\main\AndroidManifest.xml
+		INJECTED from F:\SVN\Battle\library_gestureimageview\src\main\AndroidManifest.xml
 application
-ADDED from E:\GitHub\Battle\library_gestureimageview\src\main\AndroidManifest.xml:7:5-8:19
+ADDED from F:\SVN\Battle\library_gestureimageview\src\main\AndroidManifest.xml:7:5-8:19
 uses-sdk
-INJECTED from E:\GitHub\Battle\library_gestureimageview\src\main\AndroidManifest.xml reason: use-sdk injection requested
-INJECTED from E:\GitHub\Battle\library_gestureimageview\src\main\AndroidManifest.xml
-INJECTED from E:\GitHub\Battle\library_gestureimageview\src\main\AndroidManifest.xml
+INJECTED from F:\SVN\Battle\library_gestureimageview\src\main\AndroidManifest.xml reason: use-sdk injection requested
+INJECTED from F:\SVN\Battle\library_gestureimageview\src\main\AndroidManifest.xml
+INJECTED from F:\SVN\Battle\library_gestureimageview\src\main\AndroidManifest.xml
 	android:minSdkVersion
-		INJECTED from E:\GitHub\Battle\library_gestureimageview\src\main\AndroidManifest.xml
-		ADDED from E:\GitHub\Battle\library_gestureimageview\src\main\AndroidManifest.xml
-		INJECTED from E:\GitHub\Battle\library_gestureimageview\src\main\AndroidManifest.xml
+		INJECTED from F:\SVN\Battle\library_gestureimageview\src\main\AndroidManifest.xml
+		ADDED from F:\SVN\Battle\library_gestureimageview\src\main\AndroidManifest.xml
+		INJECTED from F:\SVN\Battle\library_gestureimageview\src\main\AndroidManifest.xml
