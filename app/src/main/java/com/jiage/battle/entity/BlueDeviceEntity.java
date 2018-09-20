@@ -10,11 +10,14 @@ public class BlueDeviceEntity {
     private String name;
     private String address;
     private int state;
+    private boolean add;//true： 加入 false: 退出
 
-    public BlueDeviceEntity(String name,String address,int state){
-        this.name = name;
-        this.address = address;
-        this.state = state;
+    public boolean isAdd() {
+        return add;
+    }
+
+    public void setAdd(boolean add) {
+        this.add = add;
     }
 
     public String getName() {

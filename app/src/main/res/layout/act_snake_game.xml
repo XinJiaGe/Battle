@@ -9,7 +9,7 @@
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent">
-            <com.jiage.battle.surface.snake.SnakeSurface
+            <com.jiage.battle.surface.snake.SnakeBluetoothSurface
                 android:id="@+id/act_snake_game_surface"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent" />
@@ -25,6 +25,17 @@
                 android:textColor="@color/black"
                 android:text="开始"/>
             <TextView
+                android:layout_alignParentRight="true"
+                android:layout_alignParentBottom="true"
+                android:layout_marginBottom="10px"
+                android:id="@+id/act_snake_game_man2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="20px"
+                android:padding="20px"
+                android:textColor="@color/black"
+                android:text=""/>
+            <TextView
                 android:layout_alignParentBottom="true"
                 android:layout_marginBottom="250px"
                 android:id="@+id/act_snake_game_fraction"
@@ -34,6 +45,16 @@
                 android:padding="20px"
                 android:textColor="@color/black"
                 android:text="0"/>
+            <TextView
+                android:layout_alignParentBottom="true"
+                android:layout_marginBottom="20px"
+                android:id="@+id/act_snake_game_man1"
+                android:layout_marginLeft="20px"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="20px"
+                android:textColor="@color/black"
+                android:text=""/>
         </RelativeLayout>
     </LinearLayout>
 </LinearLayout>

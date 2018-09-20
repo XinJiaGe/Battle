@@ -21,9 +21,11 @@ public class Snake {
     private boolean isHead;//是否是头部
     private Rect rect;
     private int seep = 20;
+    private int color;
 
-    public Snake(int x, int y, boolean head){
+    public Snake(int x, int y, boolean head,int color){
         this.isHead = head;
+        this.color = color;
         if(head) {
             this.x = is20(x);
             this.y = is20(y);
@@ -31,7 +33,7 @@ public class Snake {
     }
 
     public void draw(Canvas canvas, Paint paint, int i) {
-        paint.setColor(Color.BLACK);
+        paint.setColor(color);
         rect = new Rect(x,y,x+w,y+h);
         canvas.drawRect(rect,paint);
     }
