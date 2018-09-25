@@ -34,7 +34,7 @@ public class SnakeSurface extends BaseSurfaceView implements RectangleKeyboard.o
         food = new Food(mScreenW,mScreenH);
         rectangleKeyboard = new RectangleKeyboard(mScreenW / 2 - 250, mScreenH - 450, 500, 400);
         vcSnake = new Vector<>();
-        vcSnake.add(new Snake(mScreenW/2,(mScreenH - 500)/2,true,Color.BLACK));
+        vcSnake.add(new Snake(mScreenW/2,(mScreenH - 500)/2,true,Color.BLACK,""));
         rectangleKeyboard.setClickDirectionListener(this);
     }
 
@@ -77,7 +77,7 @@ public class SnakeSurface extends BaseSurfaceView implements RectangleKeyboard.o
             if(SurfaceViewUtil.isCollsionBumpRect(snake1.getRect(),food.getRect())){
                 food.setFoodx(-20);
                 food.UpdataFood();
-                vcSnake.insertElementAt(new Snake(torect.left,torect.top,true,Color.BLACK),0);
+                vcSnake.insertElementAt(new Snake(torect.left,torect.top,true,Color.BLACK,""),0);
                 if(mOnListener!=null)
                     mOnListener.fraction();
             }

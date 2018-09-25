@@ -28,9 +28,6 @@
             android:name=".activity.SnakeBluetoothGameActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".activity.SnakeBluetoothEstablishActivity"
-            android:screenOrientation="portrait" />
-        <activity
             android:name=".activity.SnakeBluetoothAddActivity"
             android:screenOrientation="portrait" />
         <activity

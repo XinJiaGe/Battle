@@ -67,7 +67,6 @@ public class SnakeActivity extends BaseBluetoothActivity {
                     switch (index) {
                         case 0:
                             Bundle bundle = new Bundle();
-                            bundle.putBoolean(SnakeBluetoothGameActivity.TYPE,true);
                             startActivity(SnakeBluetoothGameActivity.class,bundle);
                             break;
                         case 1:

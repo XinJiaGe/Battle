@@ -22,10 +22,12 @@ public class Snake {
     private Rect rect;
     private int seep = 20;
     private int color;
+    private String address;
 
-    public Snake(int x, int y, boolean head,int color){
+    public Snake(int x, int y, boolean head,int color,String address){
         this.isHead = head;
         this.color = color;
+        this.address = address;
         if(head) {
             this.x = is20(x);
             this.y = is20(y);
@@ -78,6 +80,10 @@ public class Snake {
 
     public Rect getRect() {
         return rect;
+    }
+
+    public String getAddress() {
+        return address;
     }
 
     public void setX(int x) {
