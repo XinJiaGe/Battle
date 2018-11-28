@@ -42,25 +42,5 @@ public class AddArkanoidItemAdapter extends BaseAdapter<CheckpointItemEntity> {
 
         text.setText("第"+(position+1)+"关");
         view.setData(model);
-
-        convertView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Bundle bundle = new Bundle();
-                bundle.putInt(ArkanoidGameActivity.CHECKPOINTNUMBER,(position+1));
-                bundle.putSerializable(ArkanoidGameActivity.CHECKPOINT,model);
-                startActivity(ArkanoidGameActivity.class,bundle);
-            }
-        });
-//        convertView.setOnLongClickListener(new View.OnLongClickListener() {
-//            @Override
-//            public boolean onLongClick(View v) {
-//                showToast("position:"+position);
-//                removeItem(position);
-//                CheckpointEntity entity = JsonDbModelDao.getInstance().query(CheckpointEntity.class);
-//                entity.getItemEntityList().remove(position);
-//                return true;
-//            }
-//        });
     }
 }

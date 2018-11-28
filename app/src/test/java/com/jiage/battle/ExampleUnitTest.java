@@ -3,6 +3,7 @@ package com.jiage.battle;
 import android.util.Base64;
 
 import com.jiage.battle.util.SDDateUtil;
+import com.jiage.battle.util.SurfaceViewUtil;
 
 import org.junit.Test;
 
@@ -22,6 +23,8 @@ public class ExampleUnitTest {
 
     @Test
     public void addition_isCorrect() throws Exception {
+//        System.out.println(-SurfaceViewUtil.getRotationAngle(200,200,100,100));
+        System.out.println(0%20==0);
 //        System.out.println(convertFileSize(1452457878));
 
 //        System.out.println(MD5("123456"));
@@ -76,8 +79,8 @@ public class ExampleUnitTest {
 //        System.out.println(encrypt("123456", "shoukala.1234~~!"));//加密前卡密123456
 //        System.out.println("Owj3ElO8tduU0VKJhXfcxQ==");//加密后的结果
 
-        final long starTime = 1526541479;
-        System.out.println(SDDateUtil.getFormatDataFrom(starTime));
+//        final long starTime = 1526541479;
+//        System.out.println(SDDateUtil.getFormatDataFrom(starTime));
     }
 
     public static String encrypt(String data, String key) throws Exception {

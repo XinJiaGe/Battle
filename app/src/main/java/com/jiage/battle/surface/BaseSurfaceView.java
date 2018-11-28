@@ -21,9 +21,9 @@ import com.jiage.battle.sound.GameSoundPool;
 
 public abstract class BaseSurfaceView extends SurfaceView implements Callback, Runnable {
     protected Context mContext;
-    private boolean isS = false;
+    protected boolean isStop = false;
     //帧数
-    protected int frame = 20;
+    protected int frame = 16;
     //用于控制SurfaceView
     private SurfaceHolder sfh;
     //声明一个画笔
@@ -45,7 +45,7 @@ public abstract class BaseSurfaceView extends SurfaceView implements Callback, R
      */
     protected void init(Context context) {
         this.mContext = context;
-        isS = true;
+        isStop = true;
         soundPool = GameSoundPool.getInstance(mContext);//声音类
         //实例SurfaceHolder
         sfh = this.getHolder();
@@ -76,7 +76,7 @@ public abstract class BaseSurfaceView extends SurfaceView implements Callback, R
 
     @Override
     public void run() {
-        while (isS) {
+        while (isStop) {
             long start = System.currentTimeMillis();
             myDraws();
             logic();
@@ -178,11 +178,11 @@ public abstract class BaseSurfaceView extends SurfaceView implements Callback, R
     public void surfaceCreated(SurfaceHolder surfaceHolder) {
         mScreenW = this.getWidth();
         mScreenH = this.getHeight();
+        created();
         //实例线程
         th = new Thread(this);
         //启动线程
         th.start();
-        created();
     }
 
     /**
@@ -198,7 +198,7 @@ public abstract class BaseSurfaceView extends SurfaceView implements Callback, R
      */
     @Override
     public void surfaceDestroyed(SurfaceHolder surfaceHolder) {
-        isS = false;
+        isStop = false;
         th.interrupt();
         try {
             th.join();

@@ -1,6 +1,7 @@
 package com.jiage.battle.activity;
 
 import android.content.Intent;
+import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.GridView;
@@ -8,6 +9,8 @@ import android.widget.GridView;
 import com.jiage.battle.R;
 import com.jiage.battle.adapter.AddArkanoidItemAdapter;
 import com.jiage.battle.dao.JsonDbModelDao;
+import com.jiage.battle.dialog.SDDialogConfirm;
+import com.jiage.battle.dialog.SDDialogCustom;
 import com.jiage.battle.dialog.SDDialogMenu;
 import com.jiage.battle.entity.CheckpointEntity;
 import com.jiage.battle.entity.CheckpointItemEntity;
@@ -24,7 +27,7 @@ import java.util.List;
  * 说明：自定义关卡
  */
 
-public class ArkanoidZDYActivity extends BaseActivit{
+public class ArkanoidZDYActivity extends BaseActivit implements AdapterView.OnItemLongClickListener, AdapterView.OnItemClickListener {
     @ViewInject(R.id.act_customize_gridview)
     private GridView gridview;
 
@@ -42,16 +45,18 @@ public class ArkanoidZDYActivity extends BaseActivit{
     public void initView(View view) {
         mTitle.setCenterText("所有关卡");
         mTitle.setRightText("添加");
+        gridview.setOnItemLongClickListener(this);
+        gridview.setOnItemClickListener(this);
     }
 
     @Override
     public void doView() {
-        adapter = new AddArkanoidItemAdapter(listModel,this);
-        gridview.setAdapter(adapter);
+        listModel.clear();
         CheckpointEntity entity = JsonDbModelDao.getInstance().query(CheckpointEntity.class);
         if(entity!=null){
             listModel.addAll(entity.getItemEntityList());
-            adapter.notifyDataSetChanged();
+            adapter = new AddArkanoidItemAdapter(listModel,this);
+            gridview.setAdapter(adapter);
         }
     }
 
@@ -73,31 +78,40 @@ public class ArkanoidZDYActivity extends BaseActivit{
         }
     }
 
-//    @Override
-//    public boolean onItemLongClick(AdapterView<?> parent, View view, final int position, long id) {
-//        showToast("ddddddd");
-//        SDDialogMenu menu = new SDDialogMenu(mActivity);
-//        menu.setItems(new String[]{"删除"});
-//        menu.setmListener(new SDDialogMenu.SDDialogMenuListener() {
-//            @Override
-//            public void onCancelClick(View v, SDDialogMenu dialog) {
-//
-//            }
-//
-//            @Override
-//            public void onDismiss(SDDialogMenu dialog) {
-//
-//            }
-//
-//            @Override
-//            public void onItemClick(View v, int index, SDDialogMenu dialog) throws URISyntaxException {
-//                listModel.remove(position);
-//                adapter.notifyDataSetChanged();
-//                CheckpointEntity entity = JsonDbModelDao.getInstance().query(CheckpointEntity.class);
-//                entity.getItemEntityList().remove(position);
-//            }
-//        });
-//        menu.show();
-//        return true;
-//    }
+    @Override
+    public boolean onItemLongClick(AdapterView<?> parent, View view, final int position, long id) {
+        SDDialogConfirm confirm = new SDDialogConfirm(mActivity);
+        confirm.setTextContent("确定要删除该关卡吗？");
+        confirm.setmListener(new SDDialogCustom.SDDialogCustomListener() {
+            @Override
+            public void onClickCancel(View v, SDDialogCustom dialog) {
+
+            }
+
+            @Override
+            public void onClickConfirm(View v, SDDialogCustom dialog) {
+                CheckpointEntity entity = JsonDbModelDao.getInstance().query(CheckpointEntity.class);
+                if(entity!=null){
+                    entity.getItemEntityList().remove(position);
+                    JsonDbModelDao.getInstance().insertOrUpdate(entity);
+                    doView();
+                }
+            }
+
+            @Override
+            public void onDismiss(SDDialogCustom dialog) {
+
+            }
+        });
+        confirm.show();
+        return true;
+    }
+
+    @Override
+    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+        Bundle bundle = new Bundle();
+        bundle.putInt(ArkanoidGameActivity.CHECKPOINTNUMBER,(position+1));
+        bundle.putSerializable(ArkanoidGameActivity.CHECKPOINT,listModel.get(position));
+        startActivity(ArkanoidGameActivity.class,bundle);
+    }
 }

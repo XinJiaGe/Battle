@@ -13,4 +13,9 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="贪吃蛇"/>
+    <Button
+        android:id="@+id/act_main_aircraft"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="打飞机"/>
 </LinearLayout>

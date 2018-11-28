@@ -10,6 +10,8 @@ import android.widget.Toast;
 import com.jiage.battle.R;
 import com.jiage.battle.adapter.AddArkanoidAdapter;
 import com.jiage.battle.dao.JsonDbModelDao;
+import com.jiage.battle.dialog.SDDialogConfirm;
+import com.jiage.battle.dialog.SDDialogCustom;
 import com.jiage.battle.entity.CheckpointEntity;
 import com.jiage.battle.entity.CheckpointItemEntity;
 import com.jiage.battle.entity.CustomizeEntity;
@@ -42,6 +44,7 @@ public class AddArkanoidActivity extends BaseActivit implements AdapterView.OnIt
 
 
     private List<CustomizeEntity> listModel = new ArrayList<>();
+    private AddArkanoidAdapter adapter;
 
 
     @Override
@@ -59,6 +62,10 @@ public class AddArkanoidActivity extends BaseActivit implements AdapterView.OnIt
 
     @Override
     public void onTitleBackListener() {
+        if(hang.getText().toString().equals("")||lie.getText().toString().equals("")||gao.getText().toString().equals("")){
+            showToast("请填完整数据");
+            return;
+        }
         Vector<CustomizeBlock> blockList = surface.getVcBlock();
         if (blockList.size() < 1)
             Toast.makeText(this, "未绘制关卡", Toast.LENGTH_LONG).show();
@@ -68,16 +75,12 @@ public class AddArkanoidActivity extends BaseActivit implements AdapterView.OnIt
         int b = 0;
         for (int i = 0; i < blockList.size(); i++) {
             CustomizeBlock block = blockList.elementAt(i);
-            int zhuan = blockList.size() / (lie.getText().toString().equals("") ? 1 : Integer.parseInt(lie.getText().toString()));
-            if (blockList.size() % (lie.getText().toString().equals("") ? 1 : Integer.parseInt(lie.getText().toString())) != 0) {
-                zhuan++;
-            }
-            checkpoints[a][b] = block.getmI();
-            b++;
-            if (b > zhuan - 1) {
+            if(i!=0&&i%(lie.getText().toString().equals("") ? 1 : Integer.parseInt(lie.getText().toString())) == 0){
                 a++;
                 b = 0;
             }
+            checkpoints[a][b] = block.getmI();
+            b++;
         }
         CheckpointEntity entity = JsonDbModelDao.getInstance().query(CheckpointEntity.class);
         if (entity == null)
@@ -98,6 +101,10 @@ public class AddArkanoidActivity extends BaseActivit implements AdapterView.OnIt
 
     @Override
     public void onTitleRightListener() {
+        if(hang.getText().toString().equals("")||lie.getText().toString().equals("")||gao.getText().toString().equals("")){
+            showToast("请填完整数据");
+            return;
+        }
         surface.addCheckpoint(new int[hang.getText().toString().equals("") ? 1 : Integer.parseInt(hang.getText().toString())]
                 [lie.getText().toString().equals("") ? 1 : Integer.parseInt(lie.getText().toString())],
                 gao.getText().toString().equals("") ? 20 : Integer.parseInt(gao.getText().toString()));
@@ -150,7 +157,7 @@ public class AddArkanoidActivity extends BaseActivit implements AdapterView.OnIt
         }
 
 
-        AddArkanoidAdapter adapter = new AddArkanoidAdapter(listModel, this);
+        adapter = new AddArkanoidAdapter(listModel, this);
         spinner.setAdapter(adapter);
         spinner.setOnItemSelectedListener(this);
     }

@@ -73,7 +73,7 @@ public class DirectionKeyboard {
         }
     }
 
-    public void setTouchDown(int id, float screenw, float rawX, float rawY) {
+    public void setTouchDown(int id, int screenw, float rawX, float rawY) {
         if(touchId == 0){
             touchId = id;
             //是否可以绘制方向键盘

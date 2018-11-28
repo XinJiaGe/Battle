@@ -20,6 +20,8 @@ public class MainActivity extends BaseActivit {
     protected Button arkanoid;
     @ViewInject(R.id.act_main_snake)
     protected Button snake;
+    @ViewInject(R.id.act_main_aircraft)
+    protected Button aircraft;
 
     @Override
     public int bindLayout() {
@@ -37,6 +39,7 @@ public class MainActivity extends BaseActivit {
     public void doView() {
         arkanoid.setOnClickListener(this);
         snake.setOnClickListener(this);
+        aircraft.setOnClickListener(this);
     }
 
     @Override
@@ -46,6 +49,9 @@ public class MainActivity extends BaseActivit {
         }
         if(view == snake){
             startActivity(SnakeActivity.class);
+        }
+        if(view == aircraft){
+            startActivity(AircraftGameActivity.class);
         }
     }
 }

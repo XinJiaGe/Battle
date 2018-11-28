@@ -45,7 +45,7 @@ public class ExpressionUtil {
             int resId = Integer.parseInt(field.get(null).toString());       //通过上面匹配得到的字符串来生成图片资源id
             if (resId != 0) {
                 Bitmap bitmap = BitmapFactory.decodeResource(context.getResources(), resId);
-                ImageSpan imageSpan = new ImageSpan(BitmapUtilities.getBitmapThumbnail(bitmap,SDViewUtil.getScreenWidth()/6,SDViewUtil.getScreenWidth()/6));             //通过图片资源id来得到bitmap，用一个ImageSpan来包装
+                ImageSpan imageSpan = new ImageSpan(BitmapUtils.getBitmapThumbnail(bitmap,SDViewUtil.getScreenWidth()/6,SDViewUtil.getScreenWidth()/6));             //通过图片资源id来得到bitmap，用一个ImageSpan来包装
                 int end = matcher.start() + key.length();                   //计算该图片名字的长度，也就是要替换的字符串的长度
                 spannableString.setSpan(imageSpan, matcher.start(), end, Spannable.SPAN_INCLUSIVE_EXCLUSIVE);   //将该图片替换字符串中规定的位置中
                 if (end < spannableString.length()) {                        //如果整个字符串还未验证完，则继续。。
