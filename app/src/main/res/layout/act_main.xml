@@ -18,4 +18,15 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="打飞机"/>
+    <Button
+        android:visibility="gone"
+        android:id="@+id/act_main_towerdefense"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="方圆塔防"/>
+    <Button
+        android:id="@+id/act_main_stickTo"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="坚守战"/>
 </LinearLayout>

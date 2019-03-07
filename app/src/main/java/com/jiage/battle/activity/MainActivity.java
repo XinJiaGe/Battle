@@ -22,6 +22,10 @@ public class MainActivity extends BaseActivit {
     protected Button snake;
     @ViewInject(R.id.act_main_aircraft)
     protected Button aircraft;
+    @ViewInject(R.id.act_main_towerdefense)
+    protected Button towerdefense;
+    @ViewInject(R.id.act_main_stickTo)
+    protected Button stickTo;
 
     @Override
     public int bindLayout() {
@@ -40,6 +44,8 @@ public class MainActivity extends BaseActivit {
         arkanoid.setOnClickListener(this);
         snake.setOnClickListener(this);
         aircraft.setOnClickListener(this);
+        stickTo.setOnClickListener(this);
+        towerdefense.setOnClickListener(this);
     }
 
     @Override
@@ -52,6 +58,12 @@ public class MainActivity extends BaseActivit {
         }
         if(view == aircraft){
             startActivity(AircraftGameActivity.class);
+        }
+        if(view == towerdefense){
+            startActivity(TowerDefenseCheckpointActivity.class);
+        }
+        if(view == stickTo){
+            startActivity(SickToActivity.class);
         }
     }
 }

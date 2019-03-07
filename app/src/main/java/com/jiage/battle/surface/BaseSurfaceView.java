@@ -39,6 +39,7 @@ public abstract class BaseSurfaceView extends SurfaceView implements Callback, R
     //点击的XY点
     private float downRawX, downRawY;
     protected GameSoundPool soundPool;
+    private int bgColor = Color.WHITE;
 
     /**
      * SurfaceView初始化函数
@@ -100,7 +101,7 @@ public abstract class BaseSurfaceView extends SurfaceView implements Callback, R
             if (mCanvas != null) {
                 //----设置画布绘图无锯齿
                 mCanvas.setDrawFilter(pfd);
-                mCanvas.drawColor(Color.WHITE);
+                mCanvas.drawColor(bgColor);
                 myDraw();
             }
         } catch (Exception e) {
@@ -221,5 +222,9 @@ public abstract class BaseSurfaceView extends SurfaceView implements Callback, R
     public BaseSurfaceView(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
         init(context);
+    }
+
+    public void setBgColor(int bgColor) {
+        this.bgColor = bgColor;
     }
 }

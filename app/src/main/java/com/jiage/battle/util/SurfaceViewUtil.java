@@ -1,6 +1,7 @@
 package com.jiage.battle.util;
 
 import android.graphics.Bitmap;
+import android.graphics.Canvas;
 import android.graphics.Matrix;
 import android.graphics.Paint;
 import android.graphics.Point;
@@ -101,7 +102,45 @@ public class SurfaceViewUtil {
         Bitmap resizedBitmap = Bitmap.createBitmap(BitmapOrg, 0, 0, width,height, matrix, true);
         return resizedBitmap;
     }
-
+    /**
+     * 使用Bitmap加Matrix来旋转图片
+     * @param bitmap
+     * @param angle     设置旋转角度
+     * @return
+     */
+    public static Bitmap rotateBitmap(Bitmap bitmap, int angle) {
+        if (bitmap != null){
+            Matrix matrix = new Matrix();
+            matrix.postScale(1, -1);   //镜像垂直翻转
+            matrix.postRotate(angle);
+            bitmap = Bitmap.createBitmap(bitmap, 0, 0, bitmap.getWidth(), bitmap.getHeight(), matrix, true);
+            return bitmap;
+        }
+        return bitmap;
+    }
+    /**
+     * 绘制自旋转位图
+     *
+     * @param canvas
+     * @param paint
+     * @param bitmap
+     *            位图对象
+     * @param rotation
+     *            旋转度数
+     * @param posX
+     *            在canvas的位置坐标
+     * @param posY
+     */
+    public static void drawRotateBitmap(Canvas canvas, Paint paint, Bitmap bitmap,
+                                  float rotation, float posX, float posY) {
+        Matrix matrix = new Matrix();
+        int offsetX = bitmap.getWidth() / 2;
+        int offsetY = bitmap.getHeight() / 2;
+        matrix.postTranslate(-offsetX, -offsetY);
+        matrix.postRotate(rotation);
+        matrix.postTranslate(posX + offsetX, posY + offsetY);
+        canvas.drawBitmap(bitmap, matrix, paint);
+    }
     /**
      * 缩放Bitmap
      * @param bitmap
@@ -190,7 +229,38 @@ public class SurfaceViewUtil {
         double z= Math.sqrt(x*x+y*y);
         return Math.round((float)(Math.asin(y/z)/ Math.PI*180));//最终角度
     }
+    /**
+     *获取两条线的夹角
+     * @param centerX
+     * @param centerY
+     * @param xInView
+     * @param yInView
+     * @return
+     */
+    public static int getRotationBetweenLines(float centerX, float centerY, float xInView, float yInView) {
+        double rotation = 0;
 
+        double k1 = (double) (centerY - centerY) / (centerX * 2 - centerX);
+        double k2 = (double) (yInView - centerY) / (xInView - centerX);
+        double tmpDegree = Math.atan((Math.abs(k1 - k2)) / (1 + k1 * k2)) / Math.PI * 180;
+
+        if (xInView > centerX && yInView < centerY) {  //第一象限
+            rotation = 90 - tmpDegree;
+        } else if (xInView > centerX && yInView > centerY) //第二象限
+        {
+            rotation = 90 + tmpDegree;
+        } else if (xInView < centerX && yInView > centerY) { //第三象限
+            rotation = 270 - tmpDegree;
+        } else if (xInView < centerX && yInView < centerY) { //第四象限
+            rotation = 270 + tmpDegree;
+        } else if (xInView == centerX && yInView < centerY) {
+            rotation = 0;
+        } else if (xInView == centerX && yInView > centerY) {
+            rotation = 180;
+        }
+
+        return (int) rotation+180;
+    }
     /**
      * 判定用户触屏的坐标点是否在碰撞矩形内
      * @param region

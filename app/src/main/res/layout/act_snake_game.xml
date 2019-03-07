@@ -9,7 +9,7 @@
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent">
-            <com.jiage.battle.surface.snake.SnakeBluetoothSurface
+            <com.jiage.battle.surface.snake.SnakeSurface
                 android:id="@+id/act_snake_game_surface"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent" />

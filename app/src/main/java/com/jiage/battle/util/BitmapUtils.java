@@ -89,6 +89,17 @@ public class BitmapUtils {
         return tempBmp;
     }
     /**
+     * 处理游戏图片
+     * @param bitmap
+     * @return
+     */
+    public static Bitmap getBitmap(Bitmap bitmap,int x, int y,float sx,float sy){
+        Matrix matrix = new Matrix();
+        matrix.postScale(sx, sy);
+        Bitmap tempBmp = Bitmap.createBitmap(bitmap,x,y,bitmap.getWidth(),bitmap.getHeight(),matrix,true);
+        return tempBmp;
+    }
+    /**
      * 按照大小处理图片
      */
     public static Bitmap getBitmap(Bitmap bitmap,int w,int h){

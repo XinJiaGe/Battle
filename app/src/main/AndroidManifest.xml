@@ -25,6 +25,15 @@
             </intent-filter>
         </activity>
         <activity
+            android:name=".activity.SickToActivity"
+            android:screenOrientation="landscape" />
+        <activity
+            android:name=".activity.TowerDefenseCheckpointActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activity.TowerDefenseActivity"
+            android:screenOrientation="portrait" />
+        <activity
             android:name=".activity.SnakeBluetoothGameActivity"
             android:screenOrientation="portrait" />
         <activity
