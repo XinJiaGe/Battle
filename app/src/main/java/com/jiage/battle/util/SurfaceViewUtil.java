@@ -283,8 +283,11 @@ public class SurfaceViewUtil {
     }
     public static boolean isCollsionClick(Rect rect, float clickX, float clickY){
         Region region = new Region(rect);
+        return isCollsionClick(region,clickX,clickY);
+    }
+    public static boolean isCollsionClick(RectF rect, float clickX, float clickY){
         boolean isInclude = false;
-        if (region.contains((int)clickX, (int) clickY)) {
+        if (rect.contains((int)clickX, (int) clickY)) {
             isInclude = true;
         } else {
             isInclude = false;

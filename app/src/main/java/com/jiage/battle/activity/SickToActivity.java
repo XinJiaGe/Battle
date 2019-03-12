@@ -4,7 +4,10 @@ import android.content.pm.ActivityInfo;
 import android.view.View;
 
 import com.jiage.battle.R;
+import com.jiage.battle.dialog.SDDialogConfirm;
+import com.jiage.battle.dialog.SDDialogCustom;
 import com.jiage.battle.surface.sickto.SicktoSurfaceView;
+import com.jiage.battle.surface.sickto.Soldier;
 
 import org.xutils.view.annotation.ViewInject;
 
@@ -30,6 +33,35 @@ public class SickToActivity extends BaseActivit {
 
     @Override
     public void initView(View view) {
+        final SDDialogConfirm confirm = new SDDialogConfirm(mActivity);
+        confirm.setTextConfirm("升级");
+        surface.setmListener(new SicktoSurfaceView.onMListener() {
+            @Override
+            public void showDialog(final Soldier soldier) {
+                confirm.setTextContent(soldier.getGrade() == Soldier.Grade.ONE?"升级(-500)":"升级(-1000)");
+                confirm.setmListener(new SDDialogCustom.SDDialogCustomListener() {
+                    @Override
+                    public void onClickCancel(View v, SDDialogCustom dialog) {
 
+                    }
+
+                    @Override
+                    public void onClickConfirm(View v, SDDialogCustom dialog) {
+                        surface.upgrade(soldier);
+                    }
+
+                    @Override
+                    public void onDismiss(SDDialogCustom dialog) {
+
+                    }
+                });
+                if(!confirm.isShowing())
+                    confirm.show();
+            }
+        });
+    }
+
+    public void addSoldier(View view) {
+        surface.addSoldier();
     }
 }
