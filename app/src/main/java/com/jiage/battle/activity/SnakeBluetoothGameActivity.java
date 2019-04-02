@@ -26,7 +26,7 @@ public class SnakeBluetoothGameActivity extends BaseBluetoothDataActivity implem
     public static String ADDRESS = "address";//
     @ViewInject(R.id.act_snake_game_ll)
     protected LinearLayout ll;
-    @ViewInject(R.id.act_snake_game_surface)
+    @ViewInject(R.id.act_snake_game_surfaceview)
     protected SnakeBluetoothSurface surface;
     @ViewInject(R.id.act_snake_game_start)
     protected TextView start;
@@ -53,7 +53,7 @@ public class SnakeBluetoothGameActivity extends BaseBluetoothDataActivity implem
 
     @Override
     public int bindLayout() {
-        return R.layout.act_snake_game;
+        return R.layout.act_snake_blue_game;
     }
 
     @Override

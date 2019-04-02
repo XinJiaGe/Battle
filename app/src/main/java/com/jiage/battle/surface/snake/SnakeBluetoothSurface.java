@@ -32,6 +32,10 @@ public class SnakeBluetoothSurface extends BaseSurfaceView implements RectangleK
 
     @Override
     public void created() {
+        for (int i = 0; i < 10; i++) {
+            Food food = new Food(mScreenW, mScreenH);
+            vcFood.add(food);
+        }
         rectangleKeyboard = new RectangleKeyboard(mScreenW / 2 - 250, mScreenH - 450, 500, 400);
         rectangleKeyboard.setClickDirectionListener(this);
         if(isMy) {
@@ -44,7 +48,6 @@ public class SnakeBluetoothSurface extends BaseSurfaceView implements RectangleK
     @Override
     public void myDraw() {
         time += 1;
-
         rectangleKeyboard.draw(mCanvas, mPaint);
         for (int i = 0; i < vcFood.size(); i++) {//绘制食物
             vcFood.elementAt(i).draw(mCanvas,mPaint);
@@ -55,6 +58,7 @@ public class SnakeBluetoothSurface extends BaseSurfaceView implements RectangleK
         for (int i = 0; i < vcSnaketo.size(); i++) {//绘制蛇
             vcSnaketo.elementAt(i).draw(mCanvas,mPaint,i);
         }
+
 
         mPaint.setColor(Color.BLACK);
         mCanvas.drawLine(0, mScreenH - 500, mScreenW, mScreenH - 500, mPaint);
@@ -77,6 +81,7 @@ public class SnakeBluetoothSurface extends BaseSurfaceView implements RectangleK
     }
 
     private Rect snakeLogic(RectangleKeyboard.Direction directionmy, int type, Vector<Snake> vcSnake){
+
         Snake snake1 = vcSnake.firstElement();
         snake1.setHead(false);
         Rect torect = toRect(directionmy,snake1);
@@ -108,6 +113,16 @@ public class SnakeBluetoothSurface extends BaseSurfaceView implements RectangleK
             case 2:
                 for (int i = 0; i < vcSnakeMy.size(); i++) {//相撞对方身体
                     Snake snake = vcSnakeMy.elementAt(i);
+                    for (int j = 0; j < vcFood.size(); j++) {//吃到食物
+                        Food food = vcFood.elementAt(j);
+                        if(SurfaceViewUtil.isCollsionBumpRect(snake.getRect(),food.getRect())){
+                            food.setFoodx(-20);
+                            food.UpdataFood();
+                            vcSnake.insertElementAt(new Snake(torect.left,torect.top,true,Color.BLACK,snake1.getAddress()),0);
+                            if(mOnListener!=null)
+                                mOnListener.fraction(type);
+                        }
+                    }
                     if(SurfaceViewUtil.isCollsionBumpRect(torect,snake.getRect())){
                         if(mOnListener!=null)
                             mOnListener.gameOver(type);
@@ -115,16 +130,6 @@ public class SnakeBluetoothSurface extends BaseSurfaceView implements RectangleK
                     }
                 }
                 break;
-        }
-        for (int i = 0; i < vcFood.size(); i++) {//吃到食物
-            Food food = vcFood.elementAt(i);
-            if(SurfaceViewUtil.isCollsionBumpRect(snake1.getRect(),food.getRect())){
-                food.setFoodx(-20);
-                food.UpdataFood();
-                vcSnake.insertElementAt(new Snake(torect.left,torect.top,true,Color.BLACK,snake1.getAddress()),0);
-                if(mOnListener!=null)
-                    mOnListener.fraction(type);
-            }
         }
         Snake snake2 = vcSnake.lastElement();
         vcSnake.remove(snake2);

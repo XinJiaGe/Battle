@@ -1,5 +1,6 @@
 package com.jiage.battle.activity;
 
+import android.graphics.Rect;
 import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -7,6 +8,8 @@ import android.widget.TextView;
 import com.jiage.battle.R;
 import com.jiage.battle.dialog.SDDialogConfirm;
 import com.jiage.battle.dialog.SDDialogCustom;
+import com.jiage.battle.surface.snake.RectangleKeyboard;
+import com.jiage.battle.surface.snake.SnakeBluetoothSurface;
 import com.jiage.battle.surface.snake.SnakeSurface;
 import com.jiage.battle.util.SDHandlerUtil;
 
@@ -18,10 +21,10 @@ import org.xutils.view.annotation.ViewInject;
  * 说明：贪吃蛇游戏
  */
 
-public class SnakeGameActivity extends BaseActivit implements SnakeSurface.onListener {
+public class SnakeGameActivity extends BaseActivit implements SnakeSurface.onListener, SnakeBluetoothSurface.onListener {
     @ViewInject(R.id.act_snake_game_ll)
     protected LinearLayout ll;
-    @ViewInject(R.id.act_snake_game_surface)
+    @ViewInject(R.id.act_snake_game_surfaceview)
     protected SnakeSurface surface;
     @ViewInject(R.id.act_snake_game_start)
     protected TextView start;
@@ -103,5 +106,25 @@ public class SnakeGameActivity extends BaseActivit implements SnakeSurface.onLis
                 fraction.setText("分数:"+i);
             }
         });
+    }
+
+    @Override
+    public void gameOver(int type) {
+
+    }
+
+    @Override
+    public void fraction(int type) {
+
+    }
+
+    @Override
+    public void directionto(RectangleKeyboard.Direction direction) {
+
+    }
+
+    @Override
+    public void rect(Rect rectmy, Rect rectto) {
+
     }
 }

@@ -55,7 +55,7 @@ public class AircraftSurface extends BaseSurfaceView {
         if (frame == 999999999)
             frame = 0;
         frame++;
-//        backg.myDraw(mCanvas, mPaint);//绘制背景
+        backg.myDraw(mCanvas, mPaint);//绘制背景
         for (int i = 0; i < vcBullet.size(); i++) {//绘制子弹
             vcBullet.elementAt(i).myDraw(mCanvas, mPaint);
         }
@@ -92,7 +92,7 @@ public class AircraftSurface extends BaseSurfaceView {
 
     @Override
     public void logic() {
-//        backg.logic();//处理背景逻辑
+        backg.logic();//处理背景逻辑
         for (int i = 0; i < vcEnemy.size(); i++) {//处理敌人逻辑
             Enemy enemy = vcEnemy.elementAt(i);
             if (enemy.isDead())
@@ -103,6 +103,8 @@ public class AircraftSurface extends BaseSurfaceView {
                         vcEnemy.removeElement(enemy);
                     play.injured(mOnLenter);
                     downgradePlayerGrade();
+
+
                 }else
                     vcEnemy.elementAt(i).logic(vcBullet, frame, play);
             }
