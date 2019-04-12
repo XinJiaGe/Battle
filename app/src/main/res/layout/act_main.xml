@@ -17,7 +17,7 @@
         android:id="@+id/act_main_aircraft"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="打飞机"/>
+        android:text="飞机大战"/>
     <Button
         android:visibility="gone"
         android:id="@+id/act_main_towerdefense"
@@ -29,4 +29,9 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="坚守战"/>
+    <Button
+        android:id="@+id/act_main_dota"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="DOTA"/>
 </LinearLayout>

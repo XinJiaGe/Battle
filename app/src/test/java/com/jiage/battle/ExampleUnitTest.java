@@ -2,6 +2,7 @@ package com.jiage.battle;
 
 import android.util.Base64;
 
+import com.jiage.battle.util.OtherUtil;
 import com.jiage.battle.util.SDDateUtil;
 import com.jiage.battle.util.SurfaceViewUtil;
 
@@ -24,7 +25,7 @@ public class ExampleUnitTest {
     @Test
     public void addition_isCorrect() throws Exception {
 //        System.out.println(-SurfaceViewUtil.getRotationAngle(200,200,100,100));
-        System.out.println(0%20==0);
+//        System.out.println(0%20==0);
 //        System.out.println(convertFileSize(1452457878));
 
 //        System.out.println(MD5("123456"));
@@ -81,7 +82,26 @@ public class ExampleUnitTest {
 
 //        final long starTime = 1526541479;
 //        System.out.println(SDDateUtil.getFormatDataFrom(starTime));
+        int a = 20;
+        for (int i = 0; i < 10000; i++) {
+            int randomAdd = OtherUtil.getRandom(1, 100);
+            if(randomAdd<=a){
+                System.out.println("---------    ------------");
+            }
+
+        }
     }
+    private int x = 0;
+    private void upx(int ux){
+        if(Math.abs(ux-x)<10){
+            System.out.println("重新计算   x:"+x+" ux:"+ux);
+            upx(OtherUtil.getRandom(0,100));
+        }else{
+            System.out.println("符合   x:"+x+" ux:"+ux);
+            x = ux;
+        }
+    }
+
 
     public static String encrypt(String data, String key) throws Exception {
         String iv = MD5(key).toLowerCase().substring(16);//加密向量

@@ -103,8 +103,6 @@ public class AircraftSurface extends BaseSurfaceView {
                         vcEnemy.removeElement(enemy);
                     play.injured(mOnLenter);
                     downgradePlayerGrade();
-
-
                 }else
                     vcEnemy.elementAt(i).logic(vcBullet, frame, play);
             }

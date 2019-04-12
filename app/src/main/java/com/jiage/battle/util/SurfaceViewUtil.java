@@ -36,8 +36,8 @@ public class SurfaceViewUtil {
      * @param radius    圆的半径
      * @return          圆上的点的X坐标
      */
-    public static double getCircleCoordinatesX(int originX , int angle, int radius){
-        return originX + Math.sin(2* Math.PI / 360 * angle) * radius;
+    public static int getCircleCoordinatesX(int originX , int angle, int radius){
+        return (int)(originX + Math.sin(2* Math.PI / 360 * angle) * radius);
     }
 
     /**
@@ -47,8 +47,8 @@ public class SurfaceViewUtil {
      * @param radius    圆的半径
      * @return          圆上的点的Y坐标
      */
-    public static double getCircleCoordinatesY(int originY , int angle, int radius){
-        return originY + Math.cos(2* Math.PI / 360 * angle) * radius;
+    public static int getCircleCoordinatesY(int originY , int angle, int radius){
+        return (int)(originY + Math.cos(2* Math.PI / 360 * angle) * radius);
     }
 
     /**
@@ -407,6 +407,59 @@ public class SurfaceViewUtil {
         }
         return false;
     }
+
+    /**
+     * 判断圆和矩形的碰撞     5 1 6
+     *                      4   2
+     *                      9 3 7
+     * @param isJiao    是否计算角
+     * @param ball_x
+     * @param ball_y
+     * @param ball_r
+     * @param left
+     * @param top
+     * @param right
+     * @param bottom
+     * @return
+     */
+    public static boolean isCollsionWithRectToCircle(boolean isJiao,int ball_x, int ball_y, int ball_r, int left, int top, int right, int bottom) {
+        // 球在1，3区域的碰撞判断
+        if (ball_x >= left && ball_x <= right) {
+            if (ball_y + ball_r >= top && ball_y < top) { // 1区域判断
+                return true;
+            } else if (ball_y - ball_r <= bottom && ball_y > bottom) { // 3区域判断
+                return true;
+            }
+        }
+        // 球在2，4区域的碰撞判断
+        if (ball_y >= top && ball_y <= bottom) {
+            if (ball_x - ball_r <= right && ball_x > right) { // 2区域判断
+                return true;
+            } else if (ball_x + ball_r >= left && ball_x < left) { // 4区域判断
+                return true;
+            }
+        }
+        if(isJiao) {
+            // 圆在5区域的碰撞判断
+            if (Math.pow(left - ball_x, 2) + Math.pow(top - ball_y, 2) <= Math.pow(ball_r, 2) && ball_x < left && ball_y < top) {
+                return true;
+            }
+            // 圆在6区域的碰撞判断
+            if (Math.pow(ball_x - right, 2) + Math.pow(top - ball_y, 2) <= Math.pow(ball_r, 2) && ball_x > right && ball_y < top) {
+                return true;
+            }
+            // 圆在7区域的碰撞判断
+            if (Math.pow(ball_x - right, 2) + Math.pow(ball_y - bottom, 2) <= Math.pow(ball_r, 2) && ball_x > right && ball_y > bottom) {
+                return true;
+            }
+            // 圆在8区域的碰撞判断
+            if (Math.pow(left - ball_x, 2) + Math.pow(ball_y - bottom, 2) <= Math.pow(ball_r, 2) && ball_x < left && ball_y > bottom) {
+                return true;
+            }
+        }
+        return false;
+    }
+
     /**
      * 圆形碰撞
      * @param x1    圆形1的圆心X坐标

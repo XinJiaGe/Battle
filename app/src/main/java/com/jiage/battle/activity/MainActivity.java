@@ -1,13 +1,17 @@
 package com.jiage.battle.activity;
 
+import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.jiage.battle.R;
+import com.jiage.battle.dialog.SDDialogMenu;
 
 import org.xutils.view.annotation.ViewInject;
+
+import java.net.URISyntaxException;
 
 
 /**
@@ -26,6 +30,8 @@ public class MainActivity extends BaseActivit {
     protected Button towerdefense;
     @ViewInject(R.id.act_main_stickTo)
     protected Button stickTo;
+    @ViewInject(R.id.act_main_dota)
+    protected Button dota;
 
     @Override
     public int bindLayout() {
@@ -46,6 +52,7 @@ public class MainActivity extends BaseActivit {
         aircraft.setOnClickListener(this);
         stickTo.setOnClickListener(this);
         towerdefense.setOnClickListener(this);
+        dota.setOnClickListener(this);
     }
 
     @Override
@@ -56,14 +63,17 @@ public class MainActivity extends BaseActivit {
         if(view == snake){
             startActivity(SnakeActivity.class);
         }
-        if(view == aircraft){
-            startActivity(AircraftGameActivity.class);
+        if(view == aircraft){//飞机大战
+            startActivity(AircraftWarsActivity.class);
         }
         if(view == towerdefense){
             startActivity(TowerDefenseCheckpointActivity.class);
         }
         if(view == stickTo){
             startActivity(SickToActivity.class);
+        }
+        if(view == dota){
+
         }
     }
 }

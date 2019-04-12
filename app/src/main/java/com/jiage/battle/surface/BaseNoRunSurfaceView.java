@@ -5,14 +5,11 @@ import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.PaintFlagsDrawFilter;
-import android.os.Build;
 import android.util.AttributeSet;
-import android.util.Log;
 import android.view.MotionEvent;
 import android.view.SurfaceHolder;
 import android.view.SurfaceHolder.Callback;
 import android.view.SurfaceView;
-import android.view.View;
 
 import com.jiage.battle.sound.GameSoundPool;
 
@@ -22,17 +19,12 @@ import com.jiage.battle.sound.GameSoundPool;
  * 说明：BaseDrawSurfaceView
  */
 
-public abstract class BaseSurfaceView extends SurfaceView implements Callback, Runnable {
+public abstract class BaseNoRunSurfaceView extends SurfaceView implements Callback{
     protected Context mContext;
-    protected boolean isStop = false;
-    //帧数
-    protected int frame = 25;
     //用于控制SurfaceView
     private SurfaceHolder sfh;
     //声明一个画笔
     protected Paint mPaint;
-    //声明一条线程
-    private Thread th;
     //声明一个画布
     protected Canvas mCanvas;
     //声明屏幕的宽高
@@ -60,8 +52,6 @@ public abstract class BaseSurfaceView extends SurfaceView implements Callback, R
         mPaint.setColor(Color.WHITE);
         //设置焦点
         setFocusable(true);
-
-        sfh.setType(SurfaceHolder.SURFACE_TYPE_GPU);
     }
 
     /**
@@ -72,45 +62,24 @@ public abstract class BaseSurfaceView extends SurfaceView implements Callback, R
     /**
      * 游戏绘图内容
      */
-    public abstract void myDraw();
+    public abstract void draw();
 
     /**
      * 游戏逻辑
      */
     public abstract void logic();
 
-    @Override
-    public void run() {
-        while (!isStop) {
-            long start = System.currentTimeMillis();
-            myDraws();
-            logic();
-            long end = System.currentTimeMillis();
-            try {
-                if (end - start < frame) {
-                    Thread.sleep(frame - (end - start));
-                }
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
-        }
-    }
-
     /**
      * 游戏绘图
      */
     public void myDraws() {
         try {
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-                mCanvas = sfh.lockHardwareCanvas();
-            }else{
-                mCanvas = sfh.lockCanvas();
-            }
+            mCanvas = sfh.lockCanvas();
             if (mCanvas != null) {
                 //----设置画布绘图无锯齿
                 mCanvas.setDrawFilter(pfd);
                 mCanvas.drawColor(bgColor);
-                myDraw();
+                draw();
             }
         } catch (Exception e) {
             // TODO: handle exception
@@ -118,6 +87,7 @@ public abstract class BaseSurfaceView extends SurfaceView implements Callback, R
             if (mCanvas != null)
                 sfh.unlockCanvasAndPost(mCanvas);
         }
+        logic();
     }
 
     /**
@@ -188,10 +158,6 @@ public abstract class BaseSurfaceView extends SurfaceView implements Callback, R
         mScreenW = this.getWidth();
         mScreenH = this.getHeight();
         created();
-        //实例线程
-        th = new Thread(this);
-        //启动线程
-        th.start();
     }
 
     /**
@@ -207,33 +173,22 @@ public abstract class BaseSurfaceView extends SurfaceView implements Callback, R
      */
     @Override
     public void surfaceDestroyed(SurfaceHolder surfaceHolder) {
-        isStop = true;
-        th.interrupt();
-        try {
-            th.join();
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
     }
 
 
-    public BaseSurfaceView(Context context) {
+    public BaseNoRunSurfaceView(Context context) {
         super(context);
         init(context);
     }
 
-    public BaseSurfaceView(Context context, AttributeSet attrs) {
+    public BaseNoRunSurfaceView(Context context, AttributeSet attrs) {
         super(context, attrs);
         init(context);
     }
 
-    public BaseSurfaceView(Context context, AttributeSet attrs, int defStyleAttr) {
+    public BaseNoRunSurfaceView(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
         init(context);
-    }
-
-    public void setStop(boolean stop) {
-        isStop = stop;
     }
 
     public void setBgColor(int bgColor) {

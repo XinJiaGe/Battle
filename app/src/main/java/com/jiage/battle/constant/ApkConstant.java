@@ -21,4 +21,6 @@ public class ApkConstant {
         return API_URL_AGR+API_URL_DOM+API_URL_CAT;
     }
     public static String MY_UUID = "00001101-0000-1000-8000-00805F9B34FB";//随便定义一个
+
+    public static boolean isDebug = true;
 }
