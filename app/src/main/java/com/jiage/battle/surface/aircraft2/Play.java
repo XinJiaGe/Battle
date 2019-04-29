@@ -27,7 +27,7 @@ public class Play {
     private int x,y,width,height,protectionCoverx,protectionCovery,protectionCoverWidth;
     private LEVEL level = LEVEL.LEVEL1;//子弹级别
     private int interval = 6;//子弹间隔
-    private boolean Invincible = true;//无敌
+    private boolean Invincible = false;//无敌
     private boolean protectionCover = false;//防护罩
     private SDTimerUtil protectionTimer = new SDTimerUtil();
 
@@ -85,22 +85,22 @@ public class Play {
             int bulletx2 = x + (bitmap.getWidth() - bitmap.getWidth() / 4);
             switch (level) {
                 case LEVEL1:
-                    vcBullet.add(new Bullet(mContext, Bullet.TYPE.PLAY, null, modeRandom, 1,level,bulletx, y,0,screenW,screenH));
-                    vcBullet.add(new Bullet(mContext, Bullet.TYPE.PLAY, null, modeRandom, 2,level,bulletx2, y,0,screenW,screenH));
+                    vcBullet.add(new Bullet(mContext, Bullet.TYPE.PLAY, null, null, 1,level,bulletx, y,30,0,screenW,screenH));
+                    vcBullet.add(new Bullet(mContext, Bullet.TYPE.PLAY, null, null, 2,level,bulletx2, y,30,0,screenW,screenH));
                     break;
                 case LEVEL2:
-                    vcBullet.add(new Bullet(mContext, Bullet.TYPE.PLAY, null, modeRandom, 1,level, bulletx, y,0,screenW,screenH));
-                    vcBullet.add(new Bullet(mContext, Bullet.TYPE.PLAY, null, modeRandom, 2,level, bulletx, y,0,screenW,screenH));
-                    vcBullet.add(new Bullet(mContext, Bullet.TYPE.PLAY, null, modeRandom, 3,level, bulletx2, y,0,screenW,screenH));
-                    vcBullet.add(new Bullet(mContext, Bullet.TYPE.PLAY, null, modeRandom, 4,level, bulletx2, y,0,screenW,screenH));
+                    vcBullet.add(new Bullet(mContext, Bullet.TYPE.PLAY, null, null, 1,level, bulletx, y,30,0,screenW,screenH));
+                    vcBullet.add(new Bullet(mContext, Bullet.TYPE.PLAY, null, null, 2,level, bulletx, y,30,0,screenW,screenH));
+                    vcBullet.add(new Bullet(mContext, Bullet.TYPE.PLAY, null, null, 3,level, bulletx2, y,30,0,screenW,screenH));
+                    vcBullet.add(new Bullet(mContext, Bullet.TYPE.PLAY, null, null, 4,level, bulletx2, y,30,0,screenW,screenH));
                     break;
                 case LEVEL3:
-                    vcBullet.add(new Bullet(mContext, Bullet.TYPE.PLAY, null, modeRandom, 1,level, bulletx, y,0,screenW,screenH));
-                    vcBullet.add(new Bullet(mContext, Bullet.TYPE.PLAY, null, modeRandom, 2,level, bulletx, y,0,screenW,screenH));
-                    vcBullet.add(new Bullet(mContext, Bullet.TYPE.PLAY, null, modeRandom, 3,level, bulletx, y,0,screenW,screenH));
-                    vcBullet.add(new Bullet(mContext, Bullet.TYPE.PLAY, null, modeRandom, 4,level, bulletx2, y,0,screenW,screenH));
-                    vcBullet.add(new Bullet(mContext, Bullet.TYPE.PLAY, null, modeRandom, 5,level, bulletx2, y,0,screenW,screenH));
-                    vcBullet.add(new Bullet(mContext, Bullet.TYPE.PLAY, null, modeRandom, 6,level, bulletx2, y,0,screenW,screenH));
+                    vcBullet.add(new Bullet(mContext, Bullet.TYPE.PLAY, null, null, 1,level, bulletx, y,30,0,screenW,screenH));
+                    vcBullet.add(new Bullet(mContext, Bullet.TYPE.PLAY, null, null, 2,level, bulletx, y,30,0,screenW,screenH));
+                    vcBullet.add(new Bullet(mContext, Bullet.TYPE.PLAY, null, null, 3,level, bulletx, y,30,0,screenW,screenH));
+                    vcBullet.add(new Bullet(mContext, Bullet.TYPE.PLAY, null, null, 4,level, bulletx2, y,30,0,screenW,screenH));
+                    vcBullet.add(new Bullet(mContext, Bullet.TYPE.PLAY, null, null, 5,level, bulletx2, y,30,0,screenW,screenH));
+                    vcBullet.add(new Bullet(mContext, Bullet.TYPE.PLAY, null, null, 6,level, bulletx2, y,30,0,screenW,screenH));
                     break;
             }
         }

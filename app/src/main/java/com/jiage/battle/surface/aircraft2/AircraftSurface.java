@@ -3,6 +3,8 @@ package com.jiage.battle.surface.aircraft2;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.Color;
+import android.graphics.Paint;
+import android.graphics.Rect;
 import android.nfc.Tag;
 import android.util.AttributeSet;
 import android.util.Log;
@@ -35,7 +37,8 @@ public class AircraftSurface extends BaseSurfaceView {
     private onSurfaceListener mListener;
     private boolean isBoos = false;//boos时间
     private int addEnemyTime = 20;//敌人出现时间
-    private int addBoosTime = 10;//boos出现时间
+    private int addBoosTime = 2000;//boos出现时间
+    private int checkpoint = 1;//关卡
 
     @Override
     public void created() {
@@ -63,6 +66,24 @@ public class AircraftSurface extends BaseSurfaceView {
             vcEnemy.elementAt(i).myDraw(mCanvas, mPaint);
         }
         play.myDraw(mCanvas, mPaint);
+        //绘制关卡
+        mPaint.setColor(Color.WHITE);
+        mPaint.setTextSize(20);
+        mCanvas.drawText("第"+checkpoint+"关",10,150,mPaint);
+        //绘制boos血量
+        if(isBoos) {
+            mPaint.setColor(Color.RED);
+            mPaint.setStyle(Paint.Style.FILL);
+            for (int i = 0; i < vcEnemy.size(); i++) {
+                Enemy enemy = vcEnemy.elementAt(i);
+                if(enemy.isBoos()){
+                    mCanvas.drawRect(new Rect(0, 0, mScreenW *enemy.getBlood()/enemy.getMaxBlood(),25),mPaint);
+                    mPaint.setColor(Color.BLACK);
+                    mPaint.setTextSize(20);
+                    mCanvas.drawText(enemy.getBlood()+"",mScreenW/2-100,20,mPaint);
+                }
+            }
+        }
     }
 
     @Override
@@ -102,7 +123,7 @@ public class AircraftSurface extends BaseSurfaceView {
             if (enemy.isDead()) {
                 vcEnemy.removeElement(enemy);
             } else {
-                enemy.logic(mContext, vcBullet, time, mScreenW, mScreenH);
+                enemy.logic(mContext, vcBullet,time, mScreenW, mScreenH);
             }
         }
         play.logic(mContext, vcBullet, vcEnemy, time, mScreenW, mScreenH,mListener);
@@ -113,37 +134,37 @@ public class AircraftSurface extends BaseSurfaceView {
      */
     private void addEnemyLogic() {
         if(!isBoos&&time%addEnemyTime == 0){
-            Enemy.ENEMYTYPE type = Enemy.ENEMYTYPE.ENEMY1;
+            BoosType.ENEMYTYPE type = BoosType.ENEMYTYPE.ENEMY1;
             int random = OtherUtil.getRandom(1, 3);
             if(random == 1){
-                type = Enemy.ENEMYTYPE.ENEMY1;
+                type = BoosType.ENEMYTYPE.ENEMY1;
             }
             if(random == 2){
-                type = Enemy.ENEMYTYPE.ENEMY2;
+                type = BoosType.ENEMYTYPE.ENEMY2;
             }
             if(random == 3){
-                type = Enemy.ENEMYTYPE.ENEMY3;
+                type = BoosType.ENEMYTYPE.ENEMY3;
             }
             vcEnemy.add(new Enemy(mContext, type, mScreenW, mScreenH));
         }
         if(!isBoos&&time%addBoosTime == 0){
             if(mListener!=null) mListener.BoosTime();
-            Enemy.ENEMYTYPE type = Enemy.ENEMYTYPE.BOOS1;
+            BoosType.ENEMYTYPE type = BoosType.ENEMYTYPE.BOOS1;
             int random = OtherUtil.getRandom(1, 4);
             if(random == 1){
-                type = Enemy.ENEMYTYPE.BOOS1;
+                type = BoosType.ENEMYTYPE.BOOS1;
             }
             if(random == 2){
-                type = Enemy.ENEMYTYPE.BOOS2;
+                type = BoosType.ENEMYTYPE.BOOS2;
             }
             if(random == 3){
-                type = Enemy.ENEMYTYPE.BOOS3;
+                type = BoosType.ENEMYTYPE.BOOS3;
             }
             if(random == 4){
-                type = Enemy.ENEMYTYPE.BOOS4;
+                type = BoosType.ENEMYTYPE.BOOS4;
             }
             isBoos = true;
-            final Enemy.ENEMYTYPE finalType = Enemy.ENEMYTYPE.BOOS1;
+            final BoosType.ENEMYTYPE finalType = type;
             timerUtil.startWork(2000, new SDTimerUtil.SDTimerListener() {
                 @Override
                 public void onWork() {

@@ -6,6 +6,7 @@ import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Rect;
+import android.util.Log;
 
 import com.jiage.battle.R;
 import com.jiage.battle.constant.ApkConstant;
@@ -23,11 +24,12 @@ import java.util.Vector;
 
 public class Bullet {
     private TYPE type = TYPE.PLAY;
-    private Enemy.ENEMYTYPE enemy = Enemy.ENEMYTYPE.ENEMY1;
-    private Enemy.BOOSMODE mode = Enemy.BOOSMODE.MODE1;
+    private BoosType.ENEMYTYPE enemy = BoosType.ENEMYTYPE.ENEMY1;
+    private BoosType.BOOSMODE mode = BoosType.BOOSMODE.MODE1;
     private Bitmap bitmap;
     private Play.LEVEL level = Play.LEVEL.LEVEL1;
-    private int x,y,i,mScreenW,mScreenH;
+    private int x,y;
+    private int i,mScreenW,mScreenH;
     private int speed; //速度
     private int angle = 0;//角度
     private int deviationDistance; //子弹偏移距离
@@ -41,61 +43,36 @@ public class Bullet {
     private int probabilityProtection = 15;//防护罩几率
     private int probabilityArms = 20;//升级武器几率
 
-    public Bullet(Context mContext, TYPE type, Enemy.ENEMYTYPE enemy, Enemy.BOOSMODE mode, int i, Play.LEVEL level, int x, int y, int angle, int screenW, int screenH) {
+    public Bullet(Context mContext, TYPE type, BoosType.ENEMYTYPE enemy, BoosType.BOOSMODE mode, int i, Play.LEVEL level, int x, int y,int speed,
+                  int angle, int screenW, int screenH) {
+        bitmap = BoosType.getBoosBulletBitmap(mContext, type, enemy, mode);
         switch (type) {
             case PLAY:
-                bitmap = BitmapUtils.ReadBitMap(mContext, R.drawable.icon_aircraftwars_bullet_play);
-                speed = 30;
                 aggressivity = 1;
                 deviationDistance = bitmap.getWidth()+bitmap.getWidth()/2;
                 break;
             case ENEMY:
                 switch (enemy) {
                     case ENEMY1:
-                        bitmap = BitmapUtils.ReadBitMap(mContext, R.drawable.icon_aircraftwars_enemy1_bullet);
-                        speed = 12;
                         aggressivity = 1;
                         break;
                     case ENEMY2:
-                        bitmap = BitmapUtils.ReadBitMap(mContext, R.drawable.icon_aircraftwars_enemy2_bullet);
-                        speed = 16;
                         aggressivity = 1;
                         break;
                     case ENEMY3:
-                        bitmap = BitmapUtils.ReadBitMap(mContext, R.drawable.icon_aircraftwars_enemy2_bullet);
-                        speed = 20;
                         aggressivity = 1;
                         break;
                     case BOOS1:
-                        switch (mode) {
-                            case MODE1:
-                                bitmap = BitmapUtils.ReadBitMap(mContext, R.drawable.icon_aircraftwars_enemy2_bullet);
-                                break;
-                            case MODE2:
-                                bitmap = BitmapUtils.ReadBitMap(mContext, R.drawable.icon_aircraftwars_enemy2_bullet);
-                                break;
-                            case MODE3:
-                                bitmap = BitmapUtils.ReadBitMap(mContext, R.drawable.icon_aircraftwars_enemy2_bullet);
-                                break;
-                            case MODE4:
-                                bitmap = BitmapUtils.ReadBitMap(mContext, R.drawable.icon_aircraftwars_enemy2_bullet);
-                                break;
-                            case MODE5:
-                                bitmap = BitmapUtils.ReadBitMap(mContext, R.drawable.icon_aircraftwars_enemy2_bullet);
-                                break;
-
-                        }
-                        speed = 20;
                         aggressivity = 1;
                         break;
                     case BOOS2:
-
+                        aggressivity = 1;
                         break;
                     case BOOS3:
-
+                        aggressivity = 1;
                         break;
                     case BOOS4:
-
+                        aggressivity = 1;
                         break;
                 }
                 break;
@@ -103,6 +80,7 @@ public class Bullet {
         this.x = x-bitmap.getWidth()/2;
         this.y = y;
         this.i = i;
+        this.speed = speed;
         this.angle = angle;
         this.enemy = enemy;
         this.level = level;
@@ -161,17 +139,20 @@ public class Bullet {
                         y += speed;
                         break;
                     case BOOS1:
-                        x = SurfaceViewUtil.getCircleCoordinatesX(x, angle, speed);
-                        y = SurfaceViewUtil.getCircleCoordinatesY(y, angle, speed);
+                        x = (int) SurfaceViewUtil.getCircleCoordinatesX(x, angle, speed);
+                        y = (int) SurfaceViewUtil.getCircleCoordinatesY(y, angle, speed);
                         break;
                     case BOOS2:
-
+                        x = (int) SurfaceViewUtil.getCircleCoordinatesX(x, angle, speed);
+                        y = (int) SurfaceViewUtil.getCircleCoordinatesY(y, angle, speed);
                         break;
                     case BOOS3:
-
+                        x = (int) SurfaceViewUtil.getCircleCoordinatesX(x, angle, speed);
+                        y = (int) SurfaceViewUtil.getCircleCoordinatesY(y, angle, speed);
                         break;
                     case BOOS4:
-
+                        x = (int) SurfaceViewUtil.getCircleCoordinatesX(x, angle, speed);
+                        y = (int) SurfaceViewUtil.getCircleCoordinatesY(y, angle, speed);
                         break;
                 }
                 break;
@@ -226,29 +207,38 @@ public class Bullet {
      */
     private void addSupply(Vector<Supply> vcSupply, Context context, Enemy enemy, int screenW, int screenH){
         int random = OtherUtil.getRandom(1, 4);
-        Bitmap bitmap;
-        Supply.TYPE type;
+        Bitmap bitmap = null;
+        Supply.TYPE type = Supply.TYPE.BLOOD
+                ;
         boolean isAdd = false;
         int randomAdd = OtherUtil.getRandom(1, 100);
         if(random == 1) {
-            bitmap = BitmapUtils.ReadBitMap(context, R.drawable.icon_aircraftwars_supply_blood);
-            type = Supply.TYPE.BLOOD;
-            if(randomAdd<=probabilityBlood) isAdd = true;
+            if(randomAdd<=probabilityBlood) {
+                bitmap = BitmapUtils.ReadBitMap(context, R.drawable.icon_aircraftwars_supply_blood);
+                type = Supply.TYPE.BLOOD;
+                isAdd = true;
+            }
         }else if(random == 2) {
-            bitmap = BitmapUtils.ReadBitMap(context, R.drawable.icon_aircraftwars_supply_boom);
-            type = Supply.TYPE.BOOM;
-            if(randomAdd<=probabilityBoom) isAdd = true;
+            if(randomAdd<=probabilityBoom) {
+                bitmap = BitmapUtils.ReadBitMap(context, R.drawable.icon_aircraftwars_supply_boom);
+                type = Supply.TYPE.BOOM;
+                isAdd = true;
+            }
         }else if(random == 3) {
-            bitmap = BitmapUtils.ReadBitMap(context, R.drawable.icon_aircraftwars_supply_blood);
-            type = Supply.TYPE.PROTECTION;
-            if(randomAdd<=probabilityProtection) isAdd = true;
+            if(randomAdd<=probabilityProtection) {
+                bitmap = BitmapUtils.ReadBitMap(context, R.drawable.icon_aircraftwars_supply_protect);
+                type = Supply.TYPE.PROTECTION;
+                isAdd = true;
+            }
         }else{
-            bitmap = BitmapUtils.ReadBitMap(context, R.drawable.icon_aircraftwars_supply_blood);
-            type = Supply.TYPE.ARMS;
-            if(randomAdd<=probabilityArms) isAdd = true;
+            if(randomAdd<=probabilityArms) {
+                bitmap = BitmapUtils.ReadBitMap(context, R.drawable.icon_aircraftwars_supply_arms);
+                type = Supply.TYPE.ARMS;
+                isAdd = true;
+            }
         }
         if(isAdd)
-        vcSupply.add(new Supply(context,bitmap,type,enemy.getRect(),screenW,screenH));
+            vcSupply.add(new Supply(context,bitmap,type,enemy.getRect(),screenW,screenH));
     }
 
     public boolean isDead() {

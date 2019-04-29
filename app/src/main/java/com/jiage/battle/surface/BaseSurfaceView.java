@@ -26,7 +26,7 @@ public abstract class BaseSurfaceView extends SurfaceView implements Callback, R
     protected Context mContext;
     protected boolean isStop = false;
     //帧数
-    protected int frame = 25;
+    protected int frame = 16;
     //用于控制SurfaceView
     private SurfaceHolder sfh;
     //声明一个画笔

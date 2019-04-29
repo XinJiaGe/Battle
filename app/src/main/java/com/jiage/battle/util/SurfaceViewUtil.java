@@ -8,7 +8,6 @@ import android.graphics.Point;
 import android.graphics.Rect;
 import android.graphics.RectF;
 import android.graphics.Region;
-import android.util.Log;
 
 import java.util.Random;
 
@@ -36,8 +35,8 @@ public class SurfaceViewUtil {
      * @param radius    圆的半径
      * @return          圆上的点的X坐标
      */
-    public static int getCircleCoordinatesX(int originX , int angle, int radius){
-        return (int)(originX + Math.sin(2* Math.PI / 360 * angle) * radius);
+    public static double getCircleCoordinatesX(int originX , int angle, int radius){
+        return (originX + Math.sin(2* Math.PI / 360 * angle) * radius);
     }
 
     /**
@@ -47,8 +46,8 @@ public class SurfaceViewUtil {
      * @param radius    圆的半径
      * @return          圆上的点的Y坐标
      */
-    public static int getCircleCoordinatesY(int originY , int angle, int radius){
-        return (int)(originY + Math.cos(2* Math.PI / 360 * angle) * radius);
+    public static double getCircleCoordinatesY(int originY , int angle, int radius){
+        return (originY + Math.cos(2* Math.PI / 360 * angle) * radius);
     }
 
     /**

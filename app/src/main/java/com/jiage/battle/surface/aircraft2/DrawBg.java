@@ -17,7 +17,7 @@ import com.jiage.battle.util.BitmapUtils;
 public class DrawBg {
     private Bitmap bitmap;
     private int x, y, mScreenW, mScreenH;
-    private int speed = 7; //速度
+    public static int speed = 7; //速度
     private boolean isDead = false;
 
     public DrawBg(Bitmap bitmapBg, int screenW, int screenH) {

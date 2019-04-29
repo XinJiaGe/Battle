@@ -51,11 +51,11 @@ public class Bullet {
                 mInitY = (int) SurfaceViewUtil.getCircleCoordinatesY(mInitY, angle, speed);
                 if (mInitX < Constant.Bullet.radius * 2)
                     isTurn(false, false, -10, 0, 0, mScreenH, mInitX, mInitY, Constant.Bullet.radius);
-                if (mInitY < Constant.Bullet.radius * 2)
+                else if (mInitY < Constant.Bullet.radius * 2)
                     isTurn(false, false, 0, -10, mScreenW, 0, mInitX, mInitY, Constant.Bullet.radius);
-                if (mInitX > mScreenW - Constant.Bullet.radius * 2)
+                else if (mInitX > mScreenW - Constant.Bullet.radius * 2)
                     isTurn(false, false, mScreenW, 0, mScreenW + 10, mScreenH, mInitX, mInitY, Constant.Bullet.radius);
-                if (mInitX > mPlayer.getmInitX() && mInitX < (mPlayer.getmInitX() + Constant.Player.width) && mInitY > mPlayer.getmInitY() - Constant.Bullet.radius * 2)
+                else if (mInitX > mPlayer.getmInitX() && mInitX < (mPlayer.getmInitX() + Constant.Player.width) && mInitY > mPlayer.getmInitY() - Constant.Bullet.radius * 2)
                     if (isTurn(true, false, (int) mPlayer.getmInitX(), (int) mPlayer.getmInitY(), (int) (mPlayer.getmInitX() + Constant.Player.width),
                             (int) (mPlayer.getmInitY() + 1), mInitX, mInitY, Constant.Bullet.radius)) {
                         if(SharedPreference.getSharedPreference().isArkanoidBulletSound())
@@ -103,51 +103,61 @@ public class Bullet {
      * @param top
      * @param right
      * @param bottom
+     *
+     *
+     *
      * @return
      */
     private boolean hitRect(boolean isPlayer,boolean isJiao, int ball_x, int ball_y, int ball_r, int left, int top, int right, int bottom) {
-        // 球在1，3区域的碰撞判断
-        if (ball_x >= left && ball_x <= right) {
-            if (ball_y + ball_r >= top && ball_y < top) { // 1区域判断
-                angle = 180-angle;
-                return true;
-            } else if (ball_y - ball_r <= bottom && ball_y > bottom) { // 3区域判断
-                angle = 180-angle;
+        if(isPlayer){
+            if(top>=ball_y-ball_r && top<ball_y+ball_r){
+                angle = 180 - angle;
                 return true;
             }
-        }
-        // 球在2，4区域的碰撞判断
-        if (ball_y >= top && ball_y <= bottom) {
-            if (ball_x - ball_r <= right && ball_x > right) { // 2区域判断
-                angle = 360-angle;
-                return true;
-            } else if (ball_x + ball_r >= left && ball_x < left) { // 4区域判断
-                angle = 360-angle;
-                return true;
+        }else {
+
+            // 球在1，3区域的碰撞判断
+            if (ball_x >= left && ball_x <= right) {
+                if (ball_y + ball_r >= top && ball_y < top) { // 1区域判断
+                    angle = 180 - angle;
+                    return true;
+                } else if (ball_y - ball_r <= bottom && ball_y > bottom) { // 3区域判断
+                    angle = 180 - angle;
+                    return true;
+                }
             }
-        }
-        if(isJiao) {
-            // 圆在5区域的碰撞判断
-            if (Math.pow(left - ball_x, 2) + Math.pow(top - ball_y, 2) <= Math.pow(ball_r, 2) && ball_x < left && ball_y < top) {
-                angle = 180 + angle;
-                return true;
+            // 球在2，4区域的碰撞判断
+            if (ball_y >= top && ball_y <= bottom) {
+                if (ball_x - ball_r <= right && ball_x > right) { // 2区域判断
+                    angle = 360 - angle;
+                    return true;
+                } else if (ball_x + ball_r >= left && ball_x < left) { // 4区域判断
+                    angle = 360 - angle;
+                    return true;
+                }
             }
-            // 圆在6区域的碰撞判断
-            if (Math.pow(ball_x - right, 2) + Math.pow(top - ball_y, 2) <= Math.pow(ball_r, 2) && ball_x > right && ball_y < top) {
-                angle = 180 + angle;
-                return true;
+            if (isJiao) {
+                // 圆在5区域的碰撞判断
+                if (Math.pow(left - ball_x, 2) + Math.pow(top - ball_y, 2) <= Math.pow(ball_r, 2) && ball_x < left && ball_y < top) {
+                    angle = 180 + angle;
+                    return true;
+                }
+                // 圆在6区域的碰撞判断
+                if (Math.pow(ball_x - right, 2) + Math.pow(top - ball_y, 2) <= Math.pow(ball_r, 2) && ball_x > right && ball_y < top) {
+                    angle = 180 + angle;
+                    return true;
+                }
+                // 圆在7区域的碰撞判断
+                if (Math.pow(ball_x - right, 2) + Math.pow(ball_y - bottom, 2) <= Math.pow(ball_r, 2) && ball_x > right && ball_y > bottom) {
+                    angle = angle - 180;
+                    return true;
+                }
+                // 圆在8区域的碰撞判断
+                if (Math.pow(left - ball_x, 2) + Math.pow(ball_y - bottom, 2) <= Math.pow(ball_r, 2) && ball_x < left && ball_y > bottom) {
+                    angle = angle - 180;
+                    return true;
+                }
             }
-            // 圆在7区域的碰撞判断
-            if (Math.pow(ball_x - right, 2) + Math.pow(ball_y - bottom, 2) <= Math.pow(ball_r, 2) && ball_x > right && ball_y > bottom) {
-                angle = angle - 180;
-                return true;
-            }
-            // 圆在8区域的碰撞判断
-            if (Math.pow(left - ball_x, 2) + Math.pow(ball_y - bottom, 2) <= Math.pow(ball_r, 2) && ball_x < left && ball_y > bottom) {
-                angle = angle - 180;
-                return true;
-            }
-        }
 //        //圆心在矩形内
 //        Rect rect = new Rect(left, top, right, bottom);
 //        if(SurfaceViewUtil.isCollsionClick(new Region(left, top, right, bottom),ball_x,ball_y)){
@@ -168,6 +178,7 @@ public class Bullet {
 //                return true;
 //            }
 //        }
+        }
         return false;
     }
 

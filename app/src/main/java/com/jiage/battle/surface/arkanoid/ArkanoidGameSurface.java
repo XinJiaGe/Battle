@@ -53,6 +53,7 @@ public class ArkanoidGameSurface extends BaseSurfaceView {
 
     @Override
     public void created() {
+        frame = 30;
         functionList = getFunctionProbability();
         playerInitX = mScreenW / 2 - Constant.Player.width / 2;//主角初始位置
         playerInitY = mScreenH - Constant.Player.height - 200;
