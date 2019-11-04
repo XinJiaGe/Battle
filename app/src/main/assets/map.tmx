@@ -64,14 +64,70 @@
   <object id="59" x="993" y="353" width="29" height="94"/>
   <object id="60" x="1026" y="481" width="28" height="28"/>
  </objectgroup>
- <objectgroup name="paht">
-  <object id="1" x="3" y="100">
-   <polyline points="0,0 1687,-6 1727,30 1724,733 1696,763 218,763 187,733 187,24 221,-3"/>
+<objectgroup name="path1">
+  <object id="76" x="0" y="96">
+   <properties>
+    <property name="orientation" type="int" value="3"/>
+   </properties>
+   <ellipse/>
   </object>
-  <object id="2" x="1918" y="863">
-   <polyline points="0,0 -1693,0 -1724,-30 -1727,-733 -1693,-769 -224,-772 -184,-742 -187,-33 -218,0"/>
+  <object id="77" x="192" y="96">
+   <properties>
+    <property name="orientation" type="int" value="3"/>
+   </properties>
+   <ellipse/>
+  </object>
+  <object id="78" x="1728" y="96">
+   <properties>
+    <property name="orientation" type="int" value="5"/>
+   </properties>
+   <ellipse/>
+  </object>
+  <object id="79" x="1728" y="864">
+   <properties>
+    <property name="orientation" type="int" value="7"/>
+   </properties>
+   <ellipse/>
+  </object>
+  <object id="80" x="192" y="864">
+   <properties>
+    <property name="orientation" type="int" value="1"/>
+   </properties>
+   <ellipse/>
   </object>
  </objectgroup>
+ <objectgroup name="path2">
+   <object id="71" x="1920" y="864">
+    <properties>
+     <property name="orientation" type="int" value="7"/>
+    </properties>
+    <ellipse/>
+   </object>
+   <object id="72" x="1728" y="864">
+    <properties>
+     <property name="orientation" type="int" value="7"/>
+    </properties>
+    <ellipse/>
+   </object>
+   <object id="73" x="192" y="864">
+    <properties>
+     <property name="orientation" type="int" value="1"/>
+    </properties>
+    <ellipse/>
+   </object>
+   <object id="74" x="192" y="96">
+    <properties>
+     <property name="orientation" type="int" value="3"/>
+    </properties>
+    <ellipse/>
+   </object>
+   <object id="75" x="1728" y="96">
+    <properties>
+     <property name="orientation" type="int" value="5"/>
+    </properties>
+    <ellipse/>
+   </object>
+  </objectgroup>
  <objectgroup name="place">
   <object id="3" x="224" y="130" width="1472" height="700"/>
   <object id="4" x="3" y="130" width="151" height="951"/>
