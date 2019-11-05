@@ -23,4 +23,11 @@ public class Constant {
         public static final int BOTTOMLEFT = 6;
         public static final int BOTTOMRIGHT = 4;
     }
+
+    /**
+     * 攻击方式
+     */
+    public enum ATTACKTYPE{
+        GONGJIAN,//弓箭
+    }
 }

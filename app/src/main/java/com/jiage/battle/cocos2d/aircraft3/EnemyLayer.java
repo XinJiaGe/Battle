@@ -31,20 +31,21 @@ public class EnemyLayer {
     public EnemyLayer(SickTo sickTo, List<PathsModel[]> pathList) {
         this.mSickTo = sickTo;
         this.pathList = pathList;
-//        sickTo.schedule("addEnemy",1.0f);
-        add();
+        sickTo.schedule("addEnemy",0.2f);
+//        add();
     }
 
     /**
      * 定时添加敌人
      */
     public void add(){
-        Log.e("EnemyLayer","添加敌人");
-        PathsModel[] points = pathList.get(0);
-        Enemy enemy = new Enemy(TYPE.ZHIZHU, points,0);
-        vcEnemys.add(enemy);
-        enemy.updataOrientation(points[0].getOrientation());
-        runAction(enemy,points[enemy.getPointIndex()].getPoint());
+        for (PathsModel[] points : pathList) {
+            Log.e("EnemyLayer","添加敌人");
+            Enemy enemy = new Enemy(TYPE.ZHIZHU, points,0);
+            vcEnemys.add(enemy);
+            enemy.updataOrientation(points[0].getOrientation());
+            runAction(enemy,points[enemy.getPointIndex()].getPoint());
+        }
     }
 
     /**
@@ -76,8 +77,8 @@ public class EnemyLayer {
      * @param point  移动终点坐标
      */
     private void runAction(Enemy enemy, CGPoint point){
-        CCSequence actions = CCSequence.actions(CCMoveTo.action((float) CollisionUtil.geDistanceData(enemy.getX(), enemy.getY(), point.x, point.y,enemy.getSpeed()), point),
-                CCCallFuncN.action(this, "spriteMoveFinished"));
+        CCMoveTo action = CCMoveTo.action((float) CollisionUtil.geDistanceData(enemy.getX(), enemy.getY(), point.x, point.y, enemy.getSpeed()), point);
+        CCSequence actions = CCSequence.actions(action, CCCallFuncN.action(this, "spriteMoveFinished"));
         enemy.getCcSprite().runAction(actions);
     }
 

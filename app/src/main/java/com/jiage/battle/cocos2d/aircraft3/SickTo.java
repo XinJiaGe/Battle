@@ -37,12 +37,10 @@ public class SickTo extends CCColorLayer {
 
     public void update(float dt){
         Log.e("SickTo","update  "+dt);
-        //循环搜寻范围内敌人,攻击
-        playerLayer.search(enemyLayer,bulletLayer);
-    }
-
-    public void BulletLogic(float dt){
-        Log.e("SickTo","BulletLogic  "+dt);
+        //循环搜寻范围内敌人,锁定
+        playerLayer.search(enemyLayer);
+        //子弹逻辑
+        bulletLayer.logic();
     }
 
     /**
@@ -52,6 +50,14 @@ public class SickTo extends CCColorLayer {
     public void addEnemy(float dt){
         Log.e("SickTo","addEnemy  "+dt);
         enemyLayer.add();
+    }
+
+    /**
+     * player攻击发射子弹
+     * @param dt
+     */
+    public void playerAttack(float dt){
+        playerLayer.Attack(bulletLayer,enemyLayer);
     }
 
     @Override

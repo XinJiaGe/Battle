@@ -36,7 +36,7 @@ public class ModelLayer {
     public ModelLayer(SickTo sickTo){
         this.mSickTo = sickTo;
         for (String name : names) {
-            vcModels.add(new Model(name,0,0, Constant.Orientation.BOTTOM));
+            vcModels.add(new Model(name,0,0, Constant.Orientation.BOTTOM, Constant.ATTACKTYPE.GONGJIAN));
         }
     }
 
@@ -55,7 +55,7 @@ public class ModelLayer {
             if(sprite.getTag() == tag &&CGRect.containsPoint(sprite.getBoundingBox(), cgLocation)){
                 isMobileModel = true;
                 //new 一个移动对象
-                mobileSprite = new Model(vcModel.getName(),0,0, Constant.Orientation.BOTTOM);
+                mobileSprite = new Model(vcModel.getName(),vcModel.getX(),vcModel.getY(), vcModel.getOrientation(), vcModel.getAttacktype());
                 break;
             }
         }
@@ -172,6 +172,7 @@ public class ModelLayer {
         private String name;
         private int orientation;//方位
         private CCSprite sprite;//默认显示图片
+        private Constant.ATTACKTYPE attacktype;//攻击方式
         private ArrayList<CCSpriteFrame> frames;//帧动图集
 
         /**
@@ -179,8 +180,9 @@ public class ModelLayer {
          * @param x
          * @param y
          */
-        public Model(String name, float x, float y,int orientation) {
+        public Model(String name, float x, float y,int orientation,Constant.ATTACKTYPE attacktype) {
             this.orientation = orientation;
+            this.attacktype = attacktype;
             this.name = name;
             this.x = x;
             this.y = y;
@@ -222,6 +224,15 @@ public class ModelLayer {
             this.sprite = ccSprite;
             return sprite;
         }
+
+        public Constant.ATTACKTYPE getAttacktype() {
+            return attacktype;
+        }
+
+        public void setAttacktype(Constant.ATTACKTYPE attacktype) {
+            this.attacktype = attacktype;
+        }
+
         public CCSprite getSprite() {
             return sprite;
         }
