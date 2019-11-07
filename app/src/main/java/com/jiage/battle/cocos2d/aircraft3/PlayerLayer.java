@@ -21,14 +21,12 @@ public class PlayerLayer {
     private Vector<Player> vcPlayers = new Vector<>();
 
 
-    /**
-     * 构造方法
-     * @param sickTo
-     */
     public PlayerLayer(SickTo sickTo) {
         this.mSickTo = sickTo;
-        //设置攻击频率
-        sickTo.schedule("playerAttack",Config.player.playerAttackInterval);
+    }
+
+    public void init(){
+
     }
 
     /**
@@ -101,8 +99,8 @@ public class PlayerLayer {
         private EnemyLayer.Enemy enemy;//锁定攻击的敌人
         private boolean islocking = false;//是否锁定敌人中
         private float distance;//攻击距离
-        private Constant.MODELTYPE type;//塔类型
-        private Constant.ATTACKTYPE attacktype;//攻击方式
+        private Constant.ModelType type;//塔类型
+        private Constant.AttackType attacktype;//攻击方式
         private CCSprite sprite;
         public Player(ModelLayer.Model modelConfig) {
             this.distance = modelConfig.getDistance();
@@ -125,7 +123,7 @@ public class PlayerLayer {
         public void updataImage(int orientation) {
             CCSprite ccSprite = CCSprite.sprite(name);
             switch (type) {
-                case JIANTA:
+                case JianTa:
                     float oneWidth = ccSprite.getContentSize().width/15;
                     float oneHeight = ccSprite.getContentSize().height/4;
                     switch (orientation) {
@@ -165,19 +163,19 @@ public class PlayerLayer {
             this.name = name;
         }
 
-        public Constant.MODELTYPE getType() {
+        public Constant.ModelType getType() {
             return type;
         }
 
-        public void setType(Constant.MODELTYPE type) {
+        public void setType(Constant.ModelType type) {
             this.type = type;
         }
 
-        public Constant.ATTACKTYPE getAttacktype() {
+        public Constant.AttackType getAttacktype() {
             return attacktype;
         }
 
-        public void setAttacktype(Constant.ATTACKTYPE attacktype) {
+        public void setAttacktype(Constant.AttackType attacktype) {
             this.attacktype = attacktype;
         }
 
@@ -229,7 +227,12 @@ public class PlayerLayer {
             this.y = y;
         }
     }
-
+    /**
+     * 清除所有
+     */
+    public void initialization(){
+        vcPlayers.removeAllElements();
+    }
     public Vector<Player> getVcPlayers() {
         return vcPlayers;
     }

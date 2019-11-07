@@ -1,7 +1,5 @@
 package com.jiage.battle.cocos2d;
 
-import android.graphics.Point;
-
 import org.cocos2d.types.CGPoint;
 
 /**
@@ -10,6 +8,22 @@ import org.cocos2d.types.CGPoint;
  * 描述：
  */
 public class CollisionUtil {
+    /**
+     * 点击的是否在矩形内
+     * @param x
+     * @param y
+     * @param x1
+     * @param y1
+     * @param w1
+     * @param h1
+     * @return
+     */
+    public static boolean isClickRectangle(float x,float y,float x1, float y1, float w1, float h1){
+        if(x>=x1&&x<=x1+w1&&y>=y1&&y<=y1+h1){
+            return true;
+        }
+        return false;
+    }
     /**
      * 两个矩形判断是否碰撞
      * @param x1

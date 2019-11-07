@@ -27,7 +27,10 @@ public class BulletLayer {
 
     public BulletLayer(SickTo sickTo) {
         this.mSickTo = sickTo;
-        mSickTo.schedule("bulletLogic",Config.bullet.bulletLogicInterval);
+    }
+
+    public void init(){
+
     }
 
     /**
@@ -38,7 +41,7 @@ public class BulletLayer {
     public void add(PlayerLayer.Player player, EnemyLayer enemyLayer){
         String name = "";
         switch (player.getAttacktype()) {
-            case GONGJIAN:
+            case GongJian:
                 name = "bullet/849848961416416515.png";
                 break;
         }
@@ -58,8 +61,10 @@ public class BulletLayer {
     public void logic(){
         for (Bullet bullet : vcBullet) {
             EnemyLayer.Enemy enemy = bullet.getEnemy();
-            CGPoint position = enemy.getCcSprite().getPosition();
-            runAction(bullet,position);
+            if(enemy!=null) {
+                CGPoint position = enemy.getCcSprite().getPosition();
+                runAction(bullet, position);
+            }
         }
     }
 
@@ -97,7 +102,7 @@ public class BulletLayer {
 
     public static class Bullet{
         private CCSprite sprite;
-        private Constant.ATTACKTYPE attacktype;//攻击方式
+        private Constant.AttackType attacktype;//攻击方式
         private EnemyLayer.Enemy enemy;//锁定攻击的敌人
         private EnemyLayer enemyLayer;//敌人类
         private PlayerLayer.Player player;
@@ -123,7 +128,7 @@ public class BulletLayer {
             CGPoint position = sprite.getPosition();
             angle = CollisionUtil.getRotationAngle(position.x, position.y, playerPosition.x, playerPosition.y);
             switch (attacktype) {
-                case GONGJIAN:
+                case GongJian:
                     sprite.setRotation(angle-90);
                     break;
                 default:
@@ -189,11 +194,11 @@ public class BulletLayer {
             this.sprite = sprite;
         }
 
-        public Constant.ATTACKTYPE getAttacktype() {
+        public Constant.AttackType getAttacktype() {
             return attacktype;
         }
 
-        public void setAttacktype(Constant.ATTACKTYPE attacktype) {
+        public void setAttacktype(Constant.AttackType attacktype) {
             this.attacktype = attacktype;
         }
         public int getSpeed() {
@@ -221,6 +226,12 @@ public class BulletLayer {
         }
     }
 
+    /**
+     * 清除所有
+     */
+    public void initialization(){
+        vcBullet.removeAllElements();
+    }
     public Vector<Bullet> getVcBullet() {
         return vcBullet;
     }

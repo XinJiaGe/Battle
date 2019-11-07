@@ -32,18 +32,20 @@ public class EnemyLayer {
     private Vector<Enemy> vcEnemys = new Vector<>();
 
 
-    public EnemyLayer(SickTo sickTo, List<PathsModel[]> pathList) {
+    public EnemyLayer(SickTo sickTo) {
         this.mSickTo = sickTo;
+    }
+
+    public void init(List<PathsModel[]> pathList){
         this.pathList = pathList;
-        sickTo.schedule("addEnemy",Config.enemy.addEnemyInterval);
     }
 
     /**
      * 定时添加敌人
      */
     public void addEnemy(){
-        add(0,Constant.ENEMYTYPE.ZHIZHU);
-        add(1,Constant.ENEMYTYPE.ZOMBI);
+        add(0,Constant.EnemyType.ZhiZhu);
+        add(1,Constant.EnemyType.XiaoChong);
     }
 
     /**
@@ -51,7 +53,7 @@ public class EnemyLayer {
      * @param pathIndex   添加到路径
      * @param type
      */
-    private void add(int pathIndex,Constant.ENEMYTYPE type){
+    private void add(int pathIndex,Constant.EnemyType type){
         PathsModel[] pathsModels = pathList.get(pathIndex);
         Enemy enemy = new Enemy(type, pathsModels,pathIndex);
         vcEnemys.add(enemy);
@@ -113,28 +115,28 @@ public class EnemyLayer {
         private CCSprite ccSprite;
         private float x;
         private float y;
-        private Constant.ENEMYTYPE type;
+        private Constant.EnemyType type;
         private int speed; //速度
         private int maxblood;//总血
         private int blood;//血
         private int gold;//值多少金币
-        public Enemy(Constant.ENEMYTYPE type,PathsModel[] points,int pointI){
+        public Enemy(Constant.EnemyType type,PathsModel[] points,int pointI){
             this.points = points;
             this.pointI = pointI;
             this.type = type;
             CGPoint point = points[0].getPoint();
             this.x = point.x;
             this.y = point.y;
+            this.speed = Config.enemy.getSpeed(type);
+            this.gold = Config.enemy.getGold(type);
+            this.maxblood = Config.enemy.getBlood(type);
             this.pointIndex ++;
             CCSprite ccSprite = null;
             switch (type) {
-                case ZHIZHU:
+                case ZhiZhu:
                     ccSprite = CCSprite.sprite("player/bullet_skin_05.png");
-                    speed = 200;
-                    maxblood = 1;
-                    gold = 1;
                     break;
-                case ZOMBI:
+                case XiaoChong:
                     ccSprite = CCSprite.sprite("player/zombi_4.png");
                     frames = new ArrayList<>();
                     CGSize contentSize = ccSprite.getContentSize();
@@ -148,9 +150,6 @@ public class EnemyLayer {
                         frames.add(displayedFrame);
                     }
                     runAction(ccSprite,frames,"走路",0.05f);
-                    speed = 200;
-                    maxblood = 3;
-                    gold = 2;
                     break;
             }
             ccSprite.setAnchorPoint(0.5f, 0.5f);
@@ -212,11 +211,11 @@ public class EnemyLayer {
             ccSprite.runAction(forever);
         }
 
-        public Constant.ENEMYTYPE getType() {
+        public Constant.EnemyType getType() {
             return type;
         }
 
-        public void setType(Constant.ENEMYTYPE type) {
+        public void setType(Constant.EnemyType type) {
             this.type = type;
         }
 
@@ -316,7 +315,13 @@ public class EnemyLayer {
             this.speed = speed;
         }
     }
-
+    /**
+     * 清除所有
+     */
+    public void initialization(){
+        vcEnemys.removeAllElements();
+        pathList.clear();
+    }
     public Vector<Enemy> getVcEnemys() {
         return vcEnemys;
     }

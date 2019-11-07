@@ -31,7 +31,10 @@ public class ModelLayer {
 
     public ModelLayer(SickTo sickTo){
         this.mSickTo = sickTo;
-        models.add(new Model("player/jianta.png", Constant.MODELTYPE.JIANTA));
+    }
+
+    public void init(){
+        models.add(new Model("player/jianta.png", Constant.ModelType.JianTa));
     }
 
     /**
@@ -164,16 +167,16 @@ public class ModelLayer {
         private float moveX;
         private float moveY;
         private String name;
-        private Constant.MODELTYPE type;//塔类型
+        private Constant.ModelType type;//塔类型
         private int orientation;//方位
         private CCSprite sprite;//默认显示图片
         private float distance;//攻击距离
-        private Constant.ATTACKTYPE attacktype;//攻击方式
+        private Constant.AttackType attacktype;//攻击方式
 
         /**
          * 创建一个
          */
-        public Model(String name, Constant.MODELTYPE type) {
+        public Model(String name, Constant.ModelType type) {
             this.name = name;
             this.type = type;
             this.x = 0;
@@ -181,9 +184,9 @@ public class ModelLayer {
             this.distance = Config.model.geTattackDistance(type);
             CCSprite ccSprite = CCSprite.sprite(name);
             switch (type) {
-                case JIANTA:
+                case JianTa:
                     this.orientation = Constant.Orientation.BOTTOM;
-                    this.attacktype = Constant.ATTACKTYPE.GONGJIAN;
+                    this.attacktype = Constant.AttackType.GongJian;
                     float oneWidth = ccSprite.getContentSize().width/15;
                     float oneHeight = ccSprite.getContentSize().height/4;
                     ccSprite.setTextureRect(0,0,oneWidth,oneHeight,false);
@@ -203,19 +206,19 @@ public class ModelLayer {
             this.distance = distance;
         }
 
-        public Constant.MODELTYPE getType() {
+        public Constant.ModelType getType() {
             return type;
         }
 
-        public void setType(Constant.MODELTYPE type) {
+        public void setType(Constant.ModelType type) {
             this.type = type;
         }
 
-        public Constant.ATTACKTYPE getAttacktype() {
+        public Constant.AttackType getAttacktype() {
             return attacktype;
         }
 
-        public void setAttacktype(Constant.ATTACKTYPE attacktype) {
+        public void setAttacktype(Constant.AttackType attacktype) {
             this.attacktype = attacktype;
         }
 
@@ -275,5 +278,10 @@ public class ModelLayer {
             this.moveY = moveY;
         }
     }
-
+    /**
+     * 清除所有
+     */
+    public void initialization(){
+        models.clear();
+    }
 }

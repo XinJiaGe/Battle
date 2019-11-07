@@ -17,17 +17,17 @@ public class Config {
         public final static int z = 40;
         public final static float bulletLogicInterval = 0.1f;
         //获取移动速度
-        public static int getSpeed(Constant.ATTACKTYPE attacktype){
+        public static int getSpeed(Constant.AttackType attacktype){
             switch (attacktype) {
-                case GONGJIAN:
+                case GongJian:
                     return 1200;
             }
             return 0;
         }
         //获取攻击力
-        public static int getAggressivity(Constant.ATTACKTYPE attacktype){
+        public static int getAggressivity(Constant.AttackType attacktype){
             switch (attacktype) {
-                case GONGJIAN:
+                case GongJian:
                     return 1;
             }
             return 0;
@@ -35,24 +35,54 @@ public class Config {
     }
     public static class enemy{
         public final static int tag = 9;
-        public final static float addEnemyInterval = 0.4f;
-        public static int getZ(Constant.ENEMYTYPE enemytype){
+        public final static float addEnemyInterval = 0.6f;
+        public static int getZ(Constant.EnemyType enemytype){
             switch (enemytype) {
-                case ZHIZHU:
+                case ZhiZhu:
                     return 10;
-                case ZOMBI:
+                case XiaoChong:
                     return 11;
             }
             return 0;
+        }
+        //获取金币
+        public static int getGold(Constant.EnemyType enemytype){
+            switch (enemytype) {
+                case ZhiZhu:
+                    return 1;
+                case XiaoChong:
+                    return 2;
+            }
+            return 1;
+        }
+        //获取移动速度
+        public static int getSpeed(Constant.EnemyType enemytype){
+            switch (enemytype) {
+                case ZhiZhu:
+                    return 200;
+                case XiaoChong:
+                    return 150;
+            }
+            return 200;
+        }
+        //获取血量
+        public static int getBlood(Constant.EnemyType enemytype){
+            switch (enemytype) {
+                case ZhiZhu:
+                    return 1;
+                case XiaoChong:
+                    return 2;
+            }
+            return 1;
         }
     }
     public static class model{
         public final static int tag = 1;
         public final static int z = 31;
         //获取攻击距离
-        public static int geTattackDistance(Constant.MODELTYPE type){
+        public static int geTattackDistance(Constant.ModelType type){
             switch (type) {
-                case JIANTA:
+                case JianTa:
                     return 300;
             }
             return 0;
@@ -63,7 +93,7 @@ public class Config {
         public final static int z = 30;
         public final static float playerAttackInterval = 0.2f;
     }
-    public static class bool{
+    public static class blood{
         public final static int tag = 1;
         public final static int z = 20;
     }

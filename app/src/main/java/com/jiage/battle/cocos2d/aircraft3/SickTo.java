@@ -3,6 +3,8 @@ package com.jiage.battle.cocos2d.aircraft3;
 import android.util.Log;
 import android.view.MotionEvent;
 
+import com.jiage.battle.cocos2d.Constant;
+
 import org.cocos2d.layers.CCColorLayer;
 import org.cocos2d.types.ccColor4B;
 
@@ -13,6 +15,7 @@ import org.cocos2d.types.ccColor4B;
  */
 public class SickTo extends CCColorLayer {
     private String TAG = "SickTo";
+    private Constant.Process process = Constant.Process.Start;//游戏进程
     private ModelLayer modelLayer;
     private PlayerLayer playerLayer;
     private MapLayer mapLayer;
@@ -22,18 +25,37 @@ public class SickTo extends CCColorLayer {
 
     public SickTo(ccColor4B color) {
         super(color);
-        init();
-    }
-
-    private void init(){
         setIsTouchEnabled(true);
         mapLayer = new MapLayer(this);
         modelLayer = new ModelLayer(this);
         playerLayer = new PlayerLayer(this);
         bulletLayer = new BulletLayer(this);
-        enemyLayer = new EnemyLayer(this,mapLayer.getPathList());
+        enemyLayer = new EnemyLayer(this);
+        init();
+    }
 
-        schedule("update");
+    private void init(){
+        mapLayer.init(process);
+        switch (process) {
+            case Start:
+
+                break;
+            case Level:
+
+                break;
+            case Game:
+                schedule("update");
+                //子弹逻辑
+                schedule("bulletLogic",Config.bullet.bulletLogicInterval);
+                //定时添加敌人
+                schedule("addEnemy",Config.enemy.addEnemyInterval);
+                //设置攻击频率
+                schedule("playerAttack",Config.player.playerAttackInterval);
+                break;
+            case Barracks:
+
+                break;
+        }
     }
 
     /**
@@ -88,5 +110,34 @@ public class SickTo extends CCColorLayer {
         modelLayer.ccTouchesEnded(event,playerLayer);
         mapLayer.ccTouchesEnded(event);
         return super.ccTouchesEnded(event);
+    }
+
+    /**
+     * 初始化清除所有，停止所有
+     * @param tag
+     */
+    public void initialization(int tag){
+        unschedule("update");
+        unschedule("bulletLogic");
+        unschedule("addEnemy");
+        unschedule("playerAttack");
+        stopAllActions();
+        mapLayer.initialization();
+        modelLayer.initialization();
+        playerLayer.initialization();
+        bulletLayer.initialization();
+        enemyLayer.initialization();
+        switch (tag) {
+            case Constant.StartTag.Start:
+                process = Constant.Process.Level;
+                break;
+            case Constant.StartTag.Barracks:
+                process = Constant.Process.Barracks;
+                break;
+            case Constant.StartTag.Out:
+                process = Constant.Process.Start;
+                break;
+        }
+        init();
     }
 }

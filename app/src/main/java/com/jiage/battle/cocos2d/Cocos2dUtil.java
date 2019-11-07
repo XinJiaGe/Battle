@@ -57,6 +57,6 @@ public class Cocos2dUtil {
         CGPoint position = ccSprite.getPosition();
         float width = ccSprite.getContentSize().width;
         position.set(position.x,position.y+20);
-        return setColor(sickTo,position,255,0,0,0,0, blood*width/maxblood,5, ccSprite.getZOrder(),Config.bool.tag);
+        return setColor(sickTo,position,255,0,0,0,0, blood*width/maxblood,5, ccSprite.getZOrder(),Config.blood.tag);
     }
 }

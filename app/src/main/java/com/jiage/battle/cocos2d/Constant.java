@@ -6,6 +6,23 @@ package com.jiage.battle.cocos2d;
  * 描述：
  */
 public class Constant {
+    /**
+     * 进程
+     */
+    public enum Process{
+        Start,//开始
+        Level,//选关卡
+        Barracks,//兵营
+        Game//游戏中
+    }
+    /**
+     * 开始TAG
+     */
+    public static final class StartTag{
+        public static final int Start = 1;//开始游戏
+        public static final int Barracks = 2;//兵营
+        public static final int Out = 3;//退出游戏
+    }
 
     /**
      * 方位
@@ -27,22 +44,22 @@ public class Constant {
     /**
      * 攻击方式
      */
-    public enum ATTACKTYPE{
-        GONGJIAN,//弓箭
+    public enum AttackType{
+        GongJian,//弓箭
     }
 
     /**
      * 类型
      */
-    public enum MODELTYPE{
-        JIANTA,//箭塔
+    public enum ModelType{
+        JianTa,//箭塔
     }
 
     /**
      * 怪物类型
      */
-    public enum ENEMYTYPE{
-        ZHIZHU,//蜘蛛
-        ZOMBI,//小虫
+    public enum EnemyType{
+        ZhiZhu,//蜘蛛
+        XiaoChong,//小虫
     }
 }
