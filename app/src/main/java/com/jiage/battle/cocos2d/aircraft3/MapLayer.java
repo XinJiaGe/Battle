@@ -24,10 +24,10 @@ public class MapLayer {
     private List<PathsModel[]> pathList = new ArrayList<>();
     public MapLayer(SickTo sickTo) {
         //获取tiled地图数据
-        CCTMXTiledMap cctmxTiledMap = CCTMXTiledMap.tiledMap("map.tmx");
+        CCTMXTiledMap cctmxTiledMap = CCTMXTiledMap.tiledMap("map/map.tmx");
         cctmxTiledMap.setAnchorPoint(0.5f,0.5f);
         cctmxTiledMap.setPosition(cctmxTiledMap.getContentSize().width/2,cctmxTiledMap.getContentSize().height/2);
-        sickTo.addChild(cctmxTiledMap);
+        sickTo.addChild(cctmxTiledMap,Config.map.z,Config.map.tag);
         init(cctmxTiledMap);
     }
 
@@ -55,30 +55,19 @@ public class MapLayer {
         for (CCTMXObjectGroup objectGroup : cctmxTiledMap.objectGroups) {
             String groupName = objectGroup.groupName;
             ArrayList<HashMap<String, String>> objects = objectGroup.objects;
-//            HashMap<String, String> properties = objectGroup.properties;
-            if(groupName.equals("path1")){//获取敌人行走路径资源1
-                PathsModel[] path = new PathsModel[objects.size()];
-                for (int i = 0; i < objects.size(); i++) {
-                    PathsModel pathsModel = new PathsModel();
-                    CGPoint point = new CGPoint();
-                    point.set(Integer.parseInt(objects.get(i).get("x")),Integer.parseInt(objects.get(i).get("y")));
-                    pathsModel.setPoint(point);
-                    pathsModel.setOrientation(Integer.parseInt(objects.get(i).get("orientation")));
-                    path[i] = pathsModel;
+            for (int i = 0; i < 10; i++) {
+                if(groupName.equals("path"+(i+1))){//获取敌人行走路径资源1
+                    PathsModel[] path = new PathsModel[objects.size()];
+                    for (int j = 0; j < objects.size(); j++) {
+                        PathsModel pathsModel = new PathsModel();
+                        CGPoint point = new CGPoint();
+                        point.set(Integer.parseInt(objects.get(j).get("x")),Integer.parseInt(objects.get(j).get("y")));
+                        pathsModel.setPoint(point);
+                        pathsModel.setOrientation(Integer.parseInt(objects.get(j).get("orientation")));
+                        path[j] = pathsModel;
+                    }
+                    pathList.add(path);
                 }
-                pathList.add(path);
-            }
-            if(groupName.equals("path2")){//获取敌人行走路径资源2
-                PathsModel[] path = new PathsModel[objects.size()];
-                for (int i = 0; i < objects.size(); i++) {
-                    PathsModel pathsModel = new PathsModel();
-                    CGPoint point = new CGPoint();
-                    point.set(Integer.parseInt(objects.get(i).get("x")),Integer.parseInt(objects.get(i).get("y")));
-                    pathsModel.setPoint(point);
-                    pathsModel.setOrientation(Integer.parseInt(objects.get(i).get("orientation")));
-                    path[i] = pathsModel;
-                }
-                pathList.add(path);
             }
             if(groupName.equals("place")){//获取可放置位置的rect
                 for (HashMap<String, String> object : objects) {

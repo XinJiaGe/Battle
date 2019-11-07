@@ -1,11 +1,14 @@
 package com.jiage.battle;
 
+import android.graphics.Point;
 import android.util.Base64;
+import android.util.Log;
 
 import com.jiage.battle.util.OtherUtil;
 import com.jiage.battle.util.SDDateUtil;
 import com.jiage.battle.util.SurfaceViewUtil;
 
+import org.cocos2d.types.CGPoint;
 import org.junit.Test;
 
 import java.security.MessageDigest;
@@ -71,7 +74,7 @@ public class ExampleUnitTest {
 //                try {
 //                    Thread.sleep(2000);
 //                } catch (InterruptedException e) {
-//                    e.printStackTrace();
+//                   e.printStackTrace();
 //                }
 //                return "顶顶顶顶";
 //            }
@@ -82,15 +85,133 @@ public class ExampleUnitTest {
 
 //        final long starTime = 1526541479;
 //        System.out.println(SDDateUtil.getFormatDataFrom(starTime));
-        int a = 20;
-        for (int i = 0; i < 10000; i++) {
-            int randomAdd = OtherUtil.getRandom(1, 100);
-            if(randomAdd<=a){
-                System.out.println("---------    ------------");
-            }
+//        int a = 20;
+//        for (int i = 0; i < 10000; i++) {
+//            int randomAdd = OtherUtil.getRandom(1, 100);
+//            if(randomAdd<=a){
+//                System.out.println("---------    ------------");
+//            }
+//
+//        }
 
-        }
+//        int angle = getAngle(100, 100, 50, 200);
+//        System.out.println(angle);
+//        int angle5 = getAngle(100, 100, 50, 120);
+//        System.out.println(angle5);
+//        int angle2 = getAngle(100, 100, 200, 200);
+//        System.out.println(angle2);
+//        int angle3 = getAngle(100, 100, 200, 50);
+//        System.out.println(angle3);
+//        int angle4 = getAngle(100, 100, 50, 50);
+//        System.out.println(angle4);
+//        int angle6 = getAngle(100, 100, 100, 50);
+//        System.out.println(angle6);
+//        float angle6 = getRotationAngle(100, 100, 80, 200);
+//        System.out.println(angle6);
+        //827  545.875
+
+        //1001.00006  992
+
+        //100
+
+        //90.91736   90.84249
+
+        CGPoint pointDistance = getPointDistance(827, 545.875f, 1001.00006f, 992, 100);
+        System.out.println(pointDistance.x+"  "+pointDistance.y);
+
+        realPoint(new float[]{827, 545.875f},new float[]{1001.00006f, 992},100);
     }
+    /**
+     * 获取两点之间线上一点
+     * @param x1
+     * @param y1
+     * @param x2
+     * @param y2
+     * @param distance
+     * @return
+     */
+    public static CGPoint getPointDistance(float x1 , float y1, float x2 , float y2, int distance){
+        CGPoint point = new CGPoint();
+        if(x1 == x2){
+            if(y1>y2){
+                point.set(x1,y1-distance);
+            }else if(y1<y2){
+                point.set(x1,y1+distance);
+            }else{
+                point.set(x1,y1);
+            }
+        }else if(y1 == y2){
+            if(x1>x2){
+                point.set(x1-distance,y2);
+            }else if(x1<x2){
+                point.set(x1+distance,y2);
+            }else{
+                point.set(x1,y2);
+            }
+        }else{
+            float hypotenuse = gePointDistance(x1, y1, x2, y2);
+            float x = (x2 - x1) / hypotenuse * distance + x1;//横坐标
+            float y = (y2 - y1) / hypotenuse * distance + y1;//纵坐标
+            point.set(x,y);
+        }
+        return point;
+    }
+
+    private double[] realPoint(float origin[], float target[], float speed) {
+        double[] nowPoint = new double[3];
+        double hypotenuse;
+        hypotenuse = Math.sqrt(Math.pow((target[0] - origin[0]), 2) + Math.pow((target[1] - origin[1]), 2));//计算两点距离
+        System.out.println("hypotenuse:" + hypotenuse);
+        nowPoint[0] = (target[0] - origin[0]) / hypotenuse * speed + origin[0];//横坐标
+        nowPoint[1] = (target[1] - origin[1]) / hypotenuse * speed + origin[1];//纵坐标
+        nowPoint[2] = Math.toDegrees(Math.atan((target[0] - origin[0]) / (target[1] - origin[1])));//角度
+        System.out.println("x;" + nowPoint[0] + " y:" + nowPoint[1] + " angle:" + nowPoint[2]);
+        return nowPoint;
+    }
+    /**
+     * 计算两点之间的距离
+     * @param x1
+     * @param y1
+     * @param x2
+     * @param y2
+     * @return
+     */
+    public static float gePointDistance(float x1 ,float y1,float x2 ,float y2){
+        return (float) Math.sqrt(Math.pow((x2 - x1), 2) + Math.pow((y2 - y1), 2));
+    }
+    /**
+     * 根据两个坐标获取旋转的角度
+     * @param x1
+     * @param y1
+     * @param x2
+     * @param y2
+     * @return
+     */
+    public static float getRotationAngle(float x1, float y1, float x2, float y2){
+        float angle = getAngle(x1, y1, x2, y2);
+        if(x1 == x2){
+            if(y1>y2){
+                angle += 180;
+            }
+        }else if(y1 == y2){
+            if(x1>x2){
+                angle += 360;
+            }
+        }else if(x2>x1&&y2>y1){ //第一区间
+        }else if(x1>x2&&y2>y1){//第二区间
+            angle = 90-Math.abs(angle)+270;
+        }else if(x2<x1&&y2<y1){//第三区间
+            angle += 180;
+        }else{//第四区间
+            angle = 90-Math.abs(angle)+90;
+        }
+        return angle;
+    }
+
+    public static float getAngle(float x1, float y1, float x2, float y2){
+        return (float) Math.toDegrees(Math.atan((x2 - x1) / (y2 - y1)));
+    }
+
     private int x = 0;
     private void upx(int ux){
         if(Math.abs(ux-x)<10){

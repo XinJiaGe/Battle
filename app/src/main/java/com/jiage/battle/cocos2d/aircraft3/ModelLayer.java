@@ -9,13 +9,12 @@ import com.jiage.battle.cocos2d.aircraft3.model.CGPointModel;
 import org.cocos2d.actions.interval.CCMoveTo;
 import org.cocos2d.nodes.CCDirector;
 import org.cocos2d.nodes.CCSprite;
-import org.cocos2d.nodes.CCSpriteFrame;
 import org.cocos2d.types.CGPoint;
 import org.cocos2d.types.CGRect;
 import org.cocos2d.types.CGSize;
 
 import java.util.ArrayList;
-import java.util.Vector;
+import java.util.List;
 
 /**
  * 作者：忻佳
@@ -23,21 +22,16 @@ import java.util.Vector;
  * 描述：塔model
  */
 public class ModelLayer {
-    private SickTo mSickTo;
     private String TAG = "ModelLayer";
-    public static int tag = 1;
-    private int z = 10;
-    private String[] names = new String[]{"jianta.png"};
-    private Vector<Model> vcModels = new Vector<>();
+    private SickTo mSickTo;
+    private List<Model> models = new ArrayList<>();
     private boolean isMobileModel = false;
     private boolean isLayDown = false;
     private Model mobileSprite;
 
     public ModelLayer(SickTo sickTo){
         this.mSickTo = sickTo;
-        for (String name : names) {
-            vcModels.add(new Model(name,0,0, Constant.Orientation.BOTTOM, Constant.ATTACKTYPE.GONGJIAN));
-        }
+        models.add(new Model("player/jianta.png", Constant.MODELTYPE.JIANTA));
     }
 
     /**
@@ -49,13 +43,13 @@ public class ModelLayer {
         point.set(event.getX(), event.getY());
         //坐标转换
         CGPoint cgLocation = CCDirector.sharedDirector().convertToGL(point);
-        for (Model vcModel : vcModels) {
+        for (Model vcModel : models) {
             CCSprite sprite = vcModel.getSprite();
             //点击到了model
-            if(sprite.getTag() == tag &&CGRect.containsPoint(sprite.getBoundingBox(), cgLocation)){
+            if(sprite.getTag() == Config.model.tag &&CGRect.containsPoint(sprite.getBoundingBox(), cgLocation)){
                 isMobileModel = true;
                 //new 一个移动对象
-                mobileSprite = new Model(vcModel.getName(),vcModel.getX(),vcModel.getY(), vcModel.getOrientation(), vcModel.getAttacktype());
+                mobileSprite = new Model(vcModel.getName(),vcModel.getType());
                 break;
             }
         }
@@ -116,7 +110,7 @@ public class ModelLayer {
             float moveY = mobileSprite.getMoveY();
             float width = mobileSprite.getSprite().getContentSize().width;
             float height = mobileSprite.getSprite().getContentSize().height;
-            if(CollisionUtil.isRectangleAndRectangle((int)(moveX),(int)(moveY),(int)(width),(int)(height/2),(int)(cgPoint.x),(int)(cgPoint.y),cgPointModel.getWidth(),cgPointModel.getHeight())){
+            if(CollisionUtil.isRectangleAndRectangle(moveX,moveY,width,height/2,cgPoint.x,cgPoint.y,cgPointModel.getWidth(),cgPointModel.getHeight())){
                 return false;
             }
         }
@@ -170,59 +164,51 @@ public class ModelLayer {
         private float moveX;
         private float moveY;
         private String name;
+        private Constant.MODELTYPE type;//塔类型
         private int orientation;//方位
         private CCSprite sprite;//默认显示图片
+        private float distance;//攻击距离
         private Constant.ATTACKTYPE attacktype;//攻击方式
-        private ArrayList<CCSpriteFrame> frames;//帧动图集
 
         /**
          * 创建一个
-         * @param x
-         * @param y
          */
-        public Model(String name, float x, float y,int orientation,Constant.ATTACKTYPE attacktype) {
-            this.orientation = orientation;
-            this.attacktype = attacktype;
+        public Model(String name, Constant.MODELTYPE type) {
             this.name = name;
-            this.x = x;
-            this.y = y;
-            updata(orientation);
-        }
-
-        /**
-         * 获取图片，根据方位改变
-         * @return
-         */
-        public CCSprite updata(int orientation) {
-            mSickTo.removeChild(sprite,false);
+            this.type = type;
+            this.x = 0;
+            this.y = 0;
+            this.distance = Config.model.geTattackDistance(type);
             CCSprite ccSprite = CCSprite.sprite(name);
-            float oneWidth = ccSprite.getContentSize().width/15;
-            float oneHeight = ccSprite.getContentSize().height/4;
-            switch (orientation) {
-                case Constant.Orientation.TOP:
-                    ccSprite.setTextureRect(oneWidth*11,0,oneWidth,oneHeight,false);
-                    break;
-                case Constant.Orientation.LEFT:
-                case Constant.Orientation.BOTTOM:
-                case Constant.Orientation.BOTTOMLEFT:
+            switch (type) {
+                case JIANTA:
+                    this.orientation = Constant.Orientation.BOTTOM;
+                    this.attacktype = Constant.ATTACKTYPE.GONGJIAN;
+                    float oneWidth = ccSprite.getContentSize().width/15;
+                    float oneHeight = ccSprite.getContentSize().height/4;
                     ccSprite.setTextureRect(0,0,oneWidth,oneHeight,false);
-                    break;
-                case Constant.Orientation.RIGHT:
-                case Constant.Orientation.BOTTOMRIGHT:
-                    ccSprite.setTextureRect(oneWidth*5,0,oneWidth,oneHeight,false);
-                    break;
-                case Constant.Orientation.TOPLEFT:
-                    ccSprite.setTextureRect(oneWidth*8,0,oneWidth,oneHeight,false);
-                    break;
-                case Constant.Orientation.TOPRIGHT:
-                    ccSprite.setTextureRect(oneWidth*12,0,oneWidth,oneHeight,false);
                     break;
             }
             ccSprite.setAnchorPoint(0,0);
             ccSprite.setPosition(CGPoint.ccp(0,0));
-            mSickTo.addChild(ccSprite,z,tag);
+            mSickTo.addChild(ccSprite,Config.model.z,Config.model.tag);
             this.sprite = ccSprite;
-            return sprite;
+        }
+
+        public float getDistance() {
+            return distance;
+        }
+
+        public void setDistance(float distance) {
+            this.distance = distance;
+        }
+
+        public Constant.MODELTYPE getType() {
+            return type;
+        }
+
+        public void setType(Constant.MODELTYPE type) {
+            this.type = type;
         }
 
         public Constant.ATTACKTYPE getAttacktype() {
@@ -251,14 +237,6 @@ public class ModelLayer {
 
         public void setOrientation(int orientation) {
             this.orientation = orientation;
-        }
-
-        public ArrayList<CCSpriteFrame> getFrames() {
-            return frames;
-        }
-
-        public void setFrames(ArrayList<CCSpriteFrame> frames) {
-            this.frames = frames;
         }
 
         public void setSprite(CCSprite sprite) {
@@ -297,4 +275,5 @@ public class ModelLayer {
             this.moveY = moveY;
         }
     }
+
 }

@@ -30,4 +30,19 @@ public class Constant {
     public enum ATTACKTYPE{
         GONGJIAN,//弓箭
     }
+
+    /**
+     * 类型
+     */
+    public enum MODELTYPE{
+        JIANTA,//箭塔
+    }
+
+    /**
+     * 怪物类型
+     */
+    public enum ENEMYTYPE{
+        ZHIZHU,//蜘蛛
+        ZOMBI,//小虫
+    }
 }

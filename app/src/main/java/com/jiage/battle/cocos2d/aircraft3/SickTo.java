@@ -18,6 +18,7 @@ public class SickTo extends CCColorLayer {
     private MapLayer mapLayer;
     private BulletLayer bulletLayer;
     private EnemyLayer enemyLayer;
+    private int gold;//金币
 
     public SickTo(ccColor4B color) {
         super(color);
@@ -35,12 +36,22 @@ public class SickTo extends CCColorLayer {
         schedule("update");
     }
 
+    /**
+     * 子弹逻辑
+     * @param dt
+     */
+    public void bulletLogic(float dt){
+        bulletLayer.logic();
+    }
+
     public void update(float dt){
-        Log.e("SickTo","update  "+dt);
         //循环搜寻范围内敌人,锁定
         playerLayer.search(enemyLayer);
-        //子弹逻辑
-        bulletLayer.logic();
+        //更新血条位置
+        enemyLayer.updataBool();
+
+        Log.e("数量","子弹："+bulletLayer.getVcBullet().size());
+        Log.e("数量","敌人："+enemyLayer.getVcEnemys().size());
     }
 
     /**
@@ -48,8 +59,7 @@ public class SickTo extends CCColorLayer {
      * @param dt
      */
     public void addEnemy(float dt){
-        Log.e("SickTo","addEnemy  "+dt);
-        enemyLayer.add();
+        enemyLayer.addEnemy();
     }
 
     /**

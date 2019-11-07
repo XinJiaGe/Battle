@@ -4,11 +4,8 @@ import android.util.Log;
 
 import com.jiage.battle.cocos2d.CollisionUtil;
 import com.jiage.battle.cocos2d.Constant;
-import com.jiage.battle.cocos2d.DrawUtil;
 
-import org.cocos2d.actions.UpdateCallback;
 import org.cocos2d.nodes.CCSprite;
-import org.cocos2d.opengl.CCDrawingPrimitives;
 import org.cocos2d.types.CGPoint;
 import org.cocos2d.types.CGSize;
 
@@ -20,9 +17,7 @@ import java.util.Vector;
  * 描述：塔
  */
 public class PlayerLayer {
-    public static int tag = 2;
     private SickTo mSickTo;
-    private int z = 9;
     private Vector<Player> vcPlayers = new Vector<>();
 
 
@@ -33,7 +28,7 @@ public class PlayerLayer {
     public PlayerLayer(SickTo sickTo) {
         this.mSickTo = sickTo;
         //设置攻击频率
-        sickTo.schedule("playerAttack",0.5f);
+        sickTo.schedule("playerAttack",Config.player.playerAttackInterval);
     }
 
     /**
@@ -41,7 +36,7 @@ public class PlayerLayer {
      * @param modelConfig
      */
     public void add(ModelLayer.Model modelConfig){
-        vcPlayers.add(new Player(modelConfig.getSprite(),modelConfig.getAttacktype(),modelConfig.getX(),modelConfig.getY()));
+        vcPlayers.add(new Player(modelConfig));
     }
 
     /**
@@ -67,22 +62,29 @@ public class PlayerLayer {
             CCSprite sprite = vcPlayer.getSprite();
             CGSize contentSize = sprite.getContentSize();
             if(!vcPlayer.isIslocking()) {//没有锁定敌人时
+                EnemyLayer.Enemy recentEnemy=null;//最近的敌人
+                float recentDistance = 999999;//最近距离
                 for (EnemyLayer.Enemy vcEnemy : enemyLayer.getVcEnemys()) {
                     CGPoint position = vcEnemy.getCcSprite().getPosition();
-                    //判断是否在攻击距离内
-                    if (CollisionUtil.gePointDistance(vcPlayer.x + contentSize.width / 2, vcPlayer.y + contentSize.height / 4, position.x, position.y) <= distance) {
-                        vcPlayer.setIslocking(true);
-                        vcPlayer.setEnemy(vcEnemy);
-                        Log.e("PlayerLayer","锁定敌人");
-                        break;
+                    //获取离敌人距离
+                    float d = CollisionUtil.gePointDistance(vcPlayer.getX() + contentSize.width / 2, vcPlayer.getY() + contentSize.height - contentSize.height / 4, position.x, position.y);
+                    if(d<recentDistance){
+                        recentDistance = d;
+                        recentEnemy = vcEnemy;
                     }
+                }
+                //判断最近的敌人是否在攻击距离内
+                if (recentEnemy!=null && recentDistance <= distance) {
+                    vcPlayer.setIslocking(true);
+                    vcPlayer.setEnemy(recentEnemy);
+                    Log.e("PlayerLayer","锁定敌人");
                 }
             }else{
                 EnemyLayer.Enemy enemy = vcPlayer.getEnemy();
                 if(enemy!=null) {
                     CGPoint position = enemy.getCcSprite().getPosition();
-                    //判断是否在攻击距离内
-                    if (CollisionUtil.gePointDistance(vcPlayer.x + contentSize.width / 2, vcPlayer.y + contentSize.height / 4, position.x, position.y) > distance) {
+                    //判断的人是否还在攻击距离内
+                    if (CollisionUtil.gePointDistance(vcPlayer.getX()+contentSize.width/2,vcPlayer.getY()+contentSize.height-contentSize.height/4, position.x, position.y) > distance) {
                         vcPlayer.setIslocking(false);
                         vcPlayer.setEnemy(null);
                         Log.e("PlayerLayer", "敌人超出攻击范围");
@@ -93,21 +95,82 @@ public class PlayerLayer {
     }
 
     public class Player{
+        private String name;
         private float x;
         private float y;
         private EnemyLayer.Enemy enemy;//锁定攻击的敌人
         private boolean islocking = false;//是否锁定敌人中
-        private float distance = 600;//攻击距离
-        private int aggressivity = 1;//攻击力
+        private float distance;//攻击距离
+        private Constant.MODELTYPE type;//塔类型
         private Constant.ATTACKTYPE attacktype;//攻击方式
         private CCSprite sprite;
-        public Player(CCSprite projectile,Constant.ATTACKTYPE attacktype, float x, float y) {
-            this.sprite = projectile;
-            this.attacktype = attacktype;
-            this.x = x;
-            this.y = y;
-            sprite.setTag(tag);
-            sprite.setVertexZ(z);
+        public Player(ModelLayer.Model modelConfig) {
+            this.distance = modelConfig.getDistance();
+            this.sprite = modelConfig.getSprite();
+            this.attacktype = modelConfig.getAttacktype();
+            this.x = modelConfig.getX();
+            this.y = modelConfig.getY();
+            this.name = modelConfig.getName();
+            this.type = modelConfig.getType();
+            sprite.setTag(Config.player.tag);
+            sprite.setVertexZ(Config.player.z);
+        }
+
+
+
+        /**
+         * 获取图片，根据方位改变
+         * @return
+         */
+        public void updataImage(int orientation) {
+            CCSprite ccSprite = CCSprite.sprite(name);
+            switch (type) {
+                case JIANTA:
+                    float oneWidth = ccSprite.getContentSize().width/15;
+                    float oneHeight = ccSprite.getContentSize().height/4;
+                    switch (orientation) {
+                        case Constant.Orientation.TOP:
+                            ccSprite.setTextureRect(oneWidth*11,0,oneWidth,oneHeight,false);
+                            break;
+                        case Constant.Orientation.LEFT:
+                        case Constant.Orientation.BOTTOM:
+                        case Constant.Orientation.BOTTOMLEFT:
+                            ccSprite.setTextureRect(0,0,oneWidth,oneHeight,false);
+                            break;
+                        case Constant.Orientation.RIGHT:
+                        case Constant.Orientation.BOTTOMRIGHT:
+                            ccSprite.setTextureRect(oneWidth*5,0,oneWidth,oneHeight,false);
+                            break;
+                        case Constant.Orientation.TOPLEFT:
+                            ccSprite.setTextureRect(oneWidth*8,0,oneWidth,oneHeight,false);
+                            break;
+                        case Constant.Orientation.TOPRIGHT:
+                            ccSprite.setTextureRect(oneWidth*12,0,oneWidth,oneHeight,false);
+                            break;
+                    }
+                    break;
+            }
+            mSickTo.removeChild(sprite,true);
+            ccSprite.setAnchorPoint(sprite.getAnchorPoint());
+            ccSprite.setPosition(sprite.getPosition());
+            mSickTo.addChild(ccSprite,Config.player.z,Config.player.tag);
+            this.sprite = ccSprite;
+        }
+
+        public String getName() {
+            return name;
+        }
+
+        public void setName(String name) {
+            this.name = name;
+        }
+
+        public Constant.MODELTYPE getType() {
+            return type;
+        }
+
+        public void setType(Constant.MODELTYPE type) {
+            this.type = type;
         }
 
         public Constant.ATTACKTYPE getAttacktype() {
@@ -164,14 +227,6 @@ public class PlayerLayer {
 
         public void setY(float y) {
             this.y = y;
-        }
-
-        public int getAggressivity() {
-            return aggressivity;
-        }
-
-        public void setAggressivity(int aggressivity) {
-            this.aggressivity = aggressivity;
         }
     }
 

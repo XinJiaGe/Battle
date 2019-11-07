@@ -1,5 +1,7 @@
 package com.jiage.battle.cocos2d.aircraft3;
 
+import android.util.Log;
+
 import com.jiage.battle.cocos2d.CollisionUtil;
 import com.jiage.battle.cocos2d.Constant;
 
@@ -9,6 +11,7 @@ import org.cocos2d.actions.interval.CCSequence;
 import org.cocos2d.nodes.CCNode;
 import org.cocos2d.nodes.CCSprite;
 import org.cocos2d.types.CGPoint;
+import org.cocos2d.types.CGSize;
 
 import java.util.Vector;
 
@@ -19,12 +22,12 @@ import java.util.Vector;
  */
 public class BulletLayer {
     private SickTo mSickTo;
-    private int z = 8;
     private Vector<Bullet> vcBullet = new Vector<>();
 
 
     public BulletLayer(SickTo sickTo) {
         this.mSickTo = sickTo;
+        mSickTo.schedule("bulletLogic",Config.bullet.bulletLogicInterval);
     }
 
     /**
@@ -36,14 +39,17 @@ public class BulletLayer {
         String name = "";
         switch (player.getAttacktype()) {
             case GONGJIAN:
-                name = "849848961416416515.png";
+                name = "bullet/849848961416416515.png";
                 break;
         }
+        CGSize contentSize = player.getSprite().getContentSize();
         CCSprite ccSprite = CCSprite.sprite(name);
         ccSprite.setAnchorPoint(0.5f,0.5f);
-        ccSprite.setPosition(CCNode.ccp(player.getX(),player.getY()+player.getSprite().getContentSize().height-10));
-        mSickTo.addChild(ccSprite,0,z);
-        vcBullet.add(new Bullet(player,ccSprite,enemyLayer));
+        ccSprite.setPosition(CCNode.ccp(player.getX()+contentSize.width/2,player.getY()+player.getSprite().getContentSize().height-player.getSprite().getContentSize().height/4));
+        mSickTo.addChild(ccSprite,Config.bullet.z,Config.bullet.tag);
+        Bullet bullet = new Bullet(player, ccSprite, enemyLayer);
+        vcBullet.add(bullet);
+        runAction(bullet,player.getEnemy().getCcSprite().getPosition());
     }
 
     /**
@@ -63,15 +69,13 @@ public class BulletLayer {
      */
     public void bulletMoveFinished(Object sender){
         CCSprite sprite = (CCSprite)sender;
-        mSickTo.removeChild(sprite,false);
         for (Bullet bullet : vcBullet) {
             if(bullet.getSprite() == sprite){
                 EnemyLayer.Enemy enemy = bullet.getEnemy();
-                int blood = enemy.getBlood() - bullet.getAggressivity();
-                if(blood<=0){
-
-                }
+                enemy.Injured(bullet.getAggressivity());
+                bullet.getPlayer().setIslocking(false);
                 vcBullet.removeElement(bullet);
+                mSickTo.removeChild(sprite,true);
                 break;
             }
         }
@@ -83,9 +87,11 @@ public class BulletLayer {
      * @param point  移动终点坐标
      */
     private void runAction(Bullet bullet, CGPoint point){
+        bullet.updataRotation();
         CGPoint position = bullet.getSprite().getPosition();
         CCMoveTo action = CCMoveTo.action((float) CollisionUtil.geDistanceData(position.x, position.y, point.x, point.y, bullet.getSpeed()), point);
         CCSequence actions = CCSequence.actions(action, CCCallFuncN.action(this, "bulletMoveFinished"));
+        bullet.getSprite().stopAllActions();
         bullet.getSprite().runAction(actions);
     }
 
@@ -94,21 +100,69 @@ public class BulletLayer {
         private Constant.ATTACKTYPE attacktype;//攻击方式
         private EnemyLayer.Enemy enemy;//锁定攻击的敌人
         private EnemyLayer enemyLayer;//敌人类
-        private int speed; //速度
+        private PlayerLayer.Player player;
+        private int speed; //移动速度
         private float angle = 0;//角度
-        private int aggressivity = 1;//攻击力
+        private int aggressivity;//攻击力
 
         public Bullet(PlayerLayer.Player player, CCSprite ccSprite, EnemyLayer enemyLayer) {
             this.enemyLayer = enemyLayer;
+            this.player = player;
             this.sprite = ccSprite;
             this.enemy = player.getEnemy();
             this.attacktype = player.getAttacktype();
-            this.aggressivity = player.getAggressivity();
+            this.speed = Config.bullet.getSpeed(attacktype);
+            this.aggressivity = Config.bullet.getAggressivity(attacktype);
+        }
+        /**
+         * 旋转图片
+         * @return
+         */
+        public void updataRotation() {
+            CGPoint playerPosition = enemy.getCcSprite().getPosition();
+            CGPoint position = sprite.getPosition();
+            angle = CollisionUtil.getRotationAngle(position.x, position.y, playerPosition.x, playerPosition.y);
             switch (attacktype) {
                 case GONGJIAN:
-                    this.speed = 800;
+                    sprite.setRotation(angle-90);
+                    break;
+                default:
+                    sprite.setRotation(angle);
                     break;
             }
+            updataPlayerImage();
+        }
+
+        /**
+         * 修改player图片
+         */
+        public void updataPlayerImage(){
+            if(angle>22&&angle<=67){//右上
+                player.updataImage(Constant.Orientation.TOPRIGHT);
+            }else if(angle>67&&angle<=112){//右
+                player.updataImage(Constant.Orientation.RIGHT);
+            }else if(angle>112&&angle<=157){//右下
+                player.updataImage(Constant.Orientation.BOTTOMRIGHT);
+            }else if(angle>157&&angle<=202){//下
+                player.updataImage(Constant.Orientation.BOTTOM);
+            }else if(angle>202&&angle<=247){//左下
+                player.updataImage(Constant.Orientation.BOTTOMLEFT);
+            }else if(angle>247&&angle<=292){//左
+                player.updataImage(Constant.Orientation.LEFT);
+            }else if(angle>292&&angle<=337){//左上
+                player.updataImage(Constant.Orientation.TOPLEFT);
+            }else{//上
+                player.updataImage(Constant.Orientation.TOP);
+            }
+        }
+
+
+        public PlayerLayer.Player getPlayer() {
+            return player;
+        }
+
+        public void setPlayer(PlayerLayer.Player player) {
+            this.player = player;
         }
 
         public EnemyLayer getEnemyLayer() {
