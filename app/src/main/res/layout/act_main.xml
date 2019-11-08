@@ -33,11 +33,15 @@
         android:id="@+id/act_main_stickTo2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="坚守战(cocos2d)"/>
+        android:text="塔防(cocos2d)"/>
     <Button
-        android:visibility="gone"
         android:id="@+id/act_main_dota"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="DOTA"/>
+        android:text="DOTA(cocos2d)"/>
+    <Button
+        android:id="@+id/act_main_arkanoidcod"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="打砖块(cocos2d)"/>
 </LinearLayout>

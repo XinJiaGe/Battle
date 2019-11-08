@@ -46,6 +46,7 @@ public class Constant {
      */
     public enum AttackType{
         GongJian,//弓箭
+        DianQiu,//电球
     }
 
     /**
@@ -53,6 +54,7 @@ public class Constant {
      */
     public enum ModelType{
         JianTa,//箭塔
+        DianTa,//电塔
     }
 
     /**

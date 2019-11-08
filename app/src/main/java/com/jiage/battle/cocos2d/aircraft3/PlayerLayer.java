@@ -5,10 +5,19 @@ import android.util.Log;
 import com.jiage.battle.cocos2d.CollisionUtil;
 import com.jiage.battle.cocos2d.Constant;
 
+import org.cocos2d.actions.base.CCRepeatForever;
+import org.cocos2d.actions.instant.CCCallFunc;
+import org.cocos2d.actions.instant.CCCallFuncN;
+import org.cocos2d.actions.interval.CCAnimate;
+import org.cocos2d.actions.interval.CCDelayTime;
+import org.cocos2d.actions.interval.CCSequence;
+import org.cocos2d.nodes.CCAnimation;
 import org.cocos2d.nodes.CCSprite;
+import org.cocos2d.nodes.CCSpriteFrame;
 import org.cocos2d.types.CGPoint;
 import org.cocos2d.types.CGSize;
 
+import java.util.ArrayList;
 import java.util.Vector;
 
 /**
@@ -19,6 +28,9 @@ import java.util.Vector;
 public class PlayerLayer {
     private SickTo mSickTo;
     private Vector<Player> vcPlayers = new Vector<>();
+    private int i;
+    private BulletLayer mBulletLayer;
+    private EnemyLayer mEnemyLayer;
 
 
     public PlayerLayer(SickTo sickTo) {
@@ -43,9 +55,37 @@ public class PlayerLayer {
      * @param enemyLayer
      */
     public void Attack(BulletLayer bulletLayer, EnemyLayer enemyLayer){
+        i++;
         for (Player vcPlayer : vcPlayers) {
             if(vcPlayer.isIslocking()){
-                bulletLayer.add(vcPlayer,enemyLayer);
+                if(i%Config.player.getSpeed(vcPlayer.getAttacktype())==0) {
+                    switch (vcPlayer.getAttacktype()) {
+                        case DianQiu:
+                            if (vcPlayer.getAttackFrames() != null) {
+                                this.mBulletLayer = bulletLayer;
+                                this.mEnemyLayer = enemyLayer;
+                                // 配置序列帧的信息 参数1 动作的名字(给程序员看的) 参数2 每一帧播放的时间 单位秒 参数3 所有用到的帧
+                                CCAnimation anim = CCAnimation.animation("电塔攻击", 0.05f, vcPlayer.getAttackFrames());
+                                CCAnimate animate = CCAnimate.action(anim,false);
+                                CCSequence sequence = CCSequence.actions(animate, CCCallFuncN.action(this, "attacktypeFinish"));
+                                vcPlayer.getSprite().runAction(sequence);
+                            }
+                            break;
+                        default:
+                            bulletLayer.add(vcPlayer, enemyLayer);
+                            break;
+                    }
+                }
+            }
+        }
+        if(i>=999999999) i=1;
+    }
+
+    public void attacktypeFinish(Object sender){
+        CCSprite sprite = (CCSprite)sender;
+        for (Player vcPlayer : vcPlayers) {
+            if(vcPlayer.getSprite() == sprite){
+                if(mBulletLayer!=null&&mEnemyLayer!=null) mBulletLayer.add(vcPlayer, mEnemyLayer);
             }
         }
     }
@@ -101,6 +141,7 @@ public class PlayerLayer {
         private float distance;//攻击距离
         private Constant.ModelType type;//塔类型
         private Constant.AttackType attacktype;//攻击方式
+        private ArrayList<CCSpriteFrame> attackFrames;// 攻击动画
         private CCSprite sprite;
         public Player(ModelLayer.Model modelConfig) {
             this.distance = modelConfig.getDistance();
@@ -110,6 +151,7 @@ public class PlayerLayer {
             this.y = modelConfig.getY();
             this.name = modelConfig.getName();
             this.type = modelConfig.getType();
+            this.attackFrames = modelConfig.getAttackFrames();
             sprite.setTag(Config.player.tag);
             sprite.setVertexZ(Config.player.z);
         }
@@ -153,6 +195,14 @@ public class PlayerLayer {
             ccSprite.setPosition(sprite.getPosition());
             mSickTo.addChild(ccSprite,Config.player.z,Config.player.tag);
             this.sprite = ccSprite;
+        }
+
+        public ArrayList<CCSpriteFrame> getAttackFrames() {
+            return attackFrames;
+        }
+
+        public void setAttackFrames(ArrayList<CCSpriteFrame> attackFrames) {
+            this.attackFrames = attackFrames;
         }
 
         public String getName() {

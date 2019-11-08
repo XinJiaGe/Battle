@@ -21,6 +21,8 @@ public class Config {
             switch (attacktype) {
                 case GongJian:
                     return 1200;
+                case DianQiu:
+                    return 800;
             }
             return 0;
         }
@@ -29,6 +31,8 @@ public class Config {
             switch (attacktype) {
                 case GongJian:
                     return 1;
+                case DianQiu:
+                    return 5;
             }
             return 0;
         }
@@ -83,6 +87,8 @@ public class Config {
         public static int geTattackDistance(Constant.ModelType type){
             switch (type) {
                 case JianTa:
+                    return 400;
+                case DianTa:
                     return 300;
             }
             return 0;
@@ -92,6 +98,16 @@ public class Config {
         public final static int tag = 2;
         public final static int z = 30;
         public final static float playerAttackInterval = 0.2f;
+        //获取攻击速度
+        public static int getSpeed(Constant.AttackType attackType){
+            switch (attackType) {
+                case GongJian:
+                    return 20;
+                case DianQiu:
+                    return 80;
+            }
+            return 10;
+        }
     }
     public static class blood{
         public final static int tag = 1;

@@ -28,6 +28,8 @@ public class MainActivity extends BaseActivit {
     protected Button stickTo2;
     @ViewInject(R.id.act_main_dota)
     protected Button dota;
+    @ViewInject(R.id.act_main_arkanoidcod)
+    protected Button arkanoidcod;
 
     @Override
     public int bindLayout() {
@@ -73,7 +75,10 @@ public class MainActivity extends BaseActivit {
             startActivity(SickTo2Activity.class);
         }
         if(view == dota){
-
+            startActivity(DotaActivity.class);
+        }
+        if(view == arkanoidcod){
+            startActivity(DotaActivity.class);
         }
     }
 }

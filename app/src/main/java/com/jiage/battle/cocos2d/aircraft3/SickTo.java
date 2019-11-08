@@ -15,7 +15,7 @@ import org.cocos2d.types.ccColor4B;
  */
 public class SickTo extends CCColorLayer {
     private String TAG = "SickTo";
-    private Constant.Process process = Constant.Process.Start;//游戏进程
+    private Constant.Process process = Constant.Process.Game;//游戏进程
     private ModelLayer modelLayer;
     private PlayerLayer playerLayer;
     private MapLayer mapLayer;
@@ -44,9 +44,11 @@ public class SickTo extends CCColorLayer {
 
                 break;
             case Game:
+                modelLayer.init();
+                playerLayer.init();
+                bulletLayer.init();
+                enemyLayer.init(mapLayer.getPathList());
                 schedule("update");
-                //子弹逻辑
-                schedule("bulletLogic",Config.bullet.bulletLogicInterval);
                 //定时添加敌人
                 schedule("addEnemy",Config.enemy.addEnemyInterval);
                 //设置攻击频率
@@ -71,6 +73,8 @@ public class SickTo extends CCColorLayer {
         playerLayer.search(enemyLayer);
         //更新血条位置
         enemyLayer.updataBool();
+        //发射子弹
+        playerLayer.Attack(bulletLayer,enemyLayer);
 
         Log.e("数量","子弹："+bulletLayer.getVcBullet().size());
         Log.e("数量","敌人："+enemyLayer.getVcEnemys().size());
@@ -82,14 +86,6 @@ public class SickTo extends CCColorLayer {
      */
     public void addEnemy(float dt){
         enemyLayer.addEnemy();
-    }
-
-    /**
-     * player攻击发射子弹
-     * @param dt
-     */
-    public void playerAttack(float dt){
-        playerLayer.Attack(bulletLayer,enemyLayer);
     }
 
     @Override

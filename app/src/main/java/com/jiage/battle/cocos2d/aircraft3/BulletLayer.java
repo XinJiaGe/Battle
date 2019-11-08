@@ -40,19 +40,30 @@ public class BulletLayer {
      */
     public void add(PlayerLayer.Player player, EnemyLayer enemyLayer){
         String name = "";
+        CGSize contentSize = null;
+        CCSprite ccSprite = null;
         switch (player.getAttacktype()) {
             case GongJian:
                 name = "bullet/849848961416416515.png";
+                contentSize = player.getSprite().getContentSize();
+                ccSprite = CCSprite.sprite(name);
+                ccSprite.setAnchorPoint(0.5f,0.5f);
+                ccSprite.setPosition(CCNode.ccp(player.getX()+contentSize.width/2,player.getY()+player.getSprite().getContentSize().height-player.getSprite().getContentSize().height/4));
+                break;
+            case DianQiu:
+                name = "bullet/icon_aircraftwars_bullet2.png";
+                contentSize = player.getSprite().getContentSize();
+                ccSprite = CCSprite.sprite(name);
+                ccSprite.setAnchorPoint(0,0.5f);
+                ccSprite.setPosition(CCNode.ccp(player.getX()+contentSize.width/2,player.getY()+player.getSprite().getContentSize().height-player.getSprite().getContentSize().height/4));
                 break;
         }
-        CGSize contentSize = player.getSprite().getContentSize();
-        CCSprite ccSprite = CCSprite.sprite(name);
-        ccSprite.setAnchorPoint(0.5f,0.5f);
-        ccSprite.setPosition(CCNode.ccp(player.getX()+contentSize.width/2,player.getY()+player.getSprite().getContentSize().height-player.getSprite().getContentSize().height/4));
-        mSickTo.addChild(ccSprite,Config.bullet.z,Config.bullet.tag);
-        Bullet bullet = new Bullet(player, ccSprite, enemyLayer);
-        vcBullet.add(bullet);
-        runAction(bullet,player.getEnemy().getCcSprite().getPosition());
+        if(ccSprite!=null) {
+            mSickTo.addChild(ccSprite, Config.bullet.z, Config.bullet.tag);
+            Bullet bullet = new Bullet(player, ccSprite, enemyLayer);
+            vcBullet.add(bullet);
+            runAction(bullet, player.getEnemy().getCcSprite().getPosition());
+        }
     }
 
     /**
@@ -124,18 +135,15 @@ public class BulletLayer {
          * @return
          */
         public void updataRotation() {
-            CGPoint playerPosition = enemy.getCcSprite().getPosition();
-            CGPoint position = sprite.getPosition();
-            angle = CollisionUtil.getRotationAngle(position.x, position.y, playerPosition.x, playerPosition.y);
             switch (attacktype) {
                 case GongJian:
+                    CGPoint playerPosition = enemy.getCcSprite().getPosition();
+                    CGPoint position = sprite.getPosition();
+                    angle = CollisionUtil.getRotationAngle(position.x, position.y, playerPosition.x, playerPosition.y);
                     sprite.setRotation(angle-90);
-                    break;
-                default:
-                    sprite.setRotation(angle);
+                    updataPlayerImage();
                     break;
             }
-            updataPlayerImage();
         }
 
         /**

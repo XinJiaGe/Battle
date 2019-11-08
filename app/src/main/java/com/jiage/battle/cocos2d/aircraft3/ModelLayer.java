@@ -6,9 +6,13 @@ import com.jiage.battle.cocos2d.CollisionUtil;
 import com.jiage.battle.cocos2d.Constant;
 import com.jiage.battle.cocos2d.aircraft3.model.CGPointModel;
 
+import org.cocos2d.actions.base.CCRepeatForever;
+import org.cocos2d.actions.interval.CCAnimate;
 import org.cocos2d.actions.interval.CCMoveTo;
+import org.cocos2d.nodes.CCAnimation;
 import org.cocos2d.nodes.CCDirector;
 import org.cocos2d.nodes.CCSprite;
+import org.cocos2d.nodes.CCSpriteFrame;
 import org.cocos2d.types.CGPoint;
 import org.cocos2d.types.CGRect;
 import org.cocos2d.types.CGSize;
@@ -35,6 +39,19 @@ public class ModelLayer {
 
     public void init(){
         models.add(new Model("player/jianta.png", Constant.ModelType.JianTa));
+        models.add(new Model("player/saf54dsaf8dsa4fdsa.png", Constant.ModelType.DianTa));
+        add();
+    }
+
+    private void add(){
+        int left = 0;
+        for (Model model : models) {
+            CCSprite sprite = model.getSprite();
+            sprite.setAnchorPoint(0,0);
+            sprite.setPosition(CGPoint.ccp(left,0));
+            mSickTo.addChild(sprite,Config.model.z,Config.model.tag);
+            left += sprite.getContentSize().width+5;
+        }
     }
 
     /**
@@ -52,7 +69,11 @@ public class ModelLayer {
             if(sprite.getTag() == Config.model.tag &&CGRect.containsPoint(sprite.getBoundingBox(), cgLocation)){
                 isMobileModel = true;
                 //new 一个移动对象
-                mobileSprite = new Model(vcModel.getName(),vcModel.getType());
+                mobileSprite = new Model(vcModel.getName(), vcModel.getType());
+                CCSprite cpSprite = mobileSprite.getSprite();
+                cpSprite.setAnchorPoint(sprite.getAnchorPoint());
+                cpSprite.setPosition(sprite.getPosition());
+                mSickTo.addChild(cpSprite,Config.model.z,Config.model.tag);
                 break;
             }
         }
@@ -172,6 +193,7 @@ public class ModelLayer {
         private CCSprite sprite;//默认显示图片
         private float distance;//攻击距离
         private Constant.AttackType attacktype;//攻击方式
+        private ArrayList<CCSpriteFrame> attackFrames;// 攻击动画
 
         /**
          * 创建一个
@@ -182,20 +204,41 @@ public class ModelLayer {
             this.x = 0;
             this.y = 0;
             this.distance = Config.model.geTattackDistance(type);
-            CCSprite ccSprite = CCSprite.sprite(name);
+            sprite = CCSprite.sprite(name);
             switch (type) {
                 case JianTa:
                     this.orientation = Constant.Orientation.BOTTOM;
                     this.attacktype = Constant.AttackType.GongJian;
-                    float oneWidth = ccSprite.getContentSize().width/15;
-                    float oneHeight = ccSprite.getContentSize().height/4;
-                    ccSprite.setTextureRect(0,0,oneWidth,oneHeight,false);
+                    float oneWidth = sprite.getContentSize().width/15;
+                    float oneHeight = sprite.getContentSize().height/4;
+                    sprite.setTextureRect(0,0,oneWidth,oneHeight,false);
+                    break;
+                case DianTa:
+                    this.orientation = Constant.Orientation.BOTTOM;
+                    this.attacktype = Constant.AttackType.DianQiu;
+                    sprite.setTextureRect(0,sprite.getContentSize().height-90,sprite.getContentSize().width,90,false);
+                    attackFrames = new ArrayList<>();
+                    getFrams(555,92);
+                    getFrams(648,92);
+                    getFrams(750,95);
+                    getFrams(869,105);
+                    getFrams(998,105);
+                    getFrams(555,92);
                     break;
             }
-            ccSprite.setAnchorPoint(0,0);
-            ccSprite.setPosition(CGPoint.ccp(0,0));
-            mSickTo.addChild(ccSprite,Config.model.z,Config.model.tag);
-            this.sprite = ccSprite;
+        }
+        private void getFrams(float y,float h){
+            CCSprite sprite = CCSprite.sprite(name);
+            sprite.setTextureRect(0,sprite.getContentSize().height-y,sprite.getContentSize().width,h,false);
+            CCSpriteFrame displayedFrame = sprite.displayedFrame();
+            attackFrames.add(displayedFrame);
+        }
+        public ArrayList<CCSpriteFrame> getAttackFrames() {
+            return attackFrames;
+        }
+
+        public void setAttackFrames(ArrayList<CCSpriteFrame> attackFrames) {
+            this.attackFrames = attackFrames;
         }
 
         public float getDistance() {
