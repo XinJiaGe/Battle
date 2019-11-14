@@ -1,6 +1,6 @@
-package com.jiage.battle.cocos2d.aircraft3;
+package com.jiage.battle.cocos2d.stickto3;
 
-import com.jiage.battle.cocos2d.Constant;
+import com.jiage.battle.cocos2d.stickto2.Constant;
 
 /**
  * 作者：忻佳

@@ -3,6 +3,7 @@ package com.jiage.battle.activity;
 import android.view.View;
 
 import com.jiage.battle.cocos2d.stickto2.SickTo;
+import com.jiage.battle.cocos2d.stickto3.StickTo;
 
 import org.cocos2d.layers.CCColorLayer;
 import org.cocos2d.layers.CCScene;
@@ -15,7 +16,7 @@ import org.cocos2d.types.ccColor4B;
  * 日期：2019-10-29
  * 描述：
  */
-public class SickTo2Activity extends BaseActivit {
+public class SickTo3Activity extends BaseActivit {
     private CCGLSurfaceView _glSurfaceView;
 
     @Override
@@ -56,7 +57,7 @@ public class SickTo2Activity extends BaseActivit {
         //获取幕(CCScene)对象
         CCScene scene = CCScene.node();
         //创建GameLayer对象
-        CCColorLayer layer = new SickTo(ccColor4B.ccc4(255, 255, 255, 255));
+        CCColorLayer layer = new StickTo(ccColor4B.ccc4(255, 255, 255, 255));
         //将Layer放到Scene中
         scene.addChild(layer);//创建一个场景，用来显示游戏界面
         CCDirector.sharedDirector().runWithScene(scene);// 运行场景

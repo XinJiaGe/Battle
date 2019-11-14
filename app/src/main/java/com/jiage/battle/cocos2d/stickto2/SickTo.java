@@ -1,9 +1,7 @@
-package com.jiage.battle.cocos2d.aircraft3;
+package com.jiage.battle.cocos2d.stickto2;
 
 import android.util.Log;
 import android.view.MotionEvent;
-
-import com.jiage.battle.cocos2d.Constant;
 
 import org.cocos2d.layers.CCColorLayer;
 import org.cocos2d.types.ccColor4B;

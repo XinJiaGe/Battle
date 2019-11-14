@@ -30,6 +30,8 @@ public class MainActivity extends BaseActivit {
     protected Button dota;
     @ViewInject(R.id.act_main_arkanoidcod)
     protected Button arkanoidcod;
+    @ViewInject(R.id.act_main_stickTo3)
+    protected Button stickTo3;
 
     @Override
     public int bindLayout() {
@@ -52,6 +54,7 @@ public class MainActivity extends BaseActivit {
         stickTo2.setOnClickListener(this);
         towerdefense.setOnClickListener(this);
         dota.setOnClickListener(this);
+        stickTo3.setOnClickListener(this);
     }
 
     @Override
@@ -79,6 +82,9 @@ public class MainActivity extends BaseActivit {
         }
         if(view == arkanoidcod){
             startActivity(DotaActivity.class);
+        }
+        if(view == stickTo3){
+            startActivity(SickTo3Activity.class);
         }
     }
 }

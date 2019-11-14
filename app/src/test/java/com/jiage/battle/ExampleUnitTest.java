@@ -1,17 +1,15 @@
 package com.jiage.battle;
 
-import android.graphics.Point;
 import android.util.Base64;
-import android.util.Log;
 
 import com.jiage.battle.util.OtherUtil;
-import com.jiage.battle.util.SDDateUtil;
-import com.jiage.battle.util.SurfaceViewUtil;
 
 import org.cocos2d.types.CGPoint;
 import org.junit.Test;
 
 import java.security.MessageDigest;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.crypto.Cipher;
 import javax.crypto.spec.IvParameterSpec;
@@ -116,10 +114,33 @@ public class ExampleUnitTest {
 
         //90.91736   90.84249
 
-        CGPoint pointDistance = getPointDistance(827, 545.875f, 1001.00006f, 992, 100);
-        System.out.println(pointDistance.x+"  "+pointDistance.y);
+//        CGPoint pointDistance = getPointDistance(827, 545.875f, 1001.00006f, 992, 100);
+//        System.out.println(pointDistance.x+"  "+pointDistance.y);
+//
+//        realPoint(new float[]{827, 545.875f},new float[]{1001.00006f, 992},100);
+//        sss(10,3);
+        eee(20,10);
+    }
 
-        realPoint(new float[]{827, 545.875f},new float[]{1001.00006f, 992},100);
+    private void eee(int n,int m){
+        List<Integer> ints = new ArrayList<>();
+        for (int i = 0; i < n; i++) {
+            ints.add(i+1);
+        }
+        boolean isTrue = true;
+        int a = 0;
+        while (isTrue){
+            for (int i = 0; i < m-1; i++) {
+                if(a>=ints.size()-1) a = 0;
+                else a++;
+            }
+            ints.remove(a);
+            if(ints.size() ==1) {
+                isTrue = false;
+                System.out.println(ints.toString());
+            }else
+                System.out.println(ints.toString());
+        }
     }
     /**
      * 获取两点之间线上一点

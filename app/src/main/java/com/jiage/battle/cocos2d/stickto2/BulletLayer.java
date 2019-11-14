@@ -1,9 +1,6 @@
-package com.jiage.battle.cocos2d.aircraft3;
-
-import android.util.Log;
+package com.jiage.battle.cocos2d.stickto2;
 
 import com.jiage.battle.cocos2d.CollisionUtil;
-import com.jiage.battle.cocos2d.Constant;
 
 import org.cocos2d.actions.instant.CCCallFuncN;
 import org.cocos2d.actions.interval.CCMoveTo;

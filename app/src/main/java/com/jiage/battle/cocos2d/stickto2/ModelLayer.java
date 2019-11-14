@@ -1,15 +1,11 @@
-package com.jiage.battle.cocos2d.aircraft3;
+package com.jiage.battle.cocos2d.stickto2;
 
 import android.view.MotionEvent;
 
 import com.jiage.battle.cocos2d.CollisionUtil;
-import com.jiage.battle.cocos2d.Constant;
-import com.jiage.battle.cocos2d.aircraft3.model.CGPointModel;
+import com.jiage.battle.cocos2d.stickto2.model.CGPointModel;
 
-import org.cocos2d.actions.base.CCRepeatForever;
-import org.cocos2d.actions.interval.CCAnimate;
 import org.cocos2d.actions.interval.CCMoveTo;
-import org.cocos2d.nodes.CCAnimation;
 import org.cocos2d.nodes.CCDirector;
 import org.cocos2d.nodes.CCSprite;
 import org.cocos2d.nodes.CCSpriteFrame;

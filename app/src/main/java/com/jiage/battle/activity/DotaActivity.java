@@ -2,8 +2,6 @@ package com.jiage.battle.activity;
 
 import android.view.View;
 
-import com.jiage.battle.R;
-import com.jiage.battle.cocos2d.aircraft3.SickTo;
 import com.jiage.battle.cocos2d.dota.Dota;
 
 import org.cocos2d.layers.CCColorLayer;

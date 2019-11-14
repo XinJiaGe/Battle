@@ -1,4 +1,4 @@
-package com.jiage.battle.cocos2d;
+package com.jiage.battle.cocos2d.stickto2;
 
 /**
  * 作者：忻佳

@@ -1,9 +1,12 @@
 package com.jiage.battle.cocos2d;
 
-import com.jiage.battle.cocos2d.aircraft3.Config;
-import com.jiage.battle.cocos2d.aircraft3.SickTo;
+import android.view.MotionEvent;
+
+import com.jiage.battle.cocos2d.stickto2.Config;
+import com.jiage.battle.cocos2d.stickto2.SickTo;
 
 import org.cocos2d.layers.CCColorLayer;
+import org.cocos2d.nodes.CCDirector;
 import org.cocos2d.nodes.CCSprite;
 import org.cocos2d.types.CGPoint;
 import org.cocos2d.types.ccColor4B;
@@ -14,6 +17,16 @@ import org.cocos2d.types.ccColor4B;
  * 描述：
  */
 public class Cocos2dUtil {
+    /**
+     * 转坐标系
+     * @param event
+     * @return
+     */
+    public static CGPoint convertToGL(MotionEvent event){
+        CGPoint point = new CGPoint();
+        point.set(event.getX(), event.getY());
+        return CCDirector.sharedDirector().convertToGL(point);
+    }
     /**
      * 设置范围内颜色
      * @param sickTo

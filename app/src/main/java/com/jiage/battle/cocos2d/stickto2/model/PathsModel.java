@@ -1,4 +1,4 @@
-package com.jiage.battle.cocos2d.aircraft3.model;
+package com.jiage.battle.cocos2d.stickto2.model;
 
 import org.cocos2d.types.CGPoint;
 

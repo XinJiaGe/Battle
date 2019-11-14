@@ -1,12 +1,10 @@
-package com.jiage.battle.cocos2d.aircraft3;
+package com.jiage.battle.cocos2d.stickto2;
 
 import android.view.MotionEvent;
 
-import com.jiage.battle.cocos2d.Cocos2dUtil;
 import com.jiage.battle.cocos2d.CollisionUtil;
-import com.jiage.battle.cocos2d.Constant;
-import com.jiage.battle.cocos2d.aircraft3.model.CGPointModel;
-import com.jiage.battle.cocos2d.aircraft3.model.PathsModel;
+import com.jiage.battle.cocos2d.stickto2.model.CGPointModel;
+import com.jiage.battle.cocos2d.stickto2.model.PathsModel;
 
 import org.cocos2d.layers.CCTMXObjectGroup;
 import org.cocos2d.layers.CCTMXTiledMap;

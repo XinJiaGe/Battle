@@ -20,6 +20,9 @@
             </intent-filter>
         </activity>
         <activity
+            android:name=".activity.SickTo3Activity"
+            android:screenOrientation="landscape" />
+        <activity
             android:name=".activity.DotaActivity"
             android:screenOrientation="landscape" />
         <activity

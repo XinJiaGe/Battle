@@ -1,9 +1,8 @@
-package com.jiage.battle.cocos2d.aircraft3;
+package com.jiage.battle.cocos2d.stickto2;
 
 import com.jiage.battle.cocos2d.Cocos2dUtil;
 import com.jiage.battle.cocos2d.CollisionUtil;
-import com.jiage.battle.cocos2d.Constant;
-import com.jiage.battle.cocos2d.aircraft3.model.PathsModel;
+import com.jiage.battle.cocos2d.stickto2.model.PathsModel;
 
 import org.cocos2d.actions.base.CCRepeatForever;
 import org.cocos2d.actions.instant.CCCallFuncN;
